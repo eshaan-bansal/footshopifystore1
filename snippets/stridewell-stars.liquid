@@ -1,0 +1,48 @@
+{%- comment -%}
+  Renders a star row for a rating.
+
+  Editable via section/block settings so the merchant enters their own real
+  numbers — nothing here invents a rating or a review count. If `rating` is
+  blank or zero, nothing renders at all.
+
+  Accepts:
+  - rating: {Number} 0–5, halves supported (e.g. 4.5)
+  - count: {String} optional label shown after the stars (e.g. "412 reviews")
+  - class: {String} extra classes for the wrapper
+
+  Usage:
+  {%- render 'stridewell-stars', rating: block.settings.rating, count: block.settings.review_count -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign rating_value = rating | plus: 0
+  if rating_value <= 0
+    break
+  endif
+  if rating_value > 5
+    assign rating_value = 5
+  endif
+
+  assign full_stars = rating_value | floor
+  assign remainder = rating_value | minus: full_stars
+  assign has_half = false
+  if remainder >= 0.25
+    assign has_half = true
+  endif
+-%}
+
+{%- if rating_value > 0 -%}
+  <span class="sw-stars {{ class }}">
+    <span class="sw-stars__icons" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: rating_value, rating_max: 5 }}">
+      {%- for i in (1..full_stars) -%}
+        {%- render 'stridewell-icon', icon: 'star' -%}
+      {%- endfor -%}
+      {%- if has_half -%}
+        {%- render 'stridewell-icon', icon: 'star-half' -%}
+      {%- endif -%}
+    </span>
+    {%- if count != blank -%}
+      <span class="sw-stars__count">{{ count }}</span>
+    {%- endif -%}
+  </span>
+{%- endif -%}

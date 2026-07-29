@@ -1,0 +1,42 @@
+{%- comment -%}
+  Renders the StrideWell wordmark from the hand-placed theme asset
+  `assets/stridewell-logo.png`.
+
+  This is the DEFAULT logo. It is only rendered when no logo has been chosen in
+  Theme settings → Logo (header) or Theme settings → Brand (footer) — those
+  pickers always win, so the merchant can override without touching code.
+
+  Degrades gracefully: if `stridewell-logo.png` has not been added to /assets
+  yet, the image removes itself on error and the shop name renders as text
+  instead. No broken layout, no Liquid error.
+
+  Accepts:
+  - class: {String} extra classes for the <img>
+  - width: {Number} rendered width in px (default 140)
+  - height: {Number} rendered height in px, for CLS reservation (default width / 3.5)
+  - eager: {Boolean} load eagerly (use for the header logo)
+
+  Usage:
+  {%- render 'stridewell-logo', width: 140, eager: true -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign logo_width = width | default: 140
+  assign logo_height = height
+  if logo_height == blank
+    assign logo_height = logo_width | times: 100 | divided_by: 350
+  endif
+-%}
+
+<div class="stridewell-logo" style="max-width: min(100%, {{ logo_width }}px);">
+  <img
+    src="{{ 'stridewell-logo.png' | asset_url }}"
+    alt="{{ shop.name | escape }}"
+    class="stridewell-logo__image {{ class }}"
+    width="{{ logo_width }}"
+    height="{{ logo_height }}"
+    {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+    onerror="this.closest('.stridewell-logo').classList.add('stridewell-logo--missing'); this.remove();"
+  >
+  <span class="stridewell-logo__fallback h2">{{ shop.name }}</span>
+</div>

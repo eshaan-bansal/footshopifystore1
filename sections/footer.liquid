@@ -121,6 +121,8 @@
                               width: settings.brand_image_width
                           }}
                         </div>
+                      {%- else -%}
+                        {%- render 'stridewell-logo', width: settings.brand_image_width -%}
                       {%- endif -%}
                       {%- if settings.brand_headline != blank -%}
                         <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
