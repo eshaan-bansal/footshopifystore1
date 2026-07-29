@@ -1,0 +1,225 @@
+{%- comment -%}
+  Guarantee band — the last big resistance-remover before the FAQ.
+
+  Background defaults to assets/guarantee-band.jpg and is deliberately scrimmed
+  hard: this section is text-first, the image is atmosphere. If the file is
+  missing the section keeps its colour-scheme background.
+{%- endcomment -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .sw-guarantee__inner {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sw-guarantee__scrim {
+    background: rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }});
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .sw-guarantee__inner {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sw-guarantee color-{{ section.settings.color_scheme }}">
+  {%- if section.settings.show_background -%}
+    {%- render 'stridewell-image',
+      image: section.settings.image,
+      fallback: 'guarantee-band.jpg',
+      fallback_width: 2400,
+      fallback_height: 1000,
+      class: 'sw-guarantee__image',
+      sizes: '100vw'
+    -%}
+    <div class="sw-guarantee__scrim"></div>
+  {%- endif -%}
+
+  <div
+    class="sw-guarantee__inner page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    {%- if section.settings.badge_label != blank -%}
+      <span class="sw-guarantee__badge">
+        {%- render 'stridewell-icon', icon: 'shield-check', class: 'sw-icon--sm' -%}
+        {{ section.settings.badge_label | escape }}
+      </span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="sw-guarantee__heading inline-richtext {{ section.settings.heading_size }}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.text != blank -%}
+      <div class="sw-guarantee__text rte">{{ section.settings.text }}</div>
+    {%- endif -%}
+
+    {%- liquid
+      assign points = section.settings.points | strip
+    -%}
+    {%- if points != blank -%}
+      <ul class="sw-guarantee__points" role="list">
+        {%- assign point_items = points | split: ',' -%}
+        {%- for item in point_items -%}
+          {%- assign item_text = item | strip -%}
+          {%- if item_text != blank -%}
+            <li>
+              {%- render 'stridewell-icon', icon: 'check', class: 'sw-icon--sm' -%}
+              <span>{{ item_text }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.button_label != blank -%}
+      <a
+        href="{{ section.settings.button_link | default: routes.all_products_collection_url }}"
+        class="button button--primary"
+      >
+        {{- section.settings.button_label | escape -}}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Guarantee band",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_label",
+      "label": "Badge label",
+      "default": "60-day comfort guarantee"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Try StrideWell risk-free for 60 days"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__4.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Wear them to work. Wear them on your day off. If they're not right for your feet, send them back for a full refund — no photos, no phone calls.</p>"
+    },
+    {
+      "type": "text",
+      "id": "points",
+      "label": "Reassurance points",
+      "info": "Comma-separated. Each item gets a checkmark.",
+      "default": "60 days to decide, Full refund, Simple returns by email"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop foot relief"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background",
+      "label": "Show background image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image",
+      "info": "Leave blank to use assets/guarantee-band.jpg."
+    },
+    {
+      "type": "color",
+      "id": "scrim_color",
+      "label": "Overlay color",
+      "default": "#0E3A46"
+    },
+    {
+      "type": "range",
+      "id": "scrim_opacity",
+      "min": 0,
+      "max": 95,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Guarantee band"
+    }
+  ]
+}
+{% endschema %}

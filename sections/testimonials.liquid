@@ -1,0 +1,256 @@
+{%- comment -%}
+  Testimonials.
+
+  The quotes shipped in the preset are PLACEHOLDERS written to show the right
+  shape (a specific situation, a specific outcome, no medical claim). Replace
+  every one with a real customer review before launch — and never add a rating
+  or review count you cannot substantiate.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sw-testimonials__grid {
+    --sw-testimonial-columns: {{ section.blocks.size | at_most: 3 | at_least: 1 }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sw-testimonials color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    {%- if section.settings.heading != blank or section.settings.summary != blank -%}
+      <div class="title-wrapper title-wrapper--no-top-margin sw-center sw-measure">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.summary_rating > 0 -%}
+          <p class="sw-center">
+            {%- render 'stridewell-stars',
+              rating: section.settings.summary_rating,
+              count: section.settings.summary
+            -%}
+          </p>
+        {%- elsif section.settings.summary != blank -%}
+          <p class="sw-muted">{{ section.settings.summary | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="sw-testimonials__grid" role="list">
+        {%- for block in section.blocks -%}
+          <li {{ block.shopify_attributes }}>
+            <figure class="sw-testimonial">
+              {%- if block.settings.rating > 0 -%}
+                {%- render 'stridewell-stars', rating: block.settings.rating -%}
+              {%- endif -%}
+
+              {%- if block.settings.quote != blank -%}
+                <blockquote class="sw-testimonial__quote">{{ block.settings.quote }}</blockquote>
+              {%- endif -%}
+
+              {%- if block.settings.name != blank or block.settings.meta != blank or block.settings.avatar != blank -%}
+                <figcaption class="sw-testimonial__footer">
+                  {%- if block.settings.avatar != blank -%}
+                    {{
+                      block.settings.avatar
+                      | image_url: width: 132
+                      | image_tag:
+                        class: 'sw-testimonial__avatar',
+                        widths: '44, 88, 132',
+                        sizes: '44px',
+                        alt: block.settings.name
+                    }}
+                  {%- endif -%}
+                  <span>
+                    {%- if block.settings.name != blank -%}
+                      <span class="sw-testimonial__name">{{ block.settings.name | escape }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.meta != blank -%}
+                      <span class="sw-testimonial__meta sw-muted">{{ block.settings.meta | escape }}</span>
+                    {%- endif -%}
+                  </span>
+                </figcaption>
+              {%- endif -%}
+            </figure>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "section",
+  "tag": "section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "The quotes below are placeholders. Replace them with real reviews, and only enter a rating or review count you can back up."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What customers tell us"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__4.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "range",
+      "id": "summary_rating",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "label": "Overall rating",
+      "info": "Set to 0 to hide. Only use your real average.",
+      "default": 0
+    },
+    {
+      "type": "text",
+      "id": "summary",
+      "label": "Rating caption",
+      "info": "e.g. \"based on 412 reviews\". Leave blank to hide."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 0.5,
+          "label": "Rating",
+          "info": "Set to 0 to hide the stars.",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Placeholder — replace with a real review."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Customer name"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Supporting line",
+          "info": "e.g. \"Verified buyer\" or the job they're on their feet for.",
+          "default": "Verified buyer"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Photo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I'm on a concrete floor for ten hours and my feet used to ache by lunch. These went straight into my work shoes and I stopped thinking about them.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I ordered a size up like the sizing guide said and the fit was right the first time. Easy.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I have wide feet and most inserts crowd my toes. These didn't, and they fit in my everyday sneakers.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

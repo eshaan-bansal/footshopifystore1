@@ -82,6 +82,18 @@
   background-repeat: no-repeat;
 }
 
+/* Image layer: a real <img> (not a CSS background) so it gets a responsive
+   srcset and an explicit width/height, which keeps LCP fast and CLS at zero. */
+.sw-hero__image,
+.sw-guarantee__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
 .sw-hero__scrim {
   position: absolute;
   inset: 0;
@@ -213,6 +225,26 @@
 /* ---------------------------------------------------------------------------
    Shop by problem (sections/shop-by-problem.liquid)
    --------------------------------------------------------------------------- */
+
+.sw-problem-section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Accent background sits behind the cards at low opacity so card text keeps
+   its contrast no matter what photo is used. */
+.sw-problem-section__image {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sw-problem-section__inner {
+  position: relative;
+}
 
 .sw-problem-grid {
   display: grid;

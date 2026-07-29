@@ -1,0 +1,276 @@
+{%- comment -%}
+  StrideWell hero.
+
+  The fold's only job is to earn the scroll: outcome-led headline, one line of
+  subcopy, one primary action, one secondary action, and a short reassurance
+  row. Nothing else.
+
+  Background defaults to assets/hero-home.jpg and degrades to the section's
+  colour scheme background if that file is ever missing.
+{%- endcomment -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .sw-hero {
+    min-height: {{ section.settings.height_mobile }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sw-hero__scrim {
+    {%- if section.settings.content_alignment == 'center' -%}
+      background: rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }});
+    {%- else -%}
+      background: linear-gradient(
+        to right,
+        rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }}) 0%,
+        rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }}) 42%,
+        rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | times: 0.35 | divided_by: 100.0 }}) 100%
+      );
+    {%- endif -%}
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .sw-hero {
+      min-height: {{ section.settings.height_desktop }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sw-hero color-{{ section.settings.color_scheme }} sw-hero--{{ section.settings.content_alignment }}">
+  {%- render 'stridewell-image',
+    image: section.settings.image,
+    fallback: 'hero-home.jpg',
+    fallback_width: 2400,
+    fallback_height: 1350,
+    class: 'sw-hero__image',
+    sizes: '100vw',
+    alt: section.settings.image_alt,
+    eager: true
+  -%}
+
+  <div class="sw-hero__scrim"></div>
+
+  <div class="sw-hero__inner page-width">
+    <div
+      class="sw-hero__content{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+      {% endif %}
+    >
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="sw-eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="sw-hero__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="sw-hero__subheading rte">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+        <div class="sw-hero__buttons">
+          {%- if section.settings.button_label_1 != blank -%}
+            <a
+              href="{{ section.settings.button_link_1 | default: routes.all_products_collection_url }}"
+              class="button button--primary"
+            >
+              {{- section.settings.button_label_1 | escape -}}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_label_2 != blank -%}
+            <a
+              href="{{ section.settings.button_link_2 | default: routes.all_products_collection_url }}"
+              class="button button--secondary"
+            >
+              {{- section.settings.button_label_2 | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- liquid
+        assign reassurance = section.settings.reassurance | strip
+      -%}
+      {%- if reassurance != blank -%}
+        <ul class="sw-hero__reassurance" role="list">
+          {%- assign reassurance_items = reassurance | split: ',' -%}
+          {%- for item in reassurance_items -%}
+            {%- assign item_text = item | strip -%}
+            {%- if item_text != blank -%}
+              <li>
+                {%- render 'stridewell-icon', icon: 'check', class: 'sw-icon--sm' -%}
+                <span>{{ item_text }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero (StrideWell)",
+  "class": "section section--hero",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Leave the image blank to use assets/hero-home.jpg. Keep the left third of the image clear so the headline stays readable."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "info": "Leave blank if the image is decorative."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Foot & leg relief"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Relief that keeps you moving."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h1", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__4.label" },
+        { "value": "hxl", "label": "t:sections.all.heading_size.options__5.label" }
+      ],
+      "default": "h0",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Everyday support for sore feet, arches and legs — designed for people who are on their feet all day.</p>"
+    },
+    {
+      "type": "text",
+      "id": "reassurance",
+      "label": "Reassurance row",
+      "info": "Comma-separated. Each item gets a checkmark.",
+      "default": "Free US shipping over $50, 60-day comfort guarantee, Easy sizing help"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Primary button label",
+      "default": "Shop foot relief"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary button label",
+      "default": "See best sellers"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Content position"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "min": 320,
+      "max": 720,
+      "step": 20,
+      "unit": "px",
+      "label": "Minimum height on mobile",
+      "default": 480
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "min": 400,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "label": "Minimum height on desktop",
+      "default": 620
+    },
+    {
+      "type": "header",
+      "content": "Image overlay"
+    },
+    {
+      "type": "color",
+      "id": "scrim_color",
+      "label": "Overlay color",
+      "default": "#0E3A46"
+    },
+    {
+      "type": "range",
+      "id": "scrim_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "info": "Keeps the headline readable over the photo.",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero (StrideWell)"
+    }
+  ]
+}
+{% endschema %}

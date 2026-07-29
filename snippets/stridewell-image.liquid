@@ -1,0 +1,70 @@
+{%- comment -%}
+  Renders a brand/decorative image with a fixed theme-asset default.
+
+  The pattern every StrideWell section uses:
+    1. If the merchant picked an image in the theme editor, that wins and is
+       rendered responsively through the Shopify CDN.
+    2. Otherwise fall back to the hand-placed file in /assets by its exact
+       filename (e.g. 'hero-home.jpg').
+    3. If that file is absent too, the <img> removes itself on error so the
+       section keeps its background colour instead of showing a broken image.
+
+  Note: theme assets are served at their natural size — the CDN `image_url`
+  filters only apply to picked/uploaded images — so the fallback path emits a
+  single source with explicit dimensions.
+
+  Accepts:
+  - image: {Object} image_picker setting value (may be blank)
+  - fallback: {String} asset filename, e.g. 'hero-home.jpg'
+  - fallback_width / fallback_height: {Number} natural size of the asset file,
+      used for width/height attributes so nothing shifts while loading
+  - class: {String} classes for the <img>
+  - sizes: {String} sizes attribute for the picked-image path
+  - alt: {String} alt text (decorative images should pass '')
+  - eager: {Boolean} load eagerly + high priority (use for above-the-fold)
+
+  Usage:
+  {%- render 'stridewell-image',
+      image: section.settings.image,
+      fallback: 'hero-home.jpg',
+      fallback_width: 2400, fallback_height: 1350,
+      class: 'sw-hero__image', sizes: '100vw', eager: true -%}
+{%- endcomment -%}
+
+{%- liquid
+  assign img_alt = alt | default: '' | escape
+  assign img_sizes = sizes | default: '100vw'
+  assign fb_width = fallback_width | default: 1600
+  assign fb_height = fallback_height | default: 900
+
+  assign loading_attr = 'lazy'
+  assign priority_attr = 'auto'
+  if eager
+    assign loading_attr = 'eager'
+    assign priority_attr = 'high'
+  endif
+-%}
+
+{%- if image != blank -%}
+  {{
+    image
+    | image_url: width: 2400
+    | image_tag:
+      class: class,
+      widths: '400, 600, 800, 1000, 1200, 1600, 2000, 2400',
+      sizes: img_sizes,
+      alt: img_alt,
+      loading: loading_attr,
+      fetchpriority: priority_attr
+  }}
+{%- elsif fallback != blank -%}
+  <img
+    src="{{ fallback | asset_url }}"
+    alt="{{ img_alt }}"
+    class="{{ class }}"
+    width="{{ fb_width }}"
+    height="{{ fb_height }}"
+    {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+    onerror="this.remove();"
+  >
+{%- endif -%}

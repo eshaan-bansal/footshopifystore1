@@ -1,0 +1,323 @@
+{%- comment -%}
+  "How it helps" — outcome first, mechanism second.
+
+  Copy here is deliberately non-medical: it describes what the product is
+  designed to do and how it feels to wear, never what it treats or cures. Keep
+  it that way for Shopify and Google Merchant Center compliance.
+
+  Two layouts: a plain icon row, or the same list beside a lifestyle image
+  (defaults to assets/lifestyle-benefits.jpg).
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sw-benefits__list {
+    --sw-benefit-columns: {{ section.blocks.size | at_most: 4 | at_least: 1 }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign with_image = false
+  if section.settings.layout == 'with_image'
+    assign with_image = true
+  endif
+-%}
+
+<div class="sw-benefits color-{{ section.settings.color_scheme }} gradient{% if with_image %} sw-benefits--with-image{% endif %}">
+  <div
+    class="page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    {%- unless with_image -%}
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <div class="title-wrapper title-wrapper--no-top-margin sw-center sw-measure">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <div class="rte sw-muted">{{ section.settings.subheading }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endunless -%}
+
+    <div class="sw-benefits__layout">
+      {%- if with_image and section.settings.image_position == 'left' -%}
+        <div class="sw-benefits__media">
+          {%- render 'stridewell-image',
+            image: section.settings.image,
+            fallback: 'lifestyle-benefits.jpg',
+            fallback_width: 1800,
+            fallback_height: 1800,
+            sizes: '(min-width: 990px) 46vw, 100vw',
+            alt: section.settings.image_alt
+          -%}
+        </div>
+      {%- endif -%}
+
+      <div class="sw-benefits__body">
+        {%- if with_image -%}
+          {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+            <div class="title-wrapper title-wrapper--no-top-margin">
+              {%- if section.settings.heading != blank -%}
+                <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+              {%- endif -%}
+              {%- if section.settings.subheading != blank -%}
+                <div class="rte sw-muted">{{ section.settings.subheading }}</div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <ul class="sw-benefits__list" role="list">
+            {%- for block in section.blocks -%}
+              <li class="sw-benefit" {{ block.shopify_attributes }}>
+                {%- if block.settings.icon != blank -%}
+                  <span class="sw-benefit__icon">
+                    {%- render 'stridewell-icon', icon: block.settings.icon, class: 'sw-icon--lg' -%}
+                  </span>
+                {%- endif -%}
+                <div>
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="sw-benefit__title">{{ block.settings.title | escape }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.text != blank -%}
+                    <p class="sw-benefit__text sw-muted">{{ block.settings.text | escape }}</p>
+                  {%- endif -%}
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank -%}
+          <a
+            href="{{ section.settings.button_link | default: routes.all_products_collection_url }}"
+            class="button button--secondary"
+          >
+            {{- section.settings.button_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if with_image and section.settings.image_position == 'right' -%}
+        <div class="sw-benefits__media">
+          {%- render 'stridewell-image',
+            image: section.settings.image,
+            fallback: 'lifestyle-benefits.jpg',
+            fallback_width: 1800,
+            fallback_height: 1800,
+            sizes: '(min-width: 990px) 46vw, 100vw',
+            alt: section.settings.image_alt
+          -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "How it helps",
+  "class": "section",
+  "tag": "section",
+  "max_blocks": 4,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Describe what the product is designed to do and how it feels to wear. Do not claim to treat, cure or diagnose any condition."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How StrideWell helps"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__4.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Support you can feel from the first step, built to be worn every day.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        { "value": "with_image", "label": "List beside an image" },
+        { "value": "columns", "label": "Icon columns, no image" }
+      ],
+      "default": "with_image",
+      "label": "Layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Leave blank to use assets/lifestyle-benefits.jpg."
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right",
+      "label": "Image position on desktop"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 56
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "target", "label": "Target" },
+            { "value": "sun", "label": "All day" },
+            { "value": "footprint", "label": "Footprint" },
+            { "value": "cushion", "label": "Cushion" },
+            { "value": "arch", "label": "Arch" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "check-circle", "label": "Check in a circle" },
+            { "value": "shield-check", "label": "Shield with check" },
+            { "value": "", "label": "No icon" }
+          ],
+          "default": "target"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Targeted support"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Contoured to sit under your arch and heel, where the ache usually starts."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How it helps",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "title": "Targeted support",
+            "text": "Contoured to sit under your arch and heel, where the ache usually starts."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "title": "All-day comfort",
+            "text": "Cushioning that holds its shape through a full shift on your feet."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "footprint",
+            "title": "Designed for real feet",
+            "text": "Wide, narrow, high arch or flat — sized so you get a fit that works."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

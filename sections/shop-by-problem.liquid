@@ -1,0 +1,345 @@
+{%- comment -%}
+  Shop by problem — the intent bridge for Google traffic.
+
+  Card titles deliberately use the visitor's own search language ("plantar
+  fasciitis", "bunions", "swelling") and route to the matching collection or a
+  filtered collection URL. This is what stops a problem-aware searcher from
+  bouncing off a generic homepage.
+
+  Copy stays non-medical: cards name what the visitor is looking for, they do
+  not claim to treat or cure anything.
+
+  Cards with no destination render as plain (non-linked) cards, so an unfinished
+  or empty collection never produces a broken link.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sw-problem-grid {
+    --sw-problem-columns: {{ section.settings.columns_desktop }};
+  }
+
+  #shopify-section-{{ section.id }} .sw-problem-section__image {
+    opacity: {{ section.settings.background_opacity | divided_by: 100.0 }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sw-problem-section color-{{ section.settings.color_scheme }} gradient">
+  {%- if section.settings.show_background -%}
+    {%- render 'stridewell-image',
+      image: section.settings.background_image,
+      fallback: 'shop-by-problem.jpg',
+      fallback_width: 2400,
+      fallback_height: 900,
+      class: 'sw-problem-section__image',
+      sizes: '100vw'
+    -%}
+  {%- endif -%}
+
+  <div
+    class="sw-problem-section__inner page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+      <div class="title-wrapper title-wrapper--no-top-margin{% if section.settings.center_heading %} sw-center sw-measure{% endif %}">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <div class="rte sw-muted">{{ section.settings.subheading }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="sw-problem-grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_url = block.settings.link
+            if card_url == blank and block.settings.collection != blank
+              assign card_url = block.settings.collection.url
+            endif
+          -%}
+          <li {{ block.shopify_attributes }}>
+            {%- if card_url != blank -%}
+              <a href="{{ card_url }}" class="sw-problem-card">
+            {%- else -%}
+              <div class="sw-problem-card">
+            {%- endif -%}
+
+            {%- if block.settings.icon != blank -%}
+              <span class="sw-problem-card__icon">
+                {%- render 'stridewell-icon', icon: block.settings.icon, class: 'sw-icon--lg' -%}
+              </span>
+            {%- endif -%}
+
+            {%- if block.settings.title != blank -%}
+              <h3 class="sw-problem-card__title">{{ block.settings.title | escape }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.text != blank -%}
+              <p class="sw-problem-card__text sw-muted">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+
+            {%- if card_url != blank and block.settings.cta_label != blank -%}
+              <span class="sw-problem-card__cta">{{ block.settings.cta_label | escape }}</span>
+            {%- endif -%}
+
+            {%- if card_url != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shop by problem",
+  "class": "section",
+  "tag": "section",
+  "max_blocks": 6,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Name each card the way customers search. Point it at a collection, or paste a filtered collection URL such as /collections/insoles-arch-support?filter.p.tag=plantar-fasciitis"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What's bothering you?"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__4.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Pick where it hurts and we'll show you what helps.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "center_heading",
+      "label": "Center the heading",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Cards per row on desktop",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background",
+      "label": "Show accent background image",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Leave blank to use assets/shop-by-problem.jpg."
+    },
+    {
+      "type": "range",
+      "id": "background_opacity",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "%",
+      "label": "Background opacity",
+      "info": "Keep this low so card text stays easy to read.",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Problem card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "arch", "label": "Arch" },
+            { "value": "footprint", "label": "Footprint" },
+            { "value": "wave", "label": "Circulation waves" },
+            { "value": "knee", "label": "Knee" },
+            { "value": "shoe", "label": "Shoe" },
+            { "value": "sock", "label": "Sock" },
+            { "value": "cushion", "label": "Cushion" },
+            { "value": "target", "label": "Target" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "", "label": "No icon" }
+          ],
+          "default": "arch"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "info": "Use the customer's words, e.g. \"Plantar fasciitis\".",
+          "default": "Plantar fasciitis"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Supporting line",
+          "default": "Heel and arch support for that first painful step."
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Custom link",
+          "info": "Overrides the collection. Use for filtered URLs."
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Link label",
+          "default": "See what helps"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by problem",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "arch",
+            "title": "Plantar fasciitis",
+            "text": "Heel and arch support for that first painful step.",
+            "cta_label": "See what helps"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "footprint",
+            "title": "Bunions",
+            "text": "Gentle toe spacing and room where you need it.",
+            "cta_label": "See what helps"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "wave",
+            "title": "Swelling & circulation",
+            "text": "Graduated compression for tired, heavy legs.",
+            "cta_label": "See what helps"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "cushion",
+            "title": "Arch pain",
+            "text": "Cushioned support that holds its shape all day.",
+            "cta_label": "See what helps"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "knee",
+            "title": "Knee support",
+            "text": "Steady, low-profile support you can wear under clothes.",
+            "cta_label": "See what helps"
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "shoe",
+            "title": "Wide-fit shoes",
+            "text": "Everyday footwear with room for wide feet.",
+            "cta_label": "See what helps"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
