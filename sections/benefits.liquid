@@ -32,6 +32,14 @@
   if section.settings.layout == 'with_image'
     assign with_image = true
   endif
+
+  # Natural dimensions of each shipped placeholder, so width/height attributes
+  # match the file and nothing shifts while it loads.
+  assign fallback_w = 1800
+  assign fallback_h = 1800
+  if section.settings.default_image == 'about-brand.jpg'
+    assign fallback_h = 1200
+  endif
 -%}
 
 <div class="sw-benefits color-{{ section.settings.color_scheme }} gradient{% if with_image %} sw-benefits--with-image{% endif %}">
@@ -59,9 +67,9 @@
         <div class="sw-benefits__media">
           {%- render 'stridewell-image',
             image: section.settings.image,
-            fallback: 'lifestyle-benefits.jpg',
-            fallback_width: 1800,
-            fallback_height: 1800,
+            fallback: section.settings.default_image,
+            fallback_width: fallback_w,
+            fallback_height: fallback_h,
             sizes: '(min-width: 990px) 46vw, 100vw',
             alt: section.settings.image_alt
           -%}
@@ -118,9 +126,9 @@
         <div class="sw-benefits__media">
           {%- render 'stridewell-image',
             image: section.settings.image,
-            fallback: 'lifestyle-benefits.jpg',
-            fallback_width: 1800,
-            fallback_height: 1800,
+            fallback: section.settings.default_image,
+            fallback_width: fallback_w,
+            fallback_height: fallback_h,
             sizes: '(min-width: 990px) 46vw, 100vw',
             alt: section.settings.image_alt
           -%}
@@ -185,7 +193,18 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image",
-      "info": "Leave blank to use assets/lifestyle-benefits.jpg."
+      "info": "Leave blank to use the theme asset chosen below."
+    },
+    {
+      "type": "select",
+      "id": "default_image",
+      "label": "Default theme asset",
+      "info": "Used when no image is picked above.",
+      "options": [
+        { "value": "lifestyle-benefits.jpg", "label": "lifestyle-benefits.jpg" },
+        { "value": "about-brand.jpg", "label": "about-brand.jpg" }
+      ],
+      "default": "lifestyle-benefits.jpg"
     },
     {
       "type": "text",

@@ -3,12 +3,55 @@
     "main": {
       "type": "main-page",
       "settings": {
-        "padding_top": 28,
+        "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {
+        "heading": "",
+        "layout": "inline",
+        "color_scheme": "scheme-2",
+        "padding_top": 32,
+        "padding_bottom": 32
+      },
+      "blocks": {
+        "trust-shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "Free US shipping",
+            "sublabel": "On orders over $50"
+          }
+        },
+        "trust-guarantee": {
+          "type": "item",
+          "settings": {
+            "icon": "shield-check",
+            "label": "60-day guarantee",
+            "sublabel": "Wear them, or send them back"
+          }
+        },
+        "trust-sizing": {
+          "type": "item",
+          "settings": {
+            "icon": "ruler",
+            "label": "Easy sizing help",
+            "sublabel": "Find your fit in 30 seconds"
+          }
+        },
+        "trust-secure": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "label": "Secure checkout",
+            "sublabel": "Encrypted at every step"
+          }
+        }
+      },
+      "block_order": ["trust-shipping", "trust-guarantee", "trust-sizing", "trust-secure"]
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main", "trust-bar"]
 }

@@ -1,0 +1,118 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "brand-story": {
+      "type": "benefits",
+      "settings": {
+        "heading": "Built for people who are on their feet",
+        "heading_size": "h1",
+        "subheading": "<p>StrideWell started with one question: why is everyday foot support either medical-looking or useless? We pick and test products for one customer — the person who is standing, walking and working all day and wants to stop thinking about their feet.</p>",
+        "layout": "with_image",
+        "default_image": "about-brand.jpg",
+        "image_position": "left",
+        "button_label": "Shop foot relief",
+        "button_link": "/collections/all",
+        "color_scheme": "scheme-2",
+        "padding_top": 40,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "story-focus": {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "title": "One customer, one promise",
+            "text": "We only stock things made to help feet and legs feel better through a long day. No general-store filler."
+          }
+        },
+        "story-testing": {
+          "type": "benefit",
+          "settings": {
+            "icon": "check-circle",
+            "title": "We wear what we sell",
+            "text": "Every product gets worn through real shifts before it goes on the site — and dropped if it doesn't hold up."
+          }
+        },
+        "story-guarantee": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield-check",
+            "title": "60 days, no arguments",
+            "text": "Feet are personal. If something isn't right for yours, email us and we'll take it back for a full refund."
+          }
+        }
+      },
+      "block_order": ["story-focus", "story-testing", "story-guarantee"]
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {
+        "heading": "",
+        "layout": "inline",
+        "color_scheme": "scheme-1",
+        "padding_top": 32,
+        "padding_bottom": 32
+      },
+      "blocks": {
+        "trust-shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "Free US shipping",
+            "sublabel": "On orders over $50"
+          }
+        },
+        "trust-guarantee": {
+          "type": "item",
+          "settings": {
+            "icon": "shield-check",
+            "label": "60-day guarantee",
+            "sublabel": "Wear them, or send them back"
+          }
+        },
+        "trust-support": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "label": "Real people on email",
+            "sublabel": "Usually within one business day"
+          }
+        },
+        "trust-secure": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "label": "Secure checkout",
+            "sublabel": "Encrypted at every step"
+          }
+        }
+      },
+      "block_order": ["trust-shipping", "trust-guarantee", "trust-support", "trust-secure"]
+    },
+    "guarantee": {
+      "type": "guarantee",
+      "settings": {
+        "badge_label": "60-day comfort guarantee",
+        "heading": "Try StrideWell risk-free for 60 days",
+        "heading_size": "h2",
+        "text": "<p>Wear them to work. Wear them on your day off. If they're not right for your feet, send them back for a full refund.</p>",
+        "points": "60 days to decide, Full refund, Simple returns by email",
+        "button_label": "Shop foot relief",
+        "button_link": "/collections/all",
+        "show_background": true,
+        "scrim_color": "#0E3A46",
+        "scrim_opacity": 72,
+        "color_scheme": "scheme-3",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": ["main", "brand-story", "trust-bar", "guarantee"]
+}
