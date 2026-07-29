@@ -173,19 +173,19 @@ Shop All.
 
 ## Brand image assets
 
-Six brand/decorative images are referenced **by exact filename** from
-`assets/`. Every one currently holds an on-brand placeholder labelled with its
-intended dimensions — **overwrite the file, keep the filename**, and the theme
-picks it up with no further changes.
+Brand/decorative images are referenced **by exact filename** from `assets/`. To
+change one, **overwrite the file and keep the filename** — the theme picks it up
+with no further changes.
 
-| Filename | Used in | Notes |
-|---|---|---|
-| `stridewell-logo.png` | Header logo, footer brand block | Transparent wordmark, roughly 3.5:1 |
-| `hero-home.jpg` | Homepage hero background | Wide lifestyle; **keep the left third clear** for the headline |
-| `lifestyle-benefits.jpg` | "How it helps" section | Warm lifestyle, square |
-| `guarantee-band.jpg` | Guarantee band background | Calm and low-contrast so text stays legible |
-| `about-brand.jpg` | About page brand story | Brand-feel image |
-| `shop-by-problem.jpg` | Shop-by-problem section background | Optional accent, rendered at low opacity |
+| Filename | Used in | Shipped size | Notes |
+|---|---|---|---|
+| `stridewell-logo.png` | Header logo | 776×284 | Teal wordmark, transparent. For light backgrounds |
+| `stridewell-logo-light.png` | Footer brand block | 776×284 | Off-white wordmark, transparent. For dark backgrounds |
+| `hero-home.jpg` | Homepage hero background | 1376×768 | **Keep the left third visually calm** — the headline sits there |
+| `lifestyle-benefits.jpg` | "How it helps" section | 1376×768 | Warm lifestyle |
+| `guarantee-band.jpg` | Guarantee band background | 1376×768 | Low contrast — white text goes on top |
+| `about-brand.jpg` | About page brand story | 1200×896 | Brand-feel / product flat-lay |
+| `shop-by-problem.jpg` | Shop-by-problem background | 1376×768 | Accent, rendered at 14% opacity |
 
 How this works, in `snippets/stridewell-image.liquid`:
 
@@ -195,10 +195,24 @@ How this works, in `snippets/stridewell-image.liquid`:
 3. If that file is missing too, the `<img>` removes itself and the section keeps
    its colour-scheme background — no broken layout, no Liquid error.
 
-Theme assets are served at their natural size (Shopify's `image_url` resizing
-only applies to *uploaded* images), so keep these files reasonably compressed.
-For a hero you want fully responsive, upload it through the theme editor picker
-instead.
+**Two logo variants exist on purpose.** The wordmark's ink is deep teal
+(`#0E3A46`), which is nearly invisible against the deep-teal footer.
+`snippets/stridewell-logo.liquid` takes a `light: true` flag to swap in the
+off-white version, and the footer passes it. If you replace the logo, replace
+**both** files.
+
+**If you swap an image for one with a different aspect ratio**, update the
+`fallback_width` / `fallback_height` values in the section that renders it —
+`hero-stridewell.liquid`, `guarantee.liquid`, `shop-by-problem.liquid` or
+`benefits.liquid`. Those become the `width`/`height` attributes that reserve
+layout space; wrong values mean the page shifts as the image loads, which hurts
+Core Web Vitals and your Ads Quality Score.
+
+**Keep them compressed.** Theme assets are served at their natural size —
+Shopify's `image_url` resizing only applies to images *uploaded* through the
+editor's picker. The seven files above total about 780 KB. If you want a fully
+responsive hero, upload it through the theme editor picker instead of replacing
+the asset file.
 
 ---
 

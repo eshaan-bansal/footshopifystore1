@@ -122,7 +122,11 @@
                           }}
                         </div>
                       {%- else -%}
-                        {%- render 'stridewell-logo', width: settings.brand_image_width -%}
+                        {%- comment -%}
+                          The footer runs on a dark colour scheme by default, so
+                          use the off-white wordmark variant here.
+                        {%- endcomment -%}
+                        {%- render 'stridewell-logo', width: settings.brand_image_width, light: true -%}
                       {%- endif -%}
                       {%- if settings.brand_headline != blank -%}
                         <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
