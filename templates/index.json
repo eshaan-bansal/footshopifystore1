@@ -16,7 +16,7 @@
         "height_mobile": 480,
         "height_desktop": 620,
         "scrim_color": "#0E3A46",
-        "scrim_opacity": 60,
+        "scrim_opacity": 70,
         "color_scheme": "scheme-3"
       }
     },

@@ -26,6 +26,7 @@ if (!customElements.get('stridewell-offer')) {
 
         const checked = this.querySelector('input[type="radio"]:checked');
         if (checked) this.applyQuantity(checked.value);
+        this.paintSelection();
 
         // Keep the tiers honest: if the customer edits the quantity selector
         // directly, the highlighted tier must follow or clear.
@@ -45,12 +46,23 @@ if (!customElements.get('stridewell-offer')) {
         this.querySelectorAll('input[type="radio"]').forEach((radio) => {
           radio.checked = parseInt(radio.value, 10) === quantity;
         });
+        this.paintSelection();
       }
 
       onChange(event) {
         const input = event.target;
         if (!input.matches('input[type="radio"]')) return;
         this.applyQuantity(input.value);
+        this.paintSelection();
+      }
+
+      // Mirrors the checked radio onto its label as a class, so the selected
+      // tier is highlighted even where :has() is unsupported.
+      paintSelection() {
+        this.querySelectorAll('.sw-offer__tier').forEach((tier) => {
+          const radio = tier.querySelector('.sw-offer__radio');
+          tier.classList.toggle('is-selected', !!radio?.checked);
+        });
       }
 
       get form() {

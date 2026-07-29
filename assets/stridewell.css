@@ -16,6 +16,13 @@
   --sw-muted: #5c6b70;
   --sw-trust: #2f7d5b;
 
+  /* The brand coral only reaches 2.84:1 against the warm off-white background,
+     which is under the 3:1 WCAG minimum for icons and other non-text graphics.
+     Use this darker tint wherever the accent has to be *legible* rather than
+     decorative — icons, star rows, small labels. Same hue (16deg), 4.34:1.
+     --sw-accent itself stays the exact brand colour for fills and borders. */
+  --sw-accent-ink: #b75b3a;
+
   /* Large tap targets + generous rhythm for a 40+ audience. */
   --sw-tap-min: 4.4rem;
   --sw-gap: 2.4rem;
@@ -109,6 +116,17 @@
 
 .sw-hero__content {
   max-width: 58rem;
+}
+
+/* Safety net. The scrim is measured to clear 4.5:1 against the shipped photo,
+   but a merchant can swap in a brighter image at any time. This shadow is
+   invisible on a dark scrim and rescues legibility on a light one. */
+.sw-hero__content {
+  text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.35);
+}
+
+.sw-hero__content .button {
+  text-shadow: none;
 }
 
 .sw-hero--center .sw-hero__content {
@@ -279,7 +297,7 @@
 }
 
 .sw-problem-card__icon {
-  color: var(--sw-accent);
+  color: var(--sw-accent-ink);
 }
 
 .sw-problem-card__title {
@@ -464,7 +482,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.2rem;
-  color: var(--sw-accent);
+  color: var(--sw-accent-ink);
 }
 
 .sw-stars__count {
@@ -622,6 +640,9 @@
   flex: 0 0 auto;
 }
 
+/* Selected state. The .is-selected class is set by stridewell-offer.js so this
+   works without :has() support; the :has() rule keeps it correct if JS fails. */
+.sw-offer__tier.is-selected,
 .sw-offer__tier:has(.sw-offer__radio:checked) {
   border-color: var(--sw-accent);
   border-width: 0.2rem;
@@ -629,6 +650,11 @@
 }
 
 .sw-offer__tier:has(.sw-offer__radio:focus-visible) {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.2rem;
+}
+
+.sw-offer__radio:focus-visible {
   outline: 0.2rem solid rgb(var(--color-foreground));
   outline-offset: 0.2rem;
 }
@@ -645,7 +671,8 @@
   padding: 0.2rem 0.9rem;
   border-radius: 4rem;
   background-color: var(--sw-accent);
-  color: #fff;
+  /* Near-black on the brand coral is 4.86:1; white would be only 3.01:1. */
+  color: var(--sw-text);
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.05rem;
@@ -778,14 +805,18 @@
    settings, or raise --sw-fold-media-height.
    --------------------------------------------------------------------------- */
 @media screen and (max-width: 749px) {
-  .sw-compact-fold .product__media-list .product__media,
-  .sw-compact-fold .product__media-list .product__media img {
-    max-height: var(--sw-fold-media-height, 42vh);
-  }
+  /* Dawn already constrains gallery height when "constrain_to_viewport" is on:
+     .product-media-container.constrain-height sizes the media with
+     padding-top: min(--constrained-height, --ratio-percent), where
+     --constrained-height = max(--constrained-min-height, 100vh - --viewport-offset).
 
-  .sw-compact-fold .product__media-list .product__media img {
-    width: 100%;
-    object-fit: contain;
+     So rather than fighting that with max-height (which would clash with the
+     padding-based aspect ratio and the thumbnail slider), we just feed Dawn's
+     own variables a tighter budget on mobile. Everything downstream — the
+     slider, media-fit-contain's width calculation, the modal — keeps working. */
+  .sw-compact-fold .product-media-container.constrain-height {
+    --viewport-offset: calc(100vh - var(--sw-fold-media-height, 42vh));
+    --constrained-min-height: 0px;
   }
 
   /* Tighten the vertical rhythm between the fold elements only. */
@@ -868,12 +899,17 @@
 }
 
 /* Sticky mobile add-to-cart */
+/* z-index 3, deliberately: it must sit above page content (0–2) but BELOW
+   Dawn's fixed overlays that use 4 — the pickup-availability drawer is
+   full-screen on mobile at z-index 4, and at an equal value DOM order would let
+   this bar paint on top of it. The cart drawer (1000) and modals (9999) are
+   comfortably above either way. */
 .sw-sticky-atc {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 4;
+  z-index: 3;
   display: none;
   gap: 1.2rem;
   align-items: center;
@@ -904,9 +940,33 @@
   white-space: nowrap;
 }
 
+/* The price is mirrored from Dawn's own price element, so it arrives wrapped in
+   Dawn's .price markup. Neutralise that block's large sizing and margins so it
+   reads as one compact line in the bar. */
 .sw-sticky-atc__price {
   display: block;
   font-size: 1.4rem;
+}
+
+.sw-sticky-atc__price .price,
+.sw-sticky-atc__price .price__container,
+.sw-sticky-atc__price .price__regular,
+.sw-sticky-atc__price .price__sale {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+.sw-sticky-atc__price .price__badge-sale,
+.sw-sticky-atc__price .price__badge-sold-out,
+.sw-sticky-atc__price .visually-hidden,
+.sw-sticky-atc__price .price__unit,
+.sw-sticky-atc__price .unit-price {
+  display: none;
 }
 
 .sw-sticky-atc__button {

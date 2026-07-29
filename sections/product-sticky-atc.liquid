@@ -16,37 +16,42 @@
 -%}
 
 {%- if product != blank and section.settings.enable -%}
+  {%- liquid
+    assign label_default = section.settings.button_label | default: 'Add to cart'
+    assign label_sold_out = 'products.product.sold_out' | t
+    assign label_now = label_default
+    unless product.available
+      assign label_now = label_sold_out
+    endunless
+  -%}
+
   <sticky-atc
     class="sw-sticky-atc"
     data-form-id="{{ product_form_id }}"
+    data-section-id="{{ section.settings.product_section_id }}"
     data-watch=".product-form__submit"
   >
     <span class="sw-sticky-atc__info">
       <span class="sw-sticky-atc__title">{{ product.title | escape }}</span>
-      <span class="sw-sticky-atc__price sw-muted">
+      <span class="sw-sticky-atc__price sw-muted" data-sticky-price>
         {%- if current_variant.price != blank -%}
           {{- current_variant.price | money -}}
-          {%- if current_variant.compare_at_price > current_variant.price -%}
-            <s>{{ current_variant.compare_at_price | money }}</s>
-          {%- endif -%}
         {%- endif -%}
       </span>
     </span>
 
-    {%- if product.available -%}
-      <button
-        type="submit"
-        form="{{ product_form_id }}"
-        name="add"
-        class="button button--primary sw-sticky-atc__button"
-      >
-        {{ section.settings.button_label | default: 'Add to cart' | escape }}
-      </button>
-    {%- else -%}
-      <button type="button" class="button sw-sticky-atc__button" disabled>
-        {{ 'products.product.sold_out' | t }}
-      </button>
-    {%- endif -%}
+    <button
+      type="submit"
+      form="{{ product_form_id }}"
+      name="add"
+      class="button button--primary sw-sticky-atc__button"
+      data-sticky-submit
+      data-label-default="{{ label_default | escape }}"
+      data-label-sold-out="{{ label_sold_out | escape }}"
+      {% unless product.available %}disabled{% endunless %}
+    >
+      {{ label_now | escape }}
+    </button>
   </sticky-atc>
 
   <script src="{{ 'stridewell-sticky-atc.js' | asset_url }}" defer="defer"></script>
