@@ -1,0 +1,36 @@
+{%- comment -%}
+  Trust row that sits directly under the add-to-cart button — guarantee, free
+  shipping, secure checkout. Three short cues, no paragraphs.
+
+  Accepts:
+  - block: {Object} the main-product block
+{%- endcomment -%}
+
+{%- liquid
+  assign item_count = 0
+  for i in (1..3)
+    assign key = 'label_' | append: i
+    if block.settings[key] != blank
+      assign item_count = item_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if item_count > 0 -%}
+  <ul class="sw-product-trust" role="list" {{ block.shopify_attributes }}>
+    {%- for i in (1..3) -%}
+      {%- liquid
+        assign label_key = 'label_' | append: i
+        assign icon_key = 'icon_' | append: i
+        assign item_label = block.settings[label_key]
+        assign item_icon = block.settings[icon_key]
+      -%}
+      {%- if item_label != blank -%}
+        <li>
+          {%- render 'stridewell-icon', icon: item_icon, class: 'sw-icon--sm' -%}
+          <span>{{ item_label | escape }}</span>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

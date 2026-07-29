@@ -1,0 +1,41 @@
+{%- comment -%}
+  Above-the-fold star rating.
+
+  Dawn's built-in `rating` block reads `product.metafields.reviews.*`, which only
+  exists once a review app is installed. This block prefers that real metafield
+  when it is present, and otherwise shows a rating the merchant typed in — so
+  the fold still carries a proof signal on day one.
+
+  Enter only a rating you can substantiate. Leave it at 0 to hide the block.
+
+  Accepts:
+  - block: {Object} the main-product block
+  - product: {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign rating_value = 0
+  assign rating_count = ''
+
+  if product.metafields.reviews.rating.value != blank
+    assign rating_value = product.metafields.reviews.rating.value.rating
+    assign rating_count = product.metafields.reviews.rating_count
+    if rating_count != blank
+      assign rating_count = rating_count | append: ' reviews'
+    endif
+  elsif block.settings.rating > 0
+    assign rating_value = block.settings.rating
+    assign rating_count = block.settings.review_count
+  endif
+-%}
+
+{%- if rating_value > 0 -%}
+  <div class="sw-product-rating" {{ block.shopify_attributes }}>
+    {%- render 'stridewell-stars', rating: rating_value, count: rating_count -%}
+    {%- if block.settings.link != blank -%}
+      <a href="{{ block.settings.link }}" class="sw-sizing-help">
+        {{- block.settings.link_label | default: 'Read reviews' | escape -}}
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}

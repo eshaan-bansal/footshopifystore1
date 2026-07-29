@@ -1,0 +1,26 @@
+{%- comment -%}
+  "Not sure of your size?" — sits directly under the variant picker, because
+  sizing doubt is the single most common reason a ready buyer walks away.
+
+  Points at the Sizing Guide page by default; set it to an on-page anchor
+  (e.g. #sizing-faq) if you would rather keep the customer on the product page.
+
+  Accepts:
+  - block: {Object} the main-product block
+{%- endcomment -%}
+
+{%- if block.settings.text != blank -%}
+  <p class="sw-sizing-help-wrapper" {{ block.shopify_attributes }}>
+    {%- if block.settings.link != blank -%}
+      <a href="{{ block.settings.link }}" class="sw-sizing-help">
+        {%- render 'stridewell-icon', icon: 'ruler', class: 'sw-icon--sm' -%}
+        <span>{{ block.settings.text | escape }}</span>
+      </a>
+    {%- else -%}
+      <span class="sw-sizing-help">
+        {%- render 'stridewell-icon', icon: 'ruler', class: 'sw-icon--sm' -%}
+        <span>{{ block.settings.text | escape }}</span>
+      </span>
+    {%- endif -%}
+  </p>
+{%- endif -%}

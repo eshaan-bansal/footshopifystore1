@@ -1,0 +1,73 @@
+{%- comment -%}
+  Objection handling + proof.
+
+  Google traffic arrives comparison-shopping. This block answers the doubts that
+  stop the order — "will it fit my wide feet", "can I wear it with my shoes",
+  "what if it doesn't work" — and puts the guarantee and rating next to them.
+
+  Every number here is merchant-entered. Nothing is generated.
+
+  Accepts:
+  - block: {Object} the main-product block
+{%- endcomment -%}
+
+{%- liquid
+  assign point_count = 0
+  for i in (1..4)
+    assign key = 'point_' | append: i
+    if block.settings[key] != blank
+      assign point_count = point_count | plus: 1
+    endif
+  endfor
+
+  assign has_rating = false
+  if block.settings.rating > 0
+    assign has_rating = true
+  endif
+-%}
+
+{%- if point_count > 0 or has_rating or block.settings.guarantee_text != blank -%}
+  <div class="sw-proof" {{ block.shopify_attributes }}>
+    {%- if block.settings.heading != blank -%}
+      <h2 class="sw-proof__heading">{{ block.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if point_count > 0 -%}
+      <ul class="sw-proof__list" role="list">
+        {%- for i in (1..4) -%}
+          {%- liquid
+            assign key = 'point_' | append: i
+            assign point = block.settings[key]
+          -%}
+          {%- if point != blank -%}
+            <li>
+              {%- render 'stridewell-icon', icon: 'check-circle', class: 'sw-icon--sm' -%}
+              <span>{{ point }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if has_rating -%}
+      <div class="sw-proof__rating">
+        {%- render 'stridewell-stars',
+          rating: block.settings.rating,
+          count: block.settings.review_count
+        -%}
+        {%- if block.settings.reviews_link != blank -%}
+          <a href="{{ block.settings.reviews_link }}" class="sw-sizing-help">
+            {{- block.settings.reviews_link_label | default: 'Read the reviews' | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if block.settings.guarantee_text != blank -%}
+      <p class="sw-product-cue">
+        {%- render 'stridewell-icon', icon: 'shield-check', class: 'sw-icon--sm' -%}
+        <span>{{ block.settings.guarantee_text | escape }}</span>
+      </p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

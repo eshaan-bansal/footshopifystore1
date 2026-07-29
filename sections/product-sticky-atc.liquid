@@ -1,0 +1,90 @@
+{%- comment -%}
+  Sticky add-to-cart for mobile.
+
+  This does NOT duplicate the product form. The button uses the HTML `form`
+  attribute to submit Dawn's real product form by id, so the selected variant,
+  the chosen quantity tier and Dawn's own cart JS all keep working with no
+  state to synchronise.
+
+  It appears once the main add-to-cart button has scrolled out of view, and
+  hides again when it comes back.
+{%- endcomment -%}
+
+{%- liquid
+  assign product_form_id = 'product-form-' | append: section.settings.product_section_id
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+
+{%- if product != blank and section.settings.enable -%}
+  <sticky-atc
+    class="sw-sticky-atc"
+    data-form-id="{{ product_form_id }}"
+    data-watch=".product-form__submit"
+  >
+    <span class="sw-sticky-atc__info">
+      <span class="sw-sticky-atc__title">{{ product.title | escape }}</span>
+      <span class="sw-sticky-atc__price sw-muted">
+        {%- if current_variant.price != blank -%}
+          {{- current_variant.price | money -}}
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <s>{{ current_variant.compare_at_price | money }}</s>
+          {%- endif -%}
+        {%- endif -%}
+      </span>
+    </span>
+
+    {%- if product.available -%}
+      <button
+        type="submit"
+        form="{{ product_form_id }}"
+        name="add"
+        class="button button--primary sw-sticky-atc__button"
+      >
+        {{ section.settings.button_label | default: 'Add to cart' | escape }}
+      </button>
+    {%- else -%}
+      <button type="button" class="button sw-sticky-atc__button" disabled>
+        {{ 'products.product.sold_out' | t }}
+      </button>
+    {%- endif -%}
+  </sticky-atc>
+
+  <script src="{{ 'stridewell-sticky-atc.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Sticky add to cart",
+  "tag": "div",
+  "class": "sw-sticky-atc-section",
+  "limit": 1,
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows a sticky add-to-cart bar on mobile once the main button scrolls out of view. It submits the real product form, so the selected variant and quantity are always correct."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable sticky add to cart",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "product_section_id",
+      "label": "Product section id",
+      "info": "Must match the id of the main product section in this template. Leave as \"main\" unless you have renamed it.",
+      "default": "main"
+    }
+  ]
+}
+{% endschema %}

@@ -593,16 +593,44 @@
   font-weight: 600;
 }
 
+/* Tiers are radios in <label>s: the whole card is one large tap target. */
 .sw-offer__tier {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.4rem 1.6rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.4rem 1.4rem;
   align-items: center;
   padding: 1.6rem;
   border: 0.1rem solid rgba(var(--color-foreground), 0.16);
   border-radius: var(--sw-radius);
   min-height: var(--sw-tap-min);
+  cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.sw-offer__tier:hover {
+  border-color: rgba(var(--color-foreground), 0.4);
+}
+
+.sw-offer__radio {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  accent-color: var(--sw-accent);
+  flex: 0 0 auto;
+}
+
+.sw-offer__tier:has(.sw-offer__radio:checked) {
+  border-color: var(--sw-accent);
+  border-width: 0.2rem;
+  background-color: rgba(232, 115, 74, 0.06);
+}
+
+.sw-offer__tier:has(.sw-offer__radio:focus-visible) {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.2rem;
 }
 
 .sw-offer__tier--popular {
@@ -625,20 +653,21 @@
 }
 
 .sw-offer__label {
+  grid-column: 2;
   margin: 0;
   font-size: 1.6rem;
   font-weight: 600;
 }
 
 .sw-offer__note {
-  grid-column: 1;
+  grid-column: 2;
   margin: 0;
   font-size: 1.4rem;
 }
 
 .sw-offer__price {
   grid-row: 1 / span 2;
-  grid-column: 2;
+  grid-column: 3;
   text-align: right;
   font-size: 1.8rem;
   font-weight: 700;
@@ -735,6 +764,38 @@
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 0.3rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Above-the-fold budget on mobile.
+
+   Dawn's product gallery is full-bleed on mobile, which alone eats a whole
+   viewport and pushes the title, price and add-to-cart below the fold. Capping
+   the gallery height buys back the space so the fold can carry image + H1 +
+   rating + price + variant picker + add-to-cart + one trust cue.
+
+   Opt out per product by removing the sw-compact-fold class from the section
+   settings, or raise --sw-fold-media-height.
+   --------------------------------------------------------------------------- */
+@media screen and (max-width: 749px) {
+  .sw-compact-fold .product__media-list .product__media,
+  .sw-compact-fold .product__media-list .product__media img {
+    max-height: var(--sw-fold-media-height, 42vh);
+  }
+
+  .sw-compact-fold .product__media-list .product__media img {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  /* Tighten the vertical rhythm between the fold elements only. */
+  .sw-compact-fold .product__info-container > .product__title {
+    margin-bottom: 0.6rem;
+  }
+
+  .sw-compact-fold .product__info-container .price {
+    margin-bottom: 0.4rem;
+  }
 }
 
 /* Above-the-fold rating + one-line trust cue */

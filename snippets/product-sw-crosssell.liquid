@@ -1,0 +1,58 @@
+{%- comment -%}
+  "Pairs well with…" — hand-picked cross-sells to lift average order value.
+
+  Unlike Dawn's `complementary` block (which needs the Search & Discovery app)
+  and `related-products` (algorithmic), this is a manual list the merchant
+  curates per product — insoles + compression socks, brace + massage roller.
+
+  Renders nothing when no products are selected, so it is safe to leave empty
+  while the catalogue is still being built.
+
+  Accepts:
+  - block: {Object} the main-product block
+{%- endcomment -%}
+
+{%- if block.settings.products != blank and block.settings.products.count > 0 -%}
+  <div class="sw-crosssell" {{ block.shopify_attributes }}>
+    {%- if block.settings.heading != blank -%}
+      <p class="sw-offer__heading">{{ block.settings.heading | escape }}</p>
+    {%- endif -%}
+
+    <ul class="sw-crosssell__list" role="list">
+      {%- for cross_product in block.settings.products -%}
+        <li class="sw-crosssell__item">
+          {%- if cross_product.featured_image != blank -%}
+            {{
+              cross_product.featured_image
+              | image_url: width: 192
+              | image_tag:
+                class: 'sw-crosssell__image',
+                widths: '64, 128, 192',
+                sizes: '64px',
+                alt: cross_product.featured_image.alt | default: cross_product.title
+            }}
+          {%- else -%}
+            <span class="sw-crosssell__image"></span>
+          {%- endif -%}
+
+          <a href="{{ cross_product.url }}" class="sw-crosssell__title">
+            {{- cross_product.title | escape -}}
+          </a>
+
+          <span class="sw-crosssell__price">
+            {%- if cross_product.price_varies -%}
+              {%- assign cross_price = cross_product.price_min | money -%}
+              {{ 'products.product.price.from_price_html' | t: price: cross_price }}
+            {%- else -%}
+              {{ cross_product.price | money }}
+            {%- endif -%}
+          </span>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    {%- if block.settings.footnote != blank -%}
+      <p class="sw-offer__footnote sw-muted">{{ block.settings.footnote | escape }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

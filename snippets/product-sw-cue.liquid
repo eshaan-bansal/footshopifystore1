@@ -1,0 +1,14 @@
+{%- comment -%}
+  One-line trust cue for above the fold — the single reassurance that has to be
+  visible before any scrolling happens (guarantee or shipping, not both).
+
+  Accepts:
+  - block: {Object} the main-product block
+{%- endcomment -%}
+
+{%- if block.settings.text != blank -%}
+  <p class="sw-product-cue" {{ block.shopify_attributes }}>
+    {%- render 'stridewell-icon', icon: block.settings.icon, class: 'sw-icon--sm' -%}
+    <span>{{ block.settings.text | escape }}</span>
+  </p>
+{%- endif -%}

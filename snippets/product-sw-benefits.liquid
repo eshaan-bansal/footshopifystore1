@@ -1,0 +1,44 @@
+{%- comment -%}
+  Outcome-led benefit bullets.
+
+  Write each bullet outcome first, feature second — "Walk the school run without
+  the heel ache — firm arch shell holds its shape". Keep it non-medical.
+
+  Accepts:
+  - block: {Object} the main-product block
+{%- endcomment -%}
+
+{%- liquid
+  assign bullet_count = 0
+  for i in (1..5)
+    assign key = 'bullet_' | append: i
+    if block.settings[key] != blank
+      assign bullet_count = bullet_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if bullet_count > 0 -%}
+  <div class="sw-product-benefits-wrapper" {{ block.shopify_attributes }}>
+    {%- if block.settings.heading != blank -%}
+      <p class="sw-offer__heading">{{ block.settings.heading | escape }}</p>
+    {%- endif -%}
+
+    <ul class="sw-product-benefits" role="list">
+      {%- for i in (1..5) -%}
+        {%- liquid
+          assign key = 'bullet_' | append: i
+          assign bullet = block.settings[key]
+        -%}
+        {%- if bullet != blank -%}
+          <li class="sw-product-benefits__item">
+            <span class="sw-product-benefits__icon">
+              {%- render 'stridewell-icon', icon: block.settings.icon, class: 'sw-icon--sm' -%}
+            </span>
+            <span class="sw-product-benefits__text">{{ bullet }}</span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
