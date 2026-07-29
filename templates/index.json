@@ -1,75 +1,431 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "hero-stridewell",
+      "settings": {
+        "eyebrow": "Foot & leg relief",
+        "heading": "Relief that keeps you moving.",
+        "heading_size": "h0",
+        "subheading": "<p>Everyday support for sore feet, arches and legs — made for people who are on their feet all day.</p>",
+        "reassurance": "Free US shipping over $50, 60-day comfort guarantee, Easy sizing help",
+        "button_label_1": "Shop foot relief",
+        "button_link_1": "/collections/all",
+        "button_label_2": "See best sellers",
+        "button_link_2": "/collections/best-sellers",
+        "content_alignment": "left",
+        "height_mobile": 480,
+        "height_desktop": 620,
+        "scrim_color": "#0E3A46",
+        "scrim_opacity": 60,
+        "color_scheme": "scheme-3"
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {
+        "heading": "",
+        "layout": "inline",
+        "color_scheme": "scheme-2",
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "trust-shipping": {
+          "type": "item",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "icon": "truck",
+            "label": "Free US shipping",
+            "sublabel": "On orders over $50"
           }
         },
-        "button": {
-          "type": "buttons",
+        "trust-guarantee": {
+          "type": "item",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "icon": "shield-check",
+            "label": "60-day guarantee",
+            "sublabel": "Wear them, or send them back"
+          }
+        },
+        "trust-customers": {
+          "type": "item",
+          "settings": {
+            "icon": "users",
+            "label": "30,000+ happy feet",
+            "sublabel": "Customers who keep moving"
+          }
+        },
+        "trust-sizing": {
+          "type": "item",
+          "settings": {
+            "icon": "ruler",
+            "label": "Easy sizing help",
+            "sublabel": "Find your fit in 30 seconds"
+          }
+        }
+      },
+      "block_order": ["trust-shipping", "trust-guarantee", "trust-customers", "trust-sizing"]
+    },
+    "shop-by-problem": {
+      "type": "shop-by-problem",
+      "settings": {
+        "heading": "What's bothering you?",
+        "heading_size": "h1",
+        "subheading": "<p>Pick where it hurts and we'll show you what helps.</p>",
+        "center_heading": true,
+        "columns_desktop": 3,
+        "show_background": true,
+        "background_opacity": 14,
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "problem-plantar": {
+          "type": "card",
+          "settings": {
+            "icon": "arch",
+            "title": "Plantar fasciitis",
+            "text": "Heel and arch support for that first painful step.",
+            "link": "/collections/insoles-arch-support",
+            "cta_label": "See what helps"
+          }
+        },
+        "problem-bunions": {
+          "type": "card",
+          "settings": {
+            "icon": "footprint",
+            "title": "Bunions",
+            "text": "Gentle toe spacing and room where you need it.",
+            "link": "/collections/bunion-toe-correction",
+            "cta_label": "See what helps"
+          }
+        },
+        "problem-swelling": {
+          "type": "card",
+          "settings": {
+            "icon": "wave",
+            "title": "Swelling & circulation",
+            "text": "Graduated compression for tired, heavy legs.",
+            "link": "/collections/compression-circulation",
+            "cta_label": "See what helps"
+          }
+        },
+        "problem-arch": {
+          "type": "card",
+          "settings": {
+            "icon": "cushion",
+            "title": "Arch pain",
+            "text": "Cushioned support that holds its shape all day.",
+            "link": "/collections/insoles-arch-support",
+            "cta_label": "See what helps"
+          }
+        },
+        "problem-knee": {
+          "type": "card",
+          "settings": {
+            "icon": "knee",
+            "title": "Knee support",
+            "text": "Steady, low-profile support you can wear under clothes.",
+            "link": "/collections/braces-supports",
+            "cta_label": "See what helps"
+          }
+        },
+        "problem-wide-fit": {
+          "type": "card",
+          "settings": {
+            "icon": "shoe",
+            "title": "Wide-fit shoes",
+            "text": "Everyday footwear with room for wide feet.",
+            "link": "/collections/orthopedic-footwear",
+            "cta_label": "See what helps"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
-      ],
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
+        "problem-plantar",
+        "problem-bunions",
+        "problem-swelling",
+        "problem-arch",
+        "problem-knee",
+        "problem-wide-fit"
+      ]
     },
-    "featured_collection": {
+    "featured-collections": {
+      "type": "collection-list",
+      "settings": {
+        "title": "Shop by category",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-2",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "cat-insoles": {
+          "type": "featured_collection",
+          "settings": { "collection": "insoles-arch-support" }
+        },
+        "cat-bunion": {
+          "type": "featured_collection",
+          "settings": { "collection": "bunion-toe-correction" }
+        },
+        "cat-compression": {
+          "type": "featured_collection",
+          "settings": { "collection": "compression-circulation" }
+        },
+        "cat-braces": {
+          "type": "featured_collection",
+          "settings": { "collection": "braces-supports" }
+        },
+        "cat-recovery": {
+          "type": "featured_collection",
+          "settings": { "collection": "recovery-massage" }
+        },
+        "cat-footwear": {
+          "type": "featured_collection",
+          "settings": { "collection": "orthopedic-footwear" }
+        }
+      },
+      "block_order": [
+        "cat-insoles",
+        "cat-bunion",
+        "cat-compression",
+        "cat-braces",
+        "cat-recovery",
+        "cat-footwear"
+      ]
+    },
+    "best-sellers": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
+        "title": "Best sellers",
+        "heading_size": "h1",
+        "collection": "best-sellers",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
-        "view_all_style": "solid",
+        "view_all_style": "outline",
         "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "quick_add": "none",
         "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "swipe_on_mobile": true,
+        "padding_top": 52,
+        "padding_bottom": 52
       }
+    },
+    "benefits": {
+      "type": "benefits",
+      "settings": {
+        "heading": "How StrideWell helps",
+        "heading_size": "h1",
+        "subheading": "<p>Support you can feel from the first step, built to be worn every day.</p>",
+        "layout": "with_image",
+        "image_position": "right",
+        "button_label": "Shop foot relief",
+        "button_link": "/collections/all",
+        "color_scheme": "scheme-2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      },
+      "blocks": {
+        "benefit-support": {
+          "type": "benefit",
+          "settings": {
+            "icon": "target",
+            "title": "Targeted support",
+            "text": "Contoured to sit under your arch and heel, where the ache usually starts."
+          }
+        },
+        "benefit-comfort": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "title": "All-day comfort",
+            "text": "Cushioning that holds its shape through a full shift on your feet."
+          }
+        },
+        "benefit-fit": {
+          "type": "benefit",
+          "settings": {
+            "icon": "footprint",
+            "title": "Designed for real feet",
+            "text": "Wide, narrow, high arch or flat — sized so you get a fit that works."
+          }
+        }
+      },
+      "block_order": ["benefit-support", "benefit-comfort", "benefit-fit"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What customers tell us",
+        "heading_size": "h1",
+        "summary_rating": 0,
+        "summary": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I'm on a concrete floor for ten hours and my feet used to ache by lunch. These went straight into my work shoes and I stopped thinking about them.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I ordered a size up like the sizing guide said and the fit was right the first time. Easy.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I have wide feet and most inserts crowd my toes. These didn't, and they fit in my everyday sneakers.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        }
+      },
+      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"]
+    },
+    "guarantee": {
+      "type": "guarantee",
+      "settings": {
+        "badge_label": "60-day comfort guarantee",
+        "heading": "Try StrideWell risk-free for 60 days",
+        "heading_size": "h1",
+        "text": "<p>Wear them to work. Wear them on your day off. If they're not right for your feet, send them back for a full refund — no photos, no phone calls.</p>",
+        "points": "60 days to decide, Full refund, Simple returns by email",
+        "button_label": "Shop foot relief",
+        "button_link": "/collections/all",
+        "show_background": true,
+        "scrim_color": "#0E3A46",
+        "scrim_opacity": 70,
+        "color_scheme": "scheme-3",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "settings": {
+        "caption": "Common questions",
+        "heading": "Before you order",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "section",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": true,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "faq-sizing": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I know which size to order?",
+            "icon": "ruler",
+            "row_content": "<p>Order the size that matches your usual shoe size. If you are between sizes, or you wear a wide fit, size up. Every product page lists its size range, and our Sizing Guide walks you through measuring your foot in about a minute. Still unsure? Email us your shoe size and we will tell you which to pick.</p>"
+          }
+        },
+        "faq-shipping": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How fast will my order arrive?",
+            "icon": "truck",
+            "row_content": "<p>Orders leave our warehouse within 1–2 business days. Standard US delivery usually takes 5–8 business days from there, and shipping is free on orders over $50. You will get a tracking link by email as soon as your parcel is on its way.</p>"
+          }
+        },
+        "faq-returns": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if they don't work for me?",
+            "icon": "return",
+            "row_content": "<p>You have 60 days to decide. Wear them, walk in them, put them through a full work week. If they are not right, email us and we will send you a return label for a full refund. No photos, no phone calls, no restocking fee.</p>"
+          }
+        },
+        "faq-materials": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What are they made of?",
+            "icon": "leaf",
+            "row_content": "<p>Most of our insoles use a firm EVA foam base with a softer top layer and a breathable fabric cover. Compression socks are a nylon and spandex knit. Braces use a stretch fabric with an open-knit panel behind the joint. The exact materials for each item are listed on its product page.</p>"
+          }
+        },
+        "faq-fit": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Will these fit in my shoes?",
+            "icon": "shoe",
+            "row_content": "<p>Our insoles are made to sit in everyday sneakers, work boots and most closed shoes. They are trim-to-fit, so you can cut them down along the printed guide lines. They are a tight fit in dress shoes and flats with a shallow footbed — if that is what you wear most, choose one of our low-profile options.</p>"
+          }
+        }
+      },
+      "block_order": ["faq-sizing", "faq-shipping", "faq-returns", "faq-materials", "faq-fit"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "newsletter-heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sizing tips and new arrivals",
+            "heading_size": "h1"
+          }
+        },
+        "newsletter-paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Join our list for fit advice, care tips and a first look at new products. One email a week at most, and you can leave any time.</p>"
+          }
+        },
+        "newsletter-form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": ["newsletter-heading", "newsletter-paragraph", "newsletter-form"]
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "trust-bar",
+    "shop-by-problem",
+    "featured-collections",
+    "best-sellers",
+    "benefits",
+    "testimonials",
+    "guarantee",
+    "faq",
+    "newsletter"
   ]
 }
