@@ -93,6 +93,48 @@
       },
       "block_order": ["trust-shipping", "trust-guarantee", "trust-sizing", "trust-secure"]
     },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What customers tell us",
+        "heading_size": "h2",
+        "summary_rating": 0,
+        "summary": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 40
+      },
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I'm on a concrete floor for ten hours and my feet used to ache by lunch. These went straight into my work shoes and I stopped thinking about them.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I ordered a size up like the sizing guide said and the fit was right the first time. Easy.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "PLACEHOLDER — replace with a real review. I have wide feet and most inserts crowd my toes. These didn't, and they fit in my everyday sneakers.",
+            "name": "Customer name",
+            "meta": "Verified buyer"
+          }
+        }
+      },
+      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"]
+    },
     "faq": {
       "type": "collapsible-content",
       "settings": {
@@ -138,5 +180,5 @@
       "block_order": ["faq-sizing", "faq-shipping", "faq-returns"]
     }
   },
-  "order": ["banner", "intro", "product-grid", "trust-bar", "faq"]
+  "order": ["banner", "intro", "product-grid", "trust-bar", "testimonials", "faq"]
 }

@@ -16,9 +16,6 @@
 
 {%- liquid
   assign rating_value = rating | plus: 0
-  if rating_value <= 0
-    break
-  endif
   if rating_value > 5
     assign rating_value = 5
   endif
