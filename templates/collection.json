@@ -22,7 +22,7 @@
         "intro-text": {
           "type": "text",
           "settings": {
-            "text": "<p>Everything here is made for one customer: someone on their feet all day. Filter by size or type below, or <a href=\"/pages/sizing-guide\">check the sizing guide</a> first. Free US shipping over $50 and tracking on every order.</p>"
+            "text": "<p>Everything here is made for one customer: someone on their feet all day. Filter by size or type below. Free US shipping over $50 and tracking on every order.</p>"
           }
         }
       },

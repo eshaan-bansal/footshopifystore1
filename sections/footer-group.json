@@ -22,11 +22,15 @@
           "type": "text",
           "settings": {
             "heading": "Help",
-            "subtext": "<p><a href=\"/pages/contact\">Contact us</a><br><a href=\"/pages/sizing-guide\">Sizing guide</a><br><a href=\"/pages/about\">About StrideWell</a></p><p>Questions about fit? Email us and we'll tell you which size to order.</p>"
+            "subtext": "<p><a href=\"/pages/contact\">Contact us</a><br><a href=\"/pages/about\">About StrideWell</a></p><p>Questions about fit? Email us your shoe size and we'll tell you which to order.</p>"
           }
         }
       },
-      "block_order": ["footer-brand", "footer-shop", "footer-help"],
+      "block_order": [
+        "footer-brand",
+        "footer-shop",
+        "footer-help"
+      ],
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": false,
@@ -43,5 +47,7 @@
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }

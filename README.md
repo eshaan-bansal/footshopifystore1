@@ -17,6 +17,12 @@ will stop recognising the theme.
 
 ## Contents
 
+> Two companion documents, both worth reading before you change anything:
+> **[COMPLIANCE.md](COMPLIANCE.md)** — what we may not claim, and why.
+> **[MARKETING.md](MARKETING.md)** — how the store converts within those limits,
+> including the accessibility work that is the real legal exposure for an
+> ecommerce site.
+
 - [Local development](#local-development)
 - [Connecting the repo to Shopify](#connecting-the-repo-to-shopify)
 - [Admin setup checklist](#admin-setup-checklist)
@@ -161,12 +167,12 @@ See [the next section](#the-navigation-menus-you-must-create).
 | Page | Handle | Template to assign |
 |---|---|---|
 | About StrideWell | `about` | `page.about` |
-| Sizing Guide | `sizing-guide` | `page` |
 | Contact | `contact` | `page.contact` |
 
-The Sizing Guide matters more than it looks: the product page's "Not sure of your
-size?" link and several FAQs point at it, and sizing doubt is the most common
-reason a ready buyer leaves.
+There is deliberately **no Sizing Guide page**. Sizing is answered inline instead
+— a sizing FAQ row on the homepage, collection and product pages — so there is no
+extra page to build or maintain, and no link that can go stale. Per-product sizing
+detail belongs in that product's `custom.faqs` metafield.
 
 ### 6. Fill in the policy pages
 
@@ -432,7 +438,6 @@ The new blocks, all editable per product:
 | StrideWell: badge | `custom.badge` metafield — a small pill above the title. Hidden when empty |
 | StrideWell: rating | Real reviews only, from `product.metafields.reviews.*`. No manual field exists. Hidden until a review app populates it |
 | StrideWell: trust cue | The single reassurance that must be visible without scrolling |
-| StrideWell: sizing help | "Not sure of your size?" — sizing doubt is the top reason a ready buyer leaves |
 | StrideWell: benefit bullets | Driven by `custom.benefit_bullets`, falling back to the template's own bullets. Materials, fit and construction |
 | StrideWell: quantity-break offer | Three tiers, a Most Popular anchor and a cheaper decoy |
 | StrideWell: trust row | Guarantee / shipping / secure checkout under add-to-cart |

@@ -1,0 +1,26 @@
+{%- comment -%}
+  Trust cues at the cart, immediately above the checkout button.
+
+  Trust signals work cumulatively along the whole purchase path — landing page,
+  product page, and then the cart, which is where the largest single drop-off
+  happens. The homepage and product page already carry these cues; the cart was
+  the gap.
+
+  COMPLIANCE: operational facts only, matching exactly what the rest of the site
+  says. No delivery window (stock is dropshipped) and no returns promise (no
+  refund policy is published yet). See COMPLIANCE.md.
+
+  Rendered in both the cart drawer and the cart page, so the message does not
+  change depending on which the merchant has enabled.
+{%- endcomment -%}
+
+<ul class="sw-cart-trust" role="list">
+  <li>
+    {%- render 'stridewell-icon', icon: 'lock', class: 'sw-icon--sm' -%}
+    <span>Secure, encrypted checkout</span>
+  </li>
+  <li>
+    {%- render 'stridewell-icon', icon: 'map-pin', class: 'sw-icon--sm' -%}
+    <span>Tracking emailed on every order</span>
+  </li>
+</ul>

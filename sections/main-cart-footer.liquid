@@ -104,6 +104,11 @@
                 </small>
               </div>
             {%- else -%}
+              {%- comment -%}
+                StrideWell: trust cues at the point of highest drop-off.
+              {%- endcomment -%}
+              {%- render 'stridewell-cart-trust' -%}
+
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <button
                   type="submit"
