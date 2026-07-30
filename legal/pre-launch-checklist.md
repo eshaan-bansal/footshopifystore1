@@ -14,12 +14,17 @@ Shopify · **[BUSINESS]** outside the store entirely.
 **Settings → Policies.** Shopify generates templates for all of these; edit them,
 don't ship the boilerplate unread.
 
-| Policy | Status | Note |
+All four are now drafted in this folder. Paste each one, fill the brackets, done.
+
+| Policy | Draft | What it does for you |
 |---|---|---|
-| **Refund policy** | Drafted at `legal/refund-policy.md` | Paste it and fill the brackets. Nothing on the storefront mentions returns until you do — the theme checks for it and stays silent. |
-| **Privacy policy** | **Missing** | Legally required in practice. Twenty states now have comprehensive privacy laws; more take effect through 2026. Must describe what you collect, why, who you share it with, and how a consumer exercises their rights. |
-| **Terms of service** | **Missing** | Sets governing law, limits liability, and defines the contract. Strongly advised. |
-| **Shipping policy** | **Missing** | Say that delivery times vary by item and that tracking is emailed on dispatch — matching what the storefront already says. Do **not** state a window you can't hold to. |
+| **Refund policy** | `legal/refund-policy.md` | Used items non-returnable on hygiene grounds, customer pays return shipping, no cancellation after dispatch. Publishing it also switches on the returns copy across the product page and cart. |
+| **Privacy policy** | `legal/privacy-policy.md` | Written to the CCPA/CPRA baseline, which covers the twenty state laws in force through 2026. Includes the GPC and opt-out language. |
+| **Terms of service** | `legal/terms-of-service.md` | Order = your offer, accepted on dispatch (lets you decline bad orders); the no-medical-claims clause; review-removal rights; liability capped at the amount paid. |
+| **Shipping policy** | `legal/shipping-policy.md` | States no delivery window on purpose, and discloses that items ship from several locations including outside the US. |
+
+Each draft opens with a short note on why it is shaped the way it is — read those
+before editing, because several clauses look removable and are not.
 
 Once published, all four appear in the footer automatically (`show_policy` is
 already on), and the refund policy switches on the returns copy across the

@@ -24,8 +24,9 @@ will stop recognising the theme.
 > ecommerce site.
 > **[legal/pre-launch-checklist.md](legal/pre-launch-checklist.md)** — everything
 > still outstanding before taking real orders, in risk order.
-> **[legal/refund-policy.md](legal/refund-policy.md)** — a paste-ready returns
-> policy.
+> **`legal/`** — paste-ready drafts of all four Shopify policies
+> ([refund](legal/refund-policy.md), [privacy](legal/privacy-policy.md),
+> [terms](legal/terms-of-service.md), [shipping](legal/shipping-policy.md)).
 
 - [Local development](#local-development)
 - [Connecting the repo to Shopify](#connecting-the-repo-to-shopify)
