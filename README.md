@@ -21,6 +21,7 @@ will stop recognising the theme.
 - [Connecting the repo to Shopify](#connecting-the-repo-to-shopify)
 - [Admin setup checklist](#admin-setup-checklist)
 - [The navigation menus you must create](#the-navigation-menus-you-must-create)
+- [Adding products — the auto-organization loop](#adding-products--the-auto-organization-loop)
 - [Brand image assets](#brand-image-assets)
 - [Where the colours and fonts live](#where-the-colours-and-fonts-live)
 - [What was added on top of Dawn](#what-was-added-on-top-of-dawn)
@@ -72,41 +73,90 @@ to `config/settings_data.json` and the `templates/*.json` files.
 
 ## Admin setup checklist
 
-The theme references this data but cannot create it — templates only, no
-products or collections in code.
+The theme references this data but cannot create it — templates only, no products
+or collections in code. Work through this once, then adding products is the only
+recurring task.
 
-### 1. Create six automated collections
+> **Before writing any copy anywhere, read [COMPLIANCE.md](COMPLIANCE.md).** This
+> store sells health products with no reviews and no clinical evidence yet, so
+> health-outcome claims and invented social proof are off the table. That file
+> lists exactly what is banned and what is backable.
 
-Use **Products → Collections → Create collection → Automated**, matching on
-product tag. The handles must be exactly these, because the homepage and the
-Shop-by-problem cards link to them:
+### 1. Create the six automated collections
 
-| Collection | Handle | Suggested condition |
+**Products → Collections → Create collection → Automated**, with the condition
+**Product tag is equal to** the tag below. Using the collection's own name as the
+tag keeps tagging unambiguous at import time.
+
+| Collection | Handle | Condition — product tag is equal to |
 |---|---|---|
-| Insoles & Arch Support | `insoles-arch-support` | Product tag is equal to `insoles` |
-| Bunion & Toe Correction | `bunion-toe-correction` | Product tag is equal to `bunion` |
-| Compression & Circulation | `compression-circulation` | Product tag is equal to `compression` |
-| Braces & Supports | `braces-supports` | Product tag is equal to `braces` |
-| Recovery & Massage | `recovery-massage` | Product tag is equal to `recovery` |
-| Orthopedic Footwear | `orthopedic-footwear` | Product tag is equal to `footwear` |
+| Insoles & Arch Support | `insoles-arch-support` | `Insoles & Arch Support` |
+| Bunion & Toe Correction | `bunion-toe-correction` | `Bunion & Toe Correction` |
+| Compression & Circulation | `compression-circulation` | `Compression & Circulation` |
+| Braces & Supports | `braces-supports` | `Braces & Supports` |
+| Recovery & Massage | `recovery-massage` | `Recovery & Massage` |
+| Orthopedic Footwear | `orthopedic-footwear` | `Orthopedic Footwear` |
 
-Check the handle at the bottom of the collection page under **Search engine
-listing** — Shopify derives it from the title, so "Insoles & Arch Support"
-becomes `insoles-arch-support` automatically.
+The handles must match exactly — the homepage category grid and the
+shop-by-concern cards reference them. Shopify derives the handle from the title,
+so "Insoles & Arch Support" becomes `insoles-arch-support` on its own. Confirm it
+under **Search engine listing** at the bottom of the collection page.
+
+Give each collection an **image** while you are there: the homepage category card
+uses it. (If you skip it, the card falls back to the collection's first product
+image.)
 
 ### 2. Create the `best-sellers` collection
 
-Handle **`best-sellers`**. Manual, or automated on a `best-seller` tag. The
-homepage "Best sellers" section and the hero's secondary button both point at
-it.
+Handle **`best-sellers`**. Automated on a `best-seller` tag is easiest. The
+homepage "Popular right now" row reads it and **hides itself entirely while the
+collection is empty**, so you can leave it unpopulated at launch.
 
-### 3. Create the navigation menus
+### 3. Create the three product metafield definitions
+
+**Settings → Custom data → Products → Add definition.** These let you fill in
+per-product content at import time with no theme edits.
+
+| Namespace and key | Type | Drives |
+|---|---|---|
+| `custom.benefit_bullets` | List of single line text, **or** Multi-line text | The "Features" bullet list on the product page |
+| `custom.faqs` | Multi-line text | The per-product FAQ accordion |
+| `custom.badge` | Single line text | The small pill above the product title |
+
+**`custom.benefit_bullets`** — one bullet per list entry, or one per line if you
+use multi-line text. Describe materials, fit and construction:
+
+```
+Firm EVA arch shell with a cushioned heel cup
+Closed-cell foam that does not flatten out over a long shift
+Trim-to-fit along the printed guide lines
+Wide toe box, cut for wider feet
+```
+
+**`custom.faqs`** — one FAQ per line as `Question|Answer`:
+
+```
+Which size should I order?|Order your usual shoe size. Size up if you wear a wide fit.
+Will it fit my shoes?|It sits inside most closed shoes and is trim-to-fit.
+```
+
+A line with no `|` is skipped, so a half-finished metafield can never render a
+broken row.
+
+**`custom.badge`** — e.g. `New`, `Wide fit`, `Trim to fit`. Leave empty to hide
+it. Note that `Most Popular` and `Best Seller` are claims: only use them once
+your own sales data supports them.
+
+If a metafield is empty the block falls back to the template's own generic
+content (benefits) or renders nothing at all (FAQs, badge). Nothing breaks.
+
+### 4. Build the navigation menus
 
 See [the next section](#the-navigation-menus-you-must-create).
 
-### 4. Create the content pages
+### 5. Create the content pages
 
-Create these under **Online Store → Pages**, because the theme links to them:
+**Online Store → Pages** — the theme links to all three:
 
 | Page | Handle | Template to assign |
 |---|---|---|
@@ -114,31 +164,72 @@ Create these under **Online Store → Pages**, because the theme links to them:
 | Sizing Guide | `sizing-guide` | `page` |
 | Contact | `contact` | `page.contact` |
 
-### 5. Fill in the policy pages
+The Sizing Guide matters more than it looks: the product page's "Not sure of your
+size?" link and several FAQs point at it, and sizing doubt is the most common
+reason a ready buyer leaves.
 
-**Settings → Policies**: Privacy policy, Refund policy, Shipping policy, Terms
-of service. The footer renders these automatically once they exist — nothing to
-wire up.
+### 6. Fill in the policy pages
 
-### 6. Import products
+**Settings → Policies**: Privacy, Refund, Shipping, Terms. The footer renders
+them automatically. The product and collection FAQs link to
+`/policies/refund-policy` rather than stating a return window, so that the site
+never contradicts your actual policy — **fill the Refund policy in before
+launch** or those links lead nowhere.
 
-Import the Tier-1 products (e.g. via CopyMonkey) **as drafts**, optimize the
-copy, then publish. Tag each one so it lands in the right automated collection.
+### 7. Set the Google product category per product
 
-### 7. Set up the quantity-break discounts
+For Merchant Center: on each product, **Product organization → Google product
+category** → the matching foot-care or footwear taxonomy node (e.g. *Health &
+Beauty > Health Care > Supports & Braces*, or *Apparel & Accessories > Shoes*).
 
-⚠️ **Important.** The product page's offer block controls the *quantity* added
-to the cart and the *labels* the customer reads. It does not create a discount.
-For "buy 2, save 15%" to be true, create a matching **automatic discount** in
-**Discounts → Create discount → Amount off products**, or use a bundle app. If
-you fill in tier prices without a real discount behind them, the price shown
-will not match checkout.
+### 8. Set up the quantity-break discounts
 
-### 8. Replace the placeholder testimonials
+⚠️ The product page's offer block controls the **quantity** added to the cart and
+the **labels** the customer reads. It does not create a discount. For "buy 2,
+save 15%" to be true, create a matching automatic discount in
+**Discounts → Create discount → Amount off products**, or use a bundle app. Tier
+price fields ship empty for exactly this reason — if you fill them in without a
+real discount behind them, the price shown will not match checkout.
 
-The Testimonials section and the product page ship with quotes prefixed
-`PLACEHOLDER`. Replace all of them with real reviews before launch, and only
-enter a star rating or review count you can substantiate.
+### 9. Reviews — later, not now
+
+The rating and review areas are built but render **only** from
+`product.metafields.reviews.*`. Install a verified-buyer app (Judge.me, Loox)
+when you are ready; ratings then appear on their own with no theme change. Do not
+enter a rating by hand — there is deliberately no field for it.
+
+---
+
+## Adding products — the auto-organization loop
+
+This is the whole point of the structure. Per product:
+
+1. **Import as a draft** (Kopy, CJ, CSV, manual).
+2. **Tag it** with its collection name exactly — e.g. `Insoles & Arch Support`.
+   Add `best-seller` and/or `new` if they apply.
+3. **Fill the three metafields** (`benefit_bullets`, `faqs`, `badge`).
+4. Set images, title, price, Google product category.
+5. **Set it Active.**
+
+What happens with no theme work at all:
+
+- the tag puts it in its automated collection;
+- that collection now has products, so its **homepage category card appears**,
+  with an up-to-date product count;
+- the matching **shop-by-concern card appears** too;
+- a `best-seller` tag makes the **"Popular right now" row appear**;
+- the product renders through the **single shared product template** — gallery,
+  title, price, variants, sizing link, offer tiers, add-to-cart, trust row,
+  features, reassurance, FAQs, cross-sells, sticky mobile add-to-cart.
+
+The reverse is also true: **empty collections hide themselves.** Category cards,
+concern cards and the best-sellers row all check `all_products_count` and skip
+anything with zero products, and each section removes itself completely when
+nothing is left. The storefront never shows an empty category, so you can launch
+with two collections filled and reveal the rest simply by importing into them.
+
+The only per-product theme decision you might ever make is the product title
+formula — see [The product page](#the-product-page-block-by-block).
 
 ---
 
@@ -245,6 +336,19 @@ Poppins there is a one-click change if you want more character.
 
 ---
 
+## Homepage category display — the decision, and why
+
+For a small focused catalogue (6 categories, ~14 products, mostly mobile),
+**visible categories beat a buried dropdown.** So the theme does both:
+
+1. a **visible "Shop by category" grid** on the homepage — 6 image cards, one per
+   collection, each with a live product count;
+2. a **sticky header** (`sticky_header_type: always`) so the category nav stays
+   reachable through the whole scroll, collapsing to a hamburger on mobile.
+
+There is deliberately **no mega-menu**. With six categories a simple "Shop ▾"
+dropdown is enough, and a mega-menu would add weight and complexity for nothing.
+
 ## What was added on top of Dawn
 
 Dawn's own sections, snippets, JS and asset pipeline are all intact. Nothing was
@@ -257,10 +361,11 @@ against this repo. Additions:
 |---|---|
 | `sections/hero-stridewell.liquid` | Homepage hero: outcome headline, two CTAs, reassurance row, scrimmed background |
 | `sections/trust-bar.liquid` | Four icon + label trust items |
-| `sections/shop-by-problem.liquid` | Search-language cards routing intent to collections — the SEO bridge |
+| `sections/category-grid.liquid` | The visible "Shop by category" grid. Cards hide when their collection is empty |
+| `sections/shop-by-problem.liquid` | Search-language cards routing intent to collections — the SEO bridge. Also hides empty collections |
 | `sections/benefits.liquid` | "How it helps", icon list or list-beside-image |
 | `sections/testimonials.liquid` | Review cards with star rows |
-| `sections/guarantee.liquid` | Guarantee band with reassurance points |
+| `sections/guarantee.liquid` | Policy band. On no template by default — add only when a real policy exists |
 | `sections/product-sticky-atc.liquid` | Mobile sticky add-to-cart |
 
 All of them carry a full `{% schema %}` with presets, so they are drag-and-drop
@@ -275,7 +380,7 @@ settings or collections are empty.
 | `snippets/stridewell-image.liquid` | Picked image → asset file → nothing |
 | `snippets/stridewell-icon.liquid` | Inline SVG icon set (no extra request) |
 | `snippets/stridewell-stars.liquid` | Star row from a merchant-entered rating |
-| `snippets/product-sw-*.liquid` | The eight product-page blocks |
+| `snippets/product-sw-*.liquid` | The ten product-page blocks, including the three metafield-driven ones |
 
 ### New assets
 
@@ -319,13 +424,15 @@ The new blocks, all editable per product:
 
 | Block | Job |
 |---|---|
-| StrideWell: rating | Proof above the fold. Uses your review app's real metafield when installed, otherwise a rating you type in |
+| StrideWell: badge | `custom.badge` metafield — a small pill above the title. Hidden when empty |
+| StrideWell: rating | Real reviews only, from `product.metafields.reviews.*`. No manual field exists. Hidden until a review app populates it |
 | StrideWell: trust cue | The single reassurance that must be visible without scrolling |
 | StrideWell: sizing help | "Not sure of your size?" — sizing doubt is the top reason a ready buyer leaves |
-| StrideWell: benefit bullets | Outcome first, feature second, up to five |
+| StrideWell: benefit bullets | Driven by `custom.benefit_bullets`, falling back to the template's own bullets. Materials, fit and construction |
 | StrideWell: quantity-break offer | Three tiers, a Most Popular anchor and a cheaper decoy |
 | StrideWell: trust row | Guarantee / shipping / secure checkout under add-to-cart |
-| StrideWell: objections & proof | "Who these work for", rating, guarantee |
+| StrideWell: reassurance | "Who these are made for" — fit, materials, which shoes it works with. Facts only |
+| StrideWell: FAQs | `custom.faqs` metafield — per-product Q/A accordion. Hidden when empty |
 | StrideWell: pairs well with | Hand-picked cross-sells to lift AOV |
 
 FAQs use Dawn's own `collapsible_tab` block and are framed from what almost
@@ -346,33 +453,43 @@ Two implementation notes worth knowing:
 
 ## Copy rules for this store
 
-These are compliance and conversion constraints, not style preferences.
+**[COMPLIANCE.md](COMPLIANCE.md) is the authority.** Read it before writing copy
+anywhere — theme, admin, or ads. The short version:
 
-**Never make medical claims.** No "cures", "treats plantar fasciitis",
-"clinically proven", "doctor recommended", or named-condition treatment claims
-unless a real citation exists. Write "designed to support", "helps relieve
-everyday discomfort", "all-day comfort". This keeps the store compliant with
-Shopify's policies and Google Merchant Center. Problem-named *navigation*
-("Plantar fasciitis" as a shop-by-problem card) is fine — it describes what the
-customer is looking for, not what the product does to a condition.
+**No health-outcome claims.** These are health products, so "relieves pain",
+"reduces swelling", "improves circulation", "corrects bunions", "clinically
+proven" and "doctor recommended" are all off the table without evidence. Describe
+the product instead: materials, fit, construction, who it is for. "Cushioned heel
+cup" is fine; "relieves heel pain" is not.
 
-**Never invent proof.** No fabricated review counts, ratings, endorsements or
-customer numbers. Every rating field in this theme is empty or zero by default
-and every shipped testimonial is marked `PLACEHOLDER` for exactly this reason.
+Naming a condition for **navigation** is fine — a "Plantar fasciitis" card
+describes what the shopper is looking for. The line is crossed when the product is
+described as acting on the condition.
 
-**Sell the outcome, not the product.** Emotional end-state, then benefits, then
-features — in that order.
+**No invented social proof.** Under the FTC's Rule on Consumer Reviews and
+Testimonials, fake reviews, ratings and customer counts carry penalties up to
+about $53,000 per violation. This store has no reviews yet, so it shows none. The
+theme enforces this: the rating block reads only
+`product.metafields.reviews.*` and has no manual field, and the testimonials
+section ships with no blocks and renders nothing until real quotes are added.
 
-**Product H1 formula:** outcome + time frame or qualifier + mechanism or
-differentiator. Clear over clever. e.g. *"All-Day Foot Relief with Targeted Arch
-Support."*
+**No guarantees you do not operate.** The FAQs link to
+`/policies/refund-policy` instead of stating a return window, so the storefront
+can never contradict your actual policy. The policy band section exists but is on
+no template by default — add it only once a real policy is live.
 
-**Reading level ≤ 8th grade**, ideally lower. Short sentences. A confused mind
-never buys.
+**Sell the outcome, not the product** — within those limits. Lead with what the
+product *is for* and how it is built, then the details.
+
+**Product H1 formula:** outcome + qualifier + differentiator, framed as comfort
+and construction rather than a cure. e.g. *"All-Day Cushioned Insoles with Firm
+Arch Support"* — not *"Plantar Fasciitis Pain Relief Insoles"*.
+
+**Reading level ≤ 8th grade.** Short sentences. A confused mind never buys.
 
 **Match the page to the query.** Specific-product searches land on the product
-page; problem searches land on a collection; broad searches land on the homepage
-that routes them. Never dump everything on the homepage.
+page; concern searches land on a collection; broad searches land on the homepage
+that routes them.
 
 **Every element earns its place.** If it does not move toward the sale or reduce
 resistance, cut it.

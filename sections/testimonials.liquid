@@ -1,10 +1,14 @@
 {%- comment -%}
   Testimonials.
 
-  The quotes shipped in the preset are PLACEHOLDERS written to show the right
-  shape (a specific situation, a specific outcome, no medical claim). Replace
-  every one with a real customer review before launch — and never add a rating
-  or review count you cannot substantiate.
+  COMPLIANCE: ships with NO blocks and therefore renders nothing. Under the FTC
+  Rule on Consumer Reviews and Testimonials, a placeholder quote on a live
+  storefront is a representation to a customer — so this section has no example
+  content to accidentally leave in.
+
+  Add a block only when you have a real review from a real buyer, and only enter
+  a rating that review actually gave. If you install a review app (Judge.me,
+  Loox), prefer its own section over this one. See COMPLIANCE.md.
 {%- endcomment -%}
 
 {%- style -%}
@@ -14,7 +18,7 @@
   }
 
   #shopify-section-{{ section.id }} .sw-testimonials__grid {
-    --sw-testimonial-columns: {{ section.blocks.size | at_most: 3 | at_least: 1 }};
+    --sw-testimonial-columns: {{ section.blocks.size | at_most: 3 | at_least: 1 }}; /* upper bound; empty blocks are skipped */
   }
 
   @media screen and (min-width: 750px) {
@@ -25,6 +29,18 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  # Count only blocks that actually carry a quote. A section with no real
+  # reviews must render nothing at all — not a heading over an empty grid.
+  assign real_reviews = 0
+  for block in section.blocks
+    if block.settings.quote != blank
+      assign real_reviews = real_reviews | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if real_reviews > 0 -%}
 <div class="sw-testimonials color-{{ section.settings.color_scheme }} gradient">
   <div
     class="page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -53,6 +69,9 @@
     {%- if section.blocks.size > 0 -%}
       <ul class="sw-testimonials__grid" role="list">
         {%- for block in section.blocks -%}
+          {%- if block.settings.quote == blank -%}
+            {%- continue -%}
+          {%- endif -%}
           <li {{ block.shopify_attributes }}>
             <figure class="sw-testimonial">
               {%- if block.settings.rating > 0 -%}
@@ -93,6 +112,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -106,7 +126,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "The quotes below are placeholders. Replace them with real reviews, and only enter a rating or review count you can back up."
+      "content": "Add a block for each REAL review from a real buyer. This section renders nothing while it has no blocks, which is the correct state until you have collected reviews. Never enter an invented quote, rating or review count — see COMPLIANCE.md."
     },
     {
       "type": "inline_richtext",
@@ -188,27 +208,27 @@
           "max": 5,
           "step": 0.5,
           "label": "Rating",
-          "info": "Set to 0 to hide the stars.",
-          "default": 5
+          "info": "The rating this reviewer actually gave. 0 hides the stars.",
+          "default": 0
         },
         {
           "type": "textarea",
           "id": "quote",
           "label": "Quote",
-          "default": "Placeholder — replace with a real review."
+          "default": ""
         },
         {
           "type": "text",
           "id": "name",
           "label": "Customer name",
-          "default": "Customer name"
+          "default": ""
         },
         {
           "type": "text",
           "id": "meta",
           "label": "Supporting line",
-          "info": "e.g. \"Verified buyer\" or the job they're on their feet for.",
-          "default": "Verified buyer"
+          "info": "Optional context for this reviewer. Only call someone a verified buyer if they actually are.",
+          "default": ""
         },
         {
           "type": "image_picker",
@@ -220,36 +240,7 @@
   ],
   "presets": [
     {
-      "name": "Testimonials",
-      "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "PLACEHOLDER — replace with a real review. I'm on a concrete floor for ten hours and my feet used to ache by lunch. These went straight into my work shoes and I stopped thinking about them.",
-            "name": "Customer name",
-            "meta": "Verified buyer"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "PLACEHOLDER — replace with a real review. I ordered a size up like the sizing guide said and the fit was right the first time. Easy.",
-            "name": "Customer name",
-            "meta": "Verified buyer"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "PLACEHOLDER — replace with a real review. I have wide feet and most inserts crowd my toes. These didn't, and they fit in my everyday sneakers.",
-            "name": "Customer name",
-            "meta": "Verified buyer"
-          }
-        }
-      ]
+      "name": "Testimonials (empty — add real reviews)"
     }
   ]
 }

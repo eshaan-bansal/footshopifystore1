@@ -1,0 +1,258 @@
+{%- comment -%}
+  Shop by Category — the visible category grid.
+
+  For a small, focused catalogue (6 categories, ~14 products, mostly mobile),
+  showing categories beats burying them in a dropdown. This is that grid.
+
+  AUTO-ORGANISATION: each card points at a collection. The card's image, title
+  and product count all come from the collection itself, so importing a tagged
+  product is enough to populate it — no theme edits per product.
+
+  EMPTY-STATE GRACE: a card whose collection has no products is skipped
+  entirely, and if every card is empty the whole section renders nothing. The
+  store never shows an empty category. Collections therefore "appear" on the
+  homepage by themselves as soon as the first product is tagged into them.
+
+  Image resolution per card: the block's own image_picker, then the collection's
+  own image, then the collection's first product image, then a flat tinted
+  panel. Never a broken image.
+{%- endcomment -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sw-category-grid {
+    --sw-category-columns: {{ section.settings.columns_desktop }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  # Count the cards that have a non-empty collection, so the section can hide
+  # itself entirely before rendering any wrapper markup.
+  assign visible_cards = 0
+  for block in section.blocks
+    assign card_collection = block.settings.collection
+    if card_collection != blank and card_collection.all_products_count > 0
+      assign visible_cards = visible_cards | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_cards > 0 -%}
+  <div class="sw-category-section color-{{ section.settings.color_scheme }} gradient">
+    <div
+      class="page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      {% if settings.animations_reveal_on_scroll %}
+        data-cascade
+      {% endif %}
+    >
+      {%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+        <div class="title-wrapper title-wrapper--no-top-margin{% if section.settings.center_heading %} sw-center sw-measure{% endif %}">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.subheading != blank -%}
+            <div class="rte sw-muted">{{ section.settings.subheading }}</div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <ul class="sw-category-grid" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign card_collection = block.settings.collection
+
+            # Skip empty or missing collections — this is the empty-state grace.
+            unless card_collection != blank and card_collection.all_products_count > 0
+              continue
+            endunless
+
+            assign card_title = block.settings.title | default: card_collection.title
+            assign card_image = block.settings.image
+            if card_image == blank
+              assign card_image = card_collection.image
+            endif
+            if card_image == blank
+              assign card_image = card_collection.products.first.featured_image
+            endif
+          -%}
+
+          <li {{ block.shopify_attributes }}>
+            <a href="{{ card_collection.url }}" class="sw-category-card">
+              <span class="sw-category-card__media">
+                {%- if card_image != blank -%}
+                  {{
+                    card_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '200, 300, 400, 600, 800',
+                      sizes: '(min-width: 990px) 30vw, (min-width: 750px) 45vw, 45vw',
+                      alt: card_image.alt | default: card_title
+                  }}
+                {%- endif -%}
+              </span>
+
+              <span class="sw-category-card__body">
+                <span class="sw-category-card__title">{{ card_title | escape }}</span>
+
+                {%- if section.settings.show_count -%}
+                  <span class="sw-category-card__count sw-muted">
+                    {%- if card_collection.all_products_count == 1 -%}
+                      1 product
+                    {%- else -%}
+                      {{ card_collection.all_products_count }} products
+                    {%- endif -%}
+                  </span>
+                {%- endif -%}
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Shop by category",
+  "class": "section",
+  "tag": "section",
+  "max_blocks": 12,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Add one card per collection. Cards whose collection has no products are hidden automatically, and the whole section disappears if every collection is empty — so categories appear on their own as soon as you tag a product into them."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by category"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__4.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "checkbox",
+      "id": "center_heading",
+      "label": "Center the heading",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Show product count on each card",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Cards per row on desktop",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card title",
+          "info": "Leave blank to use the collection's own title."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image",
+          "info": "Leave blank to use the collection's image, then its first product's image."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by category",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -22,11 +22,13 @@
         "intro-text": {
           "type": "text",
           "settings": {
-            "text": "<p>Everything here is chosen for one job: making a long day on your feet easier. Not sure where to start? Filter by size or type below, or <a href=\"/pages/sizing-guide\">check the sizing guide</a> first. Free US shipping over $50, and 60 days to change your mind.</p>"
+            "text": "<p>Everything here is made for one customer: someone on their feet all day. Filter by size or type below, or <a href=\"/pages/sizing-guide\">check the sizing guide</a> first. Free US shipping over $50 and tracking on every order.</p>"
           }
         }
       },
-      "block_order": ["intro-text"]
+      "block_order": [
+        "intro-text"
+      ]
     },
     "product-grid": {
       "type": "main-collection-product-grid",
@@ -69,17 +71,17 @@
         "trust-guarantee": {
           "type": "item",
           "settings": {
-            "icon": "shield-check",
-            "label": "60-day guarantee",
-            "sublabel": "Wear them, or send them back"
+            "icon": "clock",
+            "label": "Tracking on every order",
+            "sublabel": "Emailed as soon as it ships"
           }
         },
         "trust-sizing": {
           "type": "item",
           "settings": {
             "icon": "ruler",
-            "label": "Easy sizing help",
-            "sublabel": "Find your fit in 30 seconds"
+            "label": "Sizing guide",
+            "sublabel": "Check your fit before you order"
           }
         },
         "trust-secure": {
@@ -91,49 +93,12 @@
           }
         }
       },
-      "block_order": ["trust-shipping", "trust-guarantee", "trust-sizing", "trust-secure"]
-    },
-    "testimonials": {
-      "type": "testimonials",
-      "settings": {
-        "heading": "What customers tell us",
-        "heading_size": "h2",
-        "summary_rating": 0,
-        "summary": "",
-        "color_scheme": "scheme-1",
-        "padding_top": 40,
-        "padding_bottom": 40
-      },
-      "blocks": {
-        "testimonial-1": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "PLACEHOLDER — replace with a real review. I'm on a concrete floor for ten hours and my feet used to ache by lunch. These went straight into my work shoes and I stopped thinking about them.",
-            "name": "Customer name",
-            "meta": "Verified buyer"
-          }
-        },
-        "testimonial-2": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "PLACEHOLDER — replace with a real review. I ordered a size up like the sizing guide said and the fit was right the first time. Easy.",
-            "name": "Customer name",
-            "meta": "Verified buyer"
-          }
-        },
-        "testimonial-3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "PLACEHOLDER — replace with a real review. I have wide feet and most inserts crowd my toes. These didn't, and they fit in my everyday sneakers.",
-            "name": "Customer name",
-            "meta": "Verified buyer"
-          }
-        }
-      },
-      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"]
+      "block_order": [
+        "trust-shipping",
+        "trust-guarantee",
+        "trust-sizing",
+        "trust-secure"
+      ]
     },
     "faq": {
       "type": "collapsible-content",
@@ -165,20 +130,30 @@
           "settings": {
             "heading": "How fast will my order arrive?",
             "icon": "truck",
-            "row_content": "<p>Orders leave our warehouse within 1–2 business days. Standard US delivery usually takes 5–8 business days from there, and shipping is free on orders over $50.</p>"
+            "row_content": "<p>Orders are dispatched within 1–2 business days. Standard US delivery then typically takes 5–8 business days, and shipping is free on orders over $50.</p>"
           }
         },
         "faq-returns": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "What if they don't work for me?",
+            "heading": "Can I return something?",
             "icon": "return",
-            "row_content": "<p>You have 60 days to decide. If they are not right, email us and we will send a return label for a full refund. No photos, no phone calls, no restocking fee.</p>"
+            "row_content": "<p>Yes. The full terms, including the return window, are on our <a href=\"/policies/refund-policy\">Refund policy</a> page. If you are unsure about fit, email us before ordering and we will help you choose.</p>"
           }
         }
       },
-      "block_order": ["faq-sizing", "faq-shipping", "faq-returns"]
+      "block_order": [
+        "faq-sizing",
+        "faq-shipping",
+        "faq-returns"
+      ]
     }
   },
-  "order": ["banner", "intro", "product-grid", "trust-bar", "testimonials", "faq"]
+  "order": [
+    "banner",
+    "intro",
+    "product-grid",
+    "trust-bar",
+    "faq"
+  ]
 }

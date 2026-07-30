@@ -6,11 +6,15 @@
   filtered collection URL. This is what stops a problem-aware searcher from
   bouncing off a generic homepage.
 
-  Copy stays non-medical: cards name what the visitor is looking for, they do
-  not claim to treat or cure anything.
+  COMPLIANCE: naming a condition for NAVIGATION is allowed — the card title
+  describes what the shopper is looking for. Card body text must describe the
+  product's FEATURES, never an effect on the body. "Cushioned heel and arch
+  support" is fine; "relieves heel pain" is not. See COMPLIANCE.md.
 
-  Cards with no destination render as plain (non-linked) cards, so an unfinished
-  or empty collection never produces a broken link.
+  EMPTY-STATE GRACE: a card whose collection has no products is skipped, and the
+  whole section hides if none are left — the store never shows an empty concern.
+  A card given a custom URL is always shown, since an arbitrary link (e.g. a
+  filtered collection URL) can't be counted.
 {%- endcomment -%}
 
 {%- style -%}
@@ -35,6 +39,22 @@
   }
 {%- endstyle -%}
 
+{%- liquid
+  # EMPTY-STATE GRACE: a card pointing at an empty collection is skipped, and
+  # the section hides entirely if nothing is left. A card with a custom URL
+  # cannot be counted (we can't know what's behind an arbitrary link) so it is
+  # always shown — that's the escape hatch for filtered URLs.
+  assign visible_cards = 0
+  for block in section.blocks
+    if block.settings.link != blank
+      assign visible_cards = visible_cards | plus: 1
+    elsif block.settings.collection != blank and block.settings.collection.all_products_count > 0
+      assign visible_cards = visible_cards | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_cards > 0 -%}
 <div class="sw-problem-section color-{{ section.settings.color_scheme }} gradient">
   {%- if section.settings.show_background -%}
     {%- render 'stridewell-image',
@@ -69,16 +89,17 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign card_url = block.settings.link
-            if card_url == blank and block.settings.collection != blank
+
+            if card_url == blank
+              # No custom URL: require a collection that actually has products.
+              unless block.settings.collection != blank and block.settings.collection.all_products_count > 0
+                continue
+              endunless
               assign card_url = block.settings.collection.url
             endif
           -%}
           <li {{ block.shopify_attributes }}>
-            {%- if card_url != blank -%}
-              <a href="{{ card_url }}" class="sw-problem-card">
-            {%- else -%}
-              <div class="sw-problem-card">
-            {%- endif -%}
+            <a href="{{ card_url }}" class="sw-problem-card">
 
             {%- if block.settings.icon != blank -%}
               <span class="sw-problem-card__icon">
@@ -94,21 +115,17 @@
               <p class="sw-problem-card__text sw-muted">{{ block.settings.text | escape }}</p>
             {%- endif -%}
 
-            {%- if card_url != blank and block.settings.cta_label != blank -%}
+            {%- if block.settings.cta_label != blank -%}
               <span class="sw-problem-card__cta">{{ block.settings.cta_label | escape }}</span>
             {%- endif -%}
-
-            {%- if card_url != blank -%}
-              </a>
-            {%- else -%}
-              </div>
-            {%- endif -%}
+            </a>
           </li>
         {%- endfor -%}
       </ul>
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -128,7 +145,7 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "What's bothering you?"
+      "default": "Shop by concern"
     },
     {
       "type": "select",
@@ -145,7 +162,7 @@
       "type": "richtext",
       "id": "subheading",
       "label": "Subheading",
-      "default": "<p>Pick where it hurts and we'll show you what helps.</p>"
+      "default": "<p>Pick your concern and we'll point you to the right support.</p>"
     },
     {
       "type": "checkbox",
@@ -251,14 +268,15 @@
           "type": "text",
           "id": "title",
           "label": "Card title",
-          "info": "Use the customer's words, e.g. \"Plantar fasciitis\".",
+          "info": "Use the customer's search words, e.g. \"Plantar fasciitis\". Titles may name a condition; the supporting line below must describe features only.",
           "default": "Plantar fasciitis"
         },
         {
           "type": "text",
           "id": "text",
           "label": "Supporting line",
-          "default": "Heel and arch support for that first painful step."
+          "info": "Features and materials only — no health outcomes.",
+          "default": "Cushioned heel cup with a firm arch shell."
         },
         {
           "type": "collection",
@@ -275,7 +293,7 @@
           "type": "text",
           "id": "cta_label",
           "label": "Link label",
-          "default": "See what helps"
+          "default": "Shop this"
         }
       ]
     }
@@ -289,8 +307,8 @@
           "settings": {
             "icon": "arch",
             "title": "Plantar fasciitis",
-            "text": "Heel and arch support for that first painful step.",
-            "cta_label": "See what helps"
+            "text": "Cushioned heel cup with a firm arch shell.",
+            "cta_label": "Shop this"
           }
         },
         {
@@ -298,8 +316,8 @@
           "settings": {
             "icon": "footprint",
             "title": "Bunions",
-            "text": "Gentle toe spacing and room where you need it.",
-            "cta_label": "See what helps"
+            "text": "Gel toe spacers and a wide toe box.",
+            "cta_label": "Shop this"
           }
         },
         {
@@ -307,8 +325,8 @@
           "settings": {
             "icon": "wave",
             "title": "Swelling & circulation",
-            "text": "Graduated compression for tired, heavy legs.",
-            "cta_label": "See what helps"
+            "text": "Graduated-knit compression socks and sleeves.",
+            "cta_label": "Shop this"
           }
         },
         {
@@ -316,8 +334,8 @@
           "settings": {
             "icon": "cushion",
             "title": "Arch pain",
-            "text": "Cushioned support that holds its shape all day.",
-            "cta_label": "See what helps"
+            "text": "Contoured arch support in trim-to-fit foam.",
+            "cta_label": "Shop this"
           }
         },
         {
@@ -325,8 +343,8 @@
           "settings": {
             "icon": "knee",
             "title": "Knee support",
-            "text": "Steady, low-profile support you can wear under clothes.",
-            "cta_label": "See what helps"
+            "text": "Adjustable straps in a low-profile knit.",
+            "cta_label": "Shop this"
           }
         },
         {
@@ -334,8 +352,8 @@
           "settings": {
             "icon": "shoe",
             "title": "Wide-fit shoes",
-            "text": "Everyday footwear with room for wide feet.",
-            "cta_label": "See what helps"
+            "text": "Everyday shoes cut for a wider forefoot.",
+            "cta_label": "Shop this"
           }
         }
       ]

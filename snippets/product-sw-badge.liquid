@@ -1,0 +1,24 @@
+{%- comment -%}
+  Per-product badge from `product.metafields.custom.badge`.
+
+  Set it at import time, e.g. "Most Popular", "New", "Wide fit". Renders nothing
+  when the metafield is empty, so it never shows a stale or empty pill.
+
+  COMPLIANCE: a badge is a claim. "Most Popular" and "Best Seller" are only
+  allowed once our own sales data supports them — see COMPLIANCE.md. Descriptive
+  badges ("Wide fit", "New", "Trim to fit") are always safe.
+
+  Accepts:
+  - block: {Object} the main-product block
+  - product: {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign badge = product.metafields.custom.badge | metafield_text | strip
+-%}
+
+{%- if badge != blank -%}
+  <p class="sw-product-badge" {{ block.shopify_attributes }}>
+    <span class="sw-badge">{{ badge }}</span>
+  </p>
+{%- endif -%}

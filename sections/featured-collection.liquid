@@ -62,8 +62,18 @@
   if section.settings.enable_desktop_slider and products_to_display > section.settings.columns_desktop
     assign show_desktop_slider = true
   endif
+
+  # StrideWell: the store must never show an empty category. When
+  # hide_when_empty is on (the default) a featured row whose collection has no
+  # products renders nothing at all, instead of Dawn's placeholder cards. The
+  # row therefore appears on its own once the first product is tagged in.
+  assign render_section = true
+  if section.settings.hide_when_empty and section.settings.collection.all_products_count == 0
+    assign render_section = false
+  endif
 -%}
 
+{%- if render_section -%}
 <div
   class="color-{{ section.settings.color_scheme }} isolate gradient"
 >
@@ -214,6 +224,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -224,6 +235,13 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_when_empty",
+      "label": "Hide this section when the collection is empty",
+      "info": "Recommended. Prevents the storefront from showing an empty category with placeholder cards.",
+      "default": true
+    },
     {
       "type": "collection",
       "id": "collection",

@@ -1,44 +1,99 @@
 {%- comment -%}
-  Outcome-led benefit bullets.
+  Feature bullets, driven by a product metafield.
 
-  Write each bullet outcome first, feature second — "Walk the school run without
-  the heel ache — firm arch shell holds its shape". Keep it non-medical.
+  Content resolution order:
+    1. `product.metafields.custom.benefit_bullets` — filled per product at import
+       time, so a newly imported product renders fully with no theme edits.
+       Supports a list.single_line_text_field (one bullet per entry) or a
+       rich_text / multi_line_text_field (one bullet per line or <li>).
+    2. The block's own bullet_1..bullet_5 settings, as a fallback for products
+       whose metafield is empty.
+    3. Nothing at all, if both are empty.
+
+  COMPLIANCE: describe MATERIALS, FIT and DESIGN — "memory-foam heel cup",
+  "breathable bamboo blend", "trim-to-fit". Never an effect on the body.
+  See COMPLIANCE.md.
 
   Accepts:
   - block: {Object} the main-product block
+  - product: {Object}
 {%- endcomment -%}
 
 {%- liquid
-  assign bullet_count = 0
-  for i in (1..5)
-    assign key = 'bullet_' | append: i
-    if block.settings[key] != blank
-      assign bullet_count = bullet_count | plus: 1
+  assign mf = product.metafields.custom.benefit_bullets
+  assign bullets = ''
+  assign source = 'none'
+
+  if mf != blank
+    assign source = 'metafield'
+
+    if mf.type contains 'list.'
+      # A list metafield: each entry is one bullet.
+      assign bullets = mf.value | join: '|~|'
+    else
+      # rich_text / multi_line_text: normalise <li> and newlines to one
+      # delimiter. `newline_to_br` is the standard Liquid way to split on
+      # newlines — a literal newline inside a quoted string is not parseable.
+      assign raw = mf | metafield_text
+      assign bullets = raw | replace: '</li>', '|~|' | strip_html | newline_to_br | replace: '<br />', '|~|' | replace: '<br>', '|~|'
     endif
-  endfor
+  endif
 -%}
 
-{%- if bullet_count > 0 -%}
+{%- if source == 'metafield' and bullets != blank -%}
   <div class="sw-product-benefits-wrapper" {{ block.shopify_attributes }}>
     {%- if block.settings.heading != blank -%}
       <p class="sw-offer__heading">{{ block.settings.heading | escape }}</p>
     {%- endif -%}
 
     <ul class="sw-product-benefits" role="list">
-      {%- for i in (1..5) -%}
-        {%- liquid
-          assign key = 'bullet_' | append: i
-          assign bullet = block.settings[key]
-        -%}
-        {%- if bullet != blank -%}
+      {%- assign bullet_items = bullets | split: '|~|' -%}
+      {%- for item in bullet_items -%}
+        {%- assign bullet_text = item | strip -%}
+        {%- if bullet_text != blank -%}
           <li class="sw-product-benefits__item">
             <span class="sw-product-benefits__icon">
               {%- render 'stridewell-icon', icon: block.settings.icon, class: 'sw-icon--sm' -%}
             </span>
-            <span class="sw-product-benefits__text">{{ bullet }}</span>
+            <span class="sw-product-benefits__text">{{ bullet_text }}</span>
           </li>
         {%- endif -%}
       {%- endfor -%}
     </ul>
   </div>
+{%- else -%}
+  {%- comment -%} Fallback: the block's own settings. {%- endcomment -%}
+  {%- liquid
+    assign fallback_count = 0
+    for i in (1..5)
+      assign key = 'bullet_' | append: i
+      if block.settings[key] != blank
+        assign fallback_count = fallback_count | plus: 1
+      endif
+    endfor
+  -%}
+  {%- if fallback_count > 0 -%}
+    <div class="sw-product-benefits-wrapper" {{ block.shopify_attributes }}>
+      {%- if block.settings.heading != blank -%}
+        <p class="sw-offer__heading">{{ block.settings.heading | escape }}</p>
+      {%- endif -%}
+
+      <ul class="sw-product-benefits" role="list">
+        {%- for i in (1..5) -%}
+          {%- liquid
+            assign key = 'bullet_' | append: i
+            assign bullet = block.settings[key]
+          -%}
+          {%- if bullet != blank -%}
+            <li class="sw-product-benefits__item">
+              <span class="sw-product-benefits__icon">
+                {%- render 'stridewell-icon', icon: block.settings.icon, class: 'sw-icon--sm' -%}
+              </span>
+              <span class="sw-product-benefits__text">{{ bullet }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
 {%- endif -%}

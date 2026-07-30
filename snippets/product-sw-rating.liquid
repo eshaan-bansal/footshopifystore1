@@ -1,12 +1,14 @@
 {%- comment -%}
   Above-the-fold star rating.
 
-  Dawn's built-in `rating` block reads `product.metafields.reviews.*`, which only
-  exists once a review app is installed. This block prefers that real metafield
-  when it is present, and otherwise shows a rating the merchant typed in — so
-  the fold still carries a proof signal on day one.
+  COMPLIANCE: this renders ONLY from `product.metafields.reviews.*`, the standard
+  metafield that verified-buyer apps (Judge.me, Loox, Shopify Product Reviews)
+  populate. There is deliberately no manual rating field anywhere in this block's
+  schema, so an invented rating cannot be entered by mistake.
 
-  Enter only a rating you can substantiate. Leave it at 0 to hide the block.
+  Until real reviews exist it renders nothing at all — not "0 reviews", not an
+  empty star row. Once a review app is installed, it appears on its own with no
+  theme change. See COMPLIANCE.md.
 
   Accepts:
   - block: {Object} the main-product block
@@ -14,24 +16,24 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign rating_value = 0
-  assign rating_count = ''
-
-  if product.metafields.reviews.rating.value != blank
-    assign rating_value = product.metafields.reviews.rating.value.rating
-    assign rating_count = product.metafields.reviews.rating_count
-    if rating_count != blank
-      assign rating_count = rating_count | append: ' reviews'
-    endif
-  elsif block.settings.rating > 0
-    assign rating_value = block.settings.rating
-    assign rating_count = block.settings.review_count
-  endif
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_count = product.metafields.reviews.rating_count
 -%}
 
-{%- if rating_value > 0 -%}
+{%- if rating != blank and rating.rating > 0 -%}
+  {%- liquid
+    assign count_label = ''
+    if rating_count != blank and rating_count > 0
+      assign count_label = rating_count | append: ' reviews'
+      if rating_count == 1
+        assign count_label = '1 review'
+      endif
+    endif
+  -%}
+
   <div class="sw-product-rating" {{ block.shopify_attributes }}>
-    {%- render 'stridewell-stars', rating: rating_value, count: rating_count -%}
+    {%- render 'stridewell-stars', rating: rating.rating, count: count_label -%}
+
     {%- if block.settings.link != blank -%}
       <a href="{{ block.settings.link }}" class="sw-sizing-help">
         {{- block.settings.link_label | default: 'Read reviews' | escape -}}

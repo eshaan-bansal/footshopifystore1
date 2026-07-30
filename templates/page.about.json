@@ -16,7 +16,7 @@
         "layout": "with_image",
         "default_image": "about-brand.jpg",
         "image_position": "left",
-        "button_label": "Shop foot relief",
+        "button_label": "Shop all",
         "button_link": "/collections/all",
         "color_scheme": "scheme-2",
         "padding_top": 40,
@@ -36,19 +36,23 @@
           "settings": {
             "icon": "check-circle",
             "title": "We wear what we sell",
-            "text": "Every product gets worn through real shifts before it goes on the site — and dropped if it doesn't hold up."
+            "text": "Every product is checked for fit and finish before it goes on the site, and dropped if it doesn't hold up."
           }
         },
         "story-guarantee": {
           "type": "benefit",
           "settings": {
-            "icon": "shield-check",
-            "title": "60 days, no arguments",
-            "text": "Feet are personal. If something isn't right for yours, email us and we'll take it back for a full refund."
+            "icon": "chat",
+            "title": "Talk to a person",
+            "text": "Email us about fit before you order and we'll tell you which size to pick. Our full return terms are on the Refund policy page."
           }
         }
       },
-      "block_order": ["story-focus", "story-testing", "story-guarantee"]
+      "block_order": [
+        "story-focus",
+        "story-testing",
+        "story-guarantee"
+      ]
     },
     "trust-bar": {
       "type": "trust-bar",
@@ -71,9 +75,9 @@
         "trust-guarantee": {
           "type": "item",
           "settings": {
-            "icon": "shield-check",
-            "label": "60-day guarantee",
-            "sublabel": "Wear them, or send them back"
+            "icon": "clock",
+            "label": "Tracking on every order",
+            "sublabel": "Emailed as soon as it ships"
           }
         },
         "trust-support": {
@@ -93,26 +97,17 @@
           }
         }
       },
-      "block_order": ["trust-shipping", "trust-guarantee", "trust-support", "trust-secure"]
-    },
-    "guarantee": {
-      "type": "guarantee",
-      "settings": {
-        "badge_label": "60-day comfort guarantee",
-        "heading": "Try StrideWell risk-free for 60 days",
-        "heading_size": "h2",
-        "text": "<p>Wear them to work. Wear them on your day off. If they're not right for your feet, send them back for a full refund.</p>",
-        "points": "60 days to decide, Full refund, Simple returns by email",
-        "button_label": "Shop foot relief",
-        "button_link": "/collections/all",
-        "show_background": true,
-        "scrim_color": "#0E3A46",
-        "scrim_opacity": 72,
-        "color_scheme": "scheme-3",
-        "padding_top": 52,
-        "padding_bottom": 52
-      }
+      "block_order": [
+        "trust-shipping",
+        "trust-guarantee",
+        "trust-support",
+        "trust-secure"
+      ]
     }
   },
-  "order": ["main", "brand-story", "trust-bar", "guarantee"]
+  "order": [
+    "main",
+    "brand-story",
+    "trust-bar"
+  ]
 }

@@ -701,8 +701,12 @@
                   {%- render 'product-sw-cue', block: block -%}
                 {%- when 'sw_sizing_help' -%}
                   {%- render 'product-sw-sizing-help', block: block -%}
+                {%- when 'sw_badge' -%}
+                  {%- render 'product-sw-badge', block: block, product: product -%}
                 {%- when 'sw_benefits' -%}
-                  {%- render 'product-sw-benefits', block: block -%}
+                  {%- render 'product-sw-benefits', block: block, product: product -%}
+                {%- when 'sw_faqs' -%}
+                  {%- render 'product-sw-faqs', block: block, product: product -%}
                 {%- when 'sw_offer' -%}
                   {%- render 'product-sw-offer', block: block, product_form_id: product_form_id -%}
                 {%- when 'sw_trust_row' -%}
@@ -2176,33 +2180,18 @@
     },
     {
       "type": "sw_rating",
-      "name": "StrideWell: rating",
+      "name": "StrideWell: rating (real reviews only)",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "Uses your review app's real rating when one is installed. Otherwise it shows the rating you enter below — only enter one you can substantiate."
-        },
-        {
-          "type": "range",
-          "id": "rating",
-          "min": 0,
-          "max": 5,
-          "step": 0.5,
-          "label": "Rating",
-          "info": "Set to 0 to hide.",
-          "default": 0
-        },
-        {
-          "type": "text",
-          "id": "review_count",
-          "label": "Rating caption",
-          "info": "e.g. \"412 reviews\"."
+          "content": "Renders only when a review app has populated product.metafields.reviews. There is no manual rating field on purpose — entering a rating you cannot evidence risks FTC penalties. Until you collect real reviews this block renders nothing. See COMPLIANCE.md."
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Reviews link"
+          "label": "Reviews link",
+          "info": "Optional. Anchor to your review app's section, e.g. #reviews."
         },
         {
           "type": "text",
@@ -2272,13 +2261,13 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Outcome first, feature second. Describe what the product is designed to do — never that it treats, cures or diagnoses anything."
+          "content": "Filled per product from product.metafields.custom.benefit_bullets — the bullets below are only a fallback for products whose metafield is empty. Describe MATERIALS, FIT and DESIGN (\"memory-foam heel cup\", \"breathable bamboo blend\"). Never an effect on the body. See COMPLIANCE.md."
         },
         {
           "type": "text",
           "id": "heading",
           "label": "Heading",
-          "default": "What you'll notice"
+          "default": "Features"
         },
         {
           "type": "select",
@@ -2296,25 +2285,25 @@
           "type": "inline_richtext",
           "id": "bullet_1",
           "label": "Bullet 1",
-          "default": "<strong>Get through your shift without the heel ache</strong> — firm arch shell holds its shape all day."
+          "default": "<strong>Firm arch shell</strong> with a cushioned heel cup."
         },
         {
           "type": "inline_richtext",
           "id": "bullet_2",
           "label": "Bullet 2",
-          "default": "<strong>Feel it from the first step</strong> — contoured cushioning under the arch and heel."
+          "default": "<strong>Closed-cell foam</strong> that does not flatten out over a long shift."
         },
         {
           "type": "inline_richtext",
           "id": "bullet_3",
           "label": "Bullet 3",
-          "default": "<strong>Wear them with the shoes you already own</strong> — trim-to-fit, low-profile design."
+          "default": "<strong>Low-profile, trim-to-fit</strong> — sits inside most closed shoes."
         },
         {
           "type": "inline_richtext",
           "id": "bullet_4",
           "label": "Bullet 4",
-          "default": "<strong>Room for wide feet</strong> — no crowding across the toes."
+          "default": "<strong>Wide toe box</strong> cut for wider feet."
         },
         {
           "type": "inline_richtext",
@@ -2543,83 +2532,81 @@
     },
     {
       "type": "sw_proof",
-      "name": "StrideWell: objections & proof",
+      "name": "StrideWell: reassurance",
       "limit": 1,
       "settings": [
         {
           "type": "paragraph",
-          "content": "Answer the doubts that stop the order. Do not claim to treat or cure any condition, and only enter a rating you can substantiate."
+          "content": "Answer the doubts that stop an order using FACTS: fit, materials, what shoes it works with, shipping and returns. No health-outcome claims, and no ratings or review counts — real ratings come from the rating block via your review app. See COMPLIANCE.md."
         },
         {
           "type": "text",
           "id": "heading",
           "label": "Heading",
-          "default": "Who these work for"
+          "default": "Who these are made for"
         },
         {
           "type": "inline_richtext",
           "id": "point_1",
           "label": "Point 1",
-          "default": "Works for wide feet — full width across the toe box."
+          "default": "Cut wide across the toe box, for wider feet."
         },
         {
           "type": "inline_richtext",
           "id": "point_2",
           "label": "Point 2",
-          "default": "Wear them with sneakers, work boots and most closed shoes."
+          "default": "Fits inside sneakers, work boots and most closed shoes."
         },
         {
           "type": "inline_richtext",
           "id": "point_3",
           "label": "Point 3",
-          "default": "Standing all day, walking the dog, or on your feet at work."
+          "default": "Made for people who are on their feet all day."
         },
         {
           "type": "inline_richtext",
           "id": "point_4",
           "label": "Point 4",
-          "default": "Not sure they're right for you? Our 60-day guarantee covers it."
+          "default": "Trim-to-fit along the printed guide lines."
         },
         {
           "type": "header",
-          "content": "Rating"
-        },
-        {
-          "type": "range",
-          "id": "rating",
-          "min": 0,
-          "max": 5,
-          "step": 0.5,
-          "label": "Rating",
-          "info": "Set to 0 to hide.",
-          "default": 0
-        },
-        {
-          "type": "text",
-          "id": "review_count",
-          "label": "Rating caption",
-          "info": "e.g. \"412 reviews\"."
-        },
-        {
-          "type": "url",
-          "id": "reviews_link",
-          "label": "Reviews link"
-        },
-        {
-          "type": "text",
-          "id": "reviews_link_label",
-          "label": "Reviews link label",
-          "default": "Read the reviews"
-        },
-        {
-          "type": "header",
-          "content": "Guarantee"
+          "content": "Policy line"
         },
         {
           "type": "text",
           "id": "guarantee_text",
-          "label": "Guarantee line",
-          "default": "60 days to try them. Full refund if they're not right."
+          "label": "Policy line",
+          "info": "Only a policy that is live in Settings → Policies, worded as the real terms. Leave blank to hide.",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "type": "sw_badge",
+      "name": "StrideWell: badge (metafield)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Reads product.metafields.custom.badge, so you set it per product at import time. Renders nothing when empty. \"Most Popular\" and \"Best Seller\" need real sales data behind them — descriptive badges like \"Wide fit\" or \"New\" are always safe. See COMPLIANCE.md."
+        }
+      ]
+    },
+    {
+      "type": "sw_faqs",
+      "name": "StrideWell: FAQs (metafield)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Reads product.metafields.custom.faqs — one FAQ per line as \"Question|Answer\". Renders nothing when empty, so the generic FAQ rows below still cover every product. Answers must be factual: sizing, materials, shipping, returns."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Questions about this product"
         }
       ]
     },

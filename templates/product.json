@@ -3,14 +3,16 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "badge": {
+          "type": "sw_badge",
+          "settings": {}
+        },
         "title": {
           "type": "title"
         },
         "rating": {
           "type": "sw_rating",
           "settings": {
-            "rating": 0,
-            "review_count": "",
             "link": "",
             "link_label": "Read reviews"
           }
@@ -36,21 +38,21 @@
           "type": "sw_offer",
           "settings": {
             "heading": "Choose your pack",
-            "popular_label": "Most popular",
+            "popular_label": "",
             "tier_1_label": "1 pair",
-            "tier_1_note": "Try it out",
+            "tier_1_note": "",
             "tier_1_quantity": 1,
             "tier_1_price": "",
             "tier_1_compare_price": "",
-            "tier_1_popular": false,
+            "tier_1_popular": true,
             "tier_2_label": "2 pairs",
             "tier_2_note": "One for each pair of shoes",
             "tier_2_quantity": 2,
             "tier_2_price": "",
             "tier_2_compare_price": "",
-            "tier_2_popular": true,
+            "tier_2_popular": false,
             "tier_3_label": "3 pairs",
-            "tier_3_note": "Best value per pair",
+            "tier_3_note": "Lowest price per pair",
             "tier_3_quantity": 3,
             "tier_3_price": "",
             "tier_3_compare_price": "",
@@ -68,17 +70,17 @@
         "cue": {
           "type": "sw_cue",
           "settings": {
-            "icon": "shield-check",
-            "text": "60-day comfort guarantee · Free US shipping over $50"
+            "icon": "truck",
+            "text": "Free US shipping over $50 · Tracking on every order"
           }
         },
         "trust_row": {
           "type": "sw_trust_row",
           "settings": {
-            "icon_1": "shield-check",
-            "label_1": "60-day guarantee",
-            "icon_2": "truck",
-            "label_2": "Free shipping over $50",
+            "icon_1": "truck",
+            "label_1": "Free shipping over $50",
+            "icon_2": "clock",
+            "label_2": "Tracking on every order",
             "icon_3": "lock",
             "label_3": "Secure checkout"
           }
@@ -86,28 +88,30 @@
         "benefits": {
           "type": "sw_benefits",
           "settings": {
-            "heading": "What you'll notice",
+            "heading": "Features",
             "icon": "check-circle",
-            "bullet_1": "<strong>Get through your shift without the heel ache</strong> — firm arch shell holds its shape all day.",
-            "bullet_2": "<strong>Feel it from the first step</strong> — contoured cushioning under the arch and heel.",
-            "bullet_3": "<strong>Wear them with the shoes you already own</strong> — trim-to-fit, low-profile design.",
-            "bullet_4": "<strong>Room for wide feet</strong> — no crowding across the toes.",
+            "bullet_1": "<strong>Firm arch shell</strong> with a cushioned heel cup.",
+            "bullet_2": "<strong>Closed-cell foam</strong> that does not flatten out over a long shift.",
+            "bullet_3": "<strong>Low-profile, trim-to-fit</strong> — sits inside most closed shoes.",
+            "bullet_4": "<strong>Wide toe box</strong> cut for wider feet.",
             "bullet_5": ""
           }
         },
         "proof": {
           "type": "sw_proof",
           "settings": {
-            "heading": "Who these work for",
-            "point_1": "Works for wide feet — full width across the toe box.",
-            "point_2": "Wear them with sneakers, work boots and most closed shoes.",
-            "point_3": "Standing all day, walking the dog, or on your feet at work.",
-            "point_4": "Not sure they're right for you? Our 60-day guarantee covers it.",
-            "rating": 0,
-            "review_count": "",
-            "reviews_link": "",
-            "reviews_link_label": "Read the reviews",
-            "guarantee_text": "60 days to try them. Full refund if they're not right."
+            "heading": "Who these are made for",
+            "point_1": "Cut wide across the toe box, for wider feet.",
+            "point_2": "Fits inside sneakers, work boots and most closed shoes.",
+            "point_3": "Made for people who are on their feet all day.",
+            "point_4": "Trim-to-fit along the printed guide lines.",
+            "guarantee_text": ""
+          }
+        },
+        "product_faqs": {
+          "type": "sw_faqs",
+          "settings": {
+            "heading": "Questions about this product"
           }
         },
         "crosssell": {
@@ -125,31 +129,39 @@
           "settings": {
             "heading": "Which size should I order?",
             "icon": "ruler",
-            "content": "<p>Order the size that matches your usual shoe size. If you are between sizes, or you wear a wide fit, size up. Our Sizing Guide walks you through measuring your foot in about a minute. Still unsure? Email us your shoe size and we will tell you which to pick.</p>"
+            "content": "<p>Order the size that matches your usual shoe size. If you are between sizes, or you wear a wide fit, size up. Our <a href=\"/pages/sizing-guide\">Sizing Guide</a> walks you through measuring your foot. If you are still unsure, email us your shoe size and we will tell you which to pick.</p>"
           }
         },
-        "faq_works_for_me": {
+        "faq_fit": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Will these work for me?",
-            "icon": "question_mark",
-            "content": "<p>They are made for people who are on their feet for long stretches — standing at work, walking a lot, or in shoes that offer little support. They sit in most closed shoes and are trim-to-fit. If your feet need something a doctor has specified, check with them first. And if these are not right for you, the 60-day guarantee covers the return.</p>"
+            "heading": "Will it fit my shoes?",
+            "icon": "shoe",
+            "content": "<p>It is made to sit inside everyday sneakers, work boots and most closed shoes, and is trim-to-fit so you can cut it along the printed guide lines. It is a tight fit in dress shoes and flats with a shallow footbed — if that is what you wear most, choose one of our low-profile options.</p>"
           }
         },
         "faq_shipping": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "How fast will it arrive?",
+            "heading": "How long does shipping take?",
             "icon": "truck",
-            "content": "<p>Orders leave our warehouse within 1–2 business days. Standard US delivery usually takes 5–8 business days from there, and shipping is free on orders over $50. You will get a tracking link by email as soon as your parcel ships.</p>"
+            "content": "<p>Orders are dispatched within 1–2 business days. Standard US delivery then typically takes 5–8 business days, and shipping is free on orders over $50. You will get a tracking link by email as soon as your parcel ships.</p>"
           }
         },
         "faq_returns": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "What if I want to return them?",
+            "heading": "Can I return it?",
             "icon": "return",
-            "content": "<p>You have 60 days. Wear them, walk in them, put them through a full work week. If they are not right, email us and we will send a return label for a full refund. No photos, no phone calls, no restocking fee.</p>"
+            "content": "<p>Yes. The full terms, including the return window and how to start a return, are on our <a href=\"/policies/refund-policy\">Refund policy</a> page. If you are unsure whether this will fit, email us before ordering and we will help you choose.</p>"
+          }
+        },
+        "faq_care": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "How do I clean it?",
+            "icon": "washing",
+            "content": "<p>Hand wash in cool water with a mild detergent and air dry away from direct heat. Do not machine dry. Care details specific to this item, where they differ, are in the description above.</p>"
           }
         },
         "share": {
@@ -160,6 +172,7 @@
         }
       },
       "block_order": [
+        "badge",
         "title",
         "rating",
         "price",
@@ -171,12 +184,14 @@
         "trust_row",
         "benefits",
         "proof",
+        "product_faqs",
         "crosssell",
         "description",
         "faq_sizing",
-        "faq_works_for_me",
+        "faq_fit",
         "faq_shipping",
         "faq_returns",
+        "faq_care",
         "share"
       ],
       "settings": {
@@ -202,24 +217,6 @@
         "enable": true,
         "button_label": "Add to cart",
         "product_section_id": "main"
-      }
-    },
-    "guarantee": {
-      "type": "guarantee",
-      "settings": {
-        "badge_label": "60-day comfort guarantee",
-        "heading": "Not sure? Try them for 60 days",
-        "heading_size": "h2",
-        "text": "<p>Wear them to work and on your day off. If they're not right for your feet, send them back for a full refund.</p>",
-        "points": "60 days to decide, Full refund, Simple returns by email",
-        "button_label": "",
-        "button_link": "",
-        "show_background": true,
-        "scrim_color": "#0E3A46",
-        "scrim_opacity": 72,
-        "color_scheme": "scheme-3",
-        "padding_top": 48,
-        "padding_bottom": 48
       }
     },
     "related-products": {
@@ -248,5 +245,5 @@
       }
     }
   },
-  "order": ["main", "sticky-atc", "guarantee", "related-products", "disclosures"]
+  "order": ["main", "sticky-atc", "related-products", "disclosures"]
 }

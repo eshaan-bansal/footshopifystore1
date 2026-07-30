@@ -28,17 +28,17 @@
         "trust-guarantee": {
           "type": "item",
           "settings": {
-            "icon": "shield-check",
-            "label": "60-day guarantee",
-            "sublabel": "Wear them, or send them back"
+            "icon": "clock",
+            "label": "Tracking on every order",
+            "sublabel": "Emailed as soon as it ships"
           }
         },
         "trust-sizing": {
           "type": "item",
           "settings": {
             "icon": "ruler",
-            "label": "Easy sizing help",
-            "sublabel": "Find your fit in 30 seconds"
+            "label": "Sizing guide",
+            "sublabel": "Check your fit before you order"
           }
         },
         "trust-secure": {
@@ -50,8 +50,16 @@
           }
         }
       },
-      "block_order": ["trust-shipping", "trust-guarantee", "trust-sizing", "trust-secure"]
+      "block_order": [
+        "trust-shipping",
+        "trust-guarantee",
+        "trust-sizing",
+        "trust-secure"
+      ]
     }
   },
-  "order": ["main", "trust-bar"]
+  "order": [
+    "main",
+    "trust-bar"
+  ]
 }

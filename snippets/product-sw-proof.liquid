@@ -1,11 +1,10 @@
 {%- comment -%}
-  Objection handling + proof.
+  Reassurance / objection handling.
 
-  Google traffic arrives comparison-shopping. This block answers the doubts that
-  stop the order — "will it fit my wide feet", "can I wear it with my shoes",
-  "what if it doesn't work" — and puts the guarantee and rating next to them.
-
-  Every number here is merchant-entered. Nothing is generated.
+  COMPLIANCE: facts only — fit, materials, which shoes it works with, and a real
+  policy line. No ratings or review counts live here: real ratings come from
+  `product.metafields.reviews` via the rating block. No health-outcome claims.
+  See COMPLIANCE.md.
 
   Accepts:
   - block: {Object} the main-product block
@@ -19,14 +18,9 @@
       assign point_count = point_count | plus: 1
     endif
   endfor
-
-  assign has_rating = false
-  if block.settings.rating > 0
-    assign has_rating = true
-  endif
 -%}
 
-{%- if point_count > 0 or has_rating or block.settings.guarantee_text != blank -%}
+{%- if point_count > 0 or block.settings.guarantee_text != blank -%}
   <div class="sw-proof" {{ block.shopify_attributes }}>
     {%- if block.settings.heading != blank -%}
       <h2 class="sw-proof__heading">{{ block.settings.heading | escape }}</h2>
@@ -49,23 +43,9 @@
       </ul>
     {%- endif -%}
 
-    {%- if has_rating -%}
-      <div class="sw-proof__rating">
-        {%- render 'stridewell-stars',
-          rating: block.settings.rating,
-          count: block.settings.review_count
-        -%}
-        {%- if block.settings.reviews_link != blank -%}
-          <a href="{{ block.settings.reviews_link }}" class="sw-sizing-help">
-            {{- block.settings.reviews_link_label | default: 'Read the reviews' | escape -}}
-          </a>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
-
     {%- if block.settings.guarantee_text != blank -%}
       <p class="sw-product-cue">
-        {%- render 'stridewell-icon', icon: 'shield-check', class: 'sw-icon--sm' -%}
+        {%- render 'stridewell-icon', icon: 'refresh', class: 'sw-icon--sm' -%}
         <span>{{ block.settings.guarantee_text | escape }}</span>
       </p>
     {%- endif -%}

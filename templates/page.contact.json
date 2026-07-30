@@ -47,13 +47,21 @@
           "type": "item",
           "settings": {
             "icon": "refresh",
-            "label": "Returns are simple",
-            "sublabel": "Email us and we'll send a label"
+            "label": "Returns",
+            "sublabel": "Full terms on our Refund policy page"
           }
         }
       },
-      "block_order": ["contact-reply", "contact-sizing", "contact-returns"]
+      "block_order": [
+        "contact-reply",
+        "contact-sizing",
+        "contact-returns"
+      ]
     }
   },
-  "order": ["main", "form", "contact-reassurance"]
+  "order": [
+    "main",
+    "form",
+    "contact-reassurance"
+  ]
 }

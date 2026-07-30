@@ -1,0 +1,80 @@
+{%- comment -%}
+  Per-product FAQs, driven by `product.metafields.custom.faqs`.
+
+  Filled at import time so each product answers its own near-stop objections
+  (sizing, what shoes it fits, shipping, returns) with no theme edits.
+
+  Expected metafield format — rich text or multi-line text, one Q/A per line
+  using a pipe:
+
+      Which size should I order?|Order your usual shoe size. Size up if you...
+      Will it fit my shoes?|It sits inside most closed shoes.
+
+  A line with no pipe is treated as a question with no answer and skipped, so a
+  half-filled metafield can never render a broken row.
+
+  Falls back to the template's own `collapsible_tab` blocks when the metafield is
+  empty, which is why generic FAQs still appear on every product.
+
+  COMPLIANCE: answers are factual — sizing, materials, policies. No health
+  outcomes. See COMPLIANCE.md.
+
+  Accepts:
+  - block: {Object} the main-product block
+  - product: {Object}
+{%- endcomment -%}
+
+{%- liquid
+  assign raw = ''
+  if product.metafields.custom.faqs != blank
+    assign raw = product.metafields.custom.faqs | metafield_text | strip
+  endif
+-%}
+
+{%- if raw != blank -%}
+  {%- comment -%}
+    newline_to_br is the standard way to split on newlines in Liquid; a literal
+    newline inside a quoted string is not parseable.
+  {%- endcomment -%}
+  {%- assign faq_lines = raw | replace: '</li>', '|~L|' | strip_html | newline_to_br | replace: '<br />', '|~L|' | replace: '<br>', '|~L|' | split: '|~L|' -%}
+
+  {%- liquid
+    assign valid = 0
+    for line in faq_lines
+      if line contains '|'
+        assign valid = valid | plus: 1
+      endif
+    endfor
+  -%}
+
+  {%- if valid > 0 -%}
+    <div class="sw-product-faqs" {{ block.shopify_attributes }}>
+      {%- if block.settings.heading != blank -%}
+        <p class="sw-offer__heading">{{ block.settings.heading | escape }}</p>
+      {%- endif -%}
+
+      {%- for line in faq_lines -%}
+        {%- liquid
+          assign trimmed = line | strip
+          unless trimmed contains '|'
+            continue
+          endunless
+          assign parts = trimmed | split: '|'
+          assign question = parts[0] | strip
+          assign answer = parts[1] | strip
+        -%}
+        {%- if question != blank and answer != blank -%}
+          <details class="sw-faq" id="Sw-Faq-{{ block.id }}-{{ forloop.index }}">
+            <summary class="sw-faq__summary">
+              <span class="sw-faq__question">{{ question }}</span>
+              <span class="sw-faq__marker" aria-hidden="true">
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </span>
+            </summary>
+            <div class="sw-faq__answer rte">{{ answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

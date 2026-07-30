@@ -1,5 +1,11 @@
 {%- comment -%}
-  Guarantee band — the last big resistance-remover before the FAQ.
+  Policy band.
+
+  COMPLIANCE: this section states a POLICY, which is a contractual promise. Only
+  add it to a template once the matching policy is actually live in
+  Settings → Policies, and word it as the real policy ("Return within 30 days"),
+  never as a vague reassurance ("risk-free", "money-back guarantee").
+  It is deliberately NOT on any template by default. See COMPLIANCE.md.
 
   Background defaults to assets/guarantee-band.jpg and is deliberately scrimmed
   hard: this section is text-first, the image is atmosphere. If the file is
@@ -107,7 +113,7 @@
 
 {% schema %}
 {
-  "name": "Guarantee band",
+  "name": "Policy band",
   "class": "section",
   "tag": "section",
   "disabled_on": {
@@ -115,16 +121,20 @@
   },
   "settings": [
     {
+      "type": "paragraph",
+      "content": "Only state a policy you actually operate. Check it is live in Settings → Policies first, and describe the real terms (e.g. \"Return within 30 days\"). Do not write \"risk-free\" or \"money-back guarantee\" unless that is the policy. See COMPLIANCE.md."
+    },
+    {
       "type": "text",
       "id": "badge_label",
       "label": "Badge label",
-      "default": "60-day comfort guarantee"
+      "default": ""
     },
     {
       "type": "inline_richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "Try StrideWell risk-free for 60 days"
+      "default": ""
     },
     {
       "type": "select",
@@ -141,14 +151,14 @@
       "type": "richtext",
       "id": "text",
       "label": "Text",
-      "default": "<p>Wear them to work. Wear them on your day off. If they're not right for your feet, send them back for a full refund — no photos, no phone calls.</p>"
+      "default": ""
     },
     {
       "type": "text",
       "id": "points",
       "label": "Reassurance points",
       "info": "Comma-separated. Each item gets a checkmark.",
-      "default": "60 days to decide, Full refund, Simple returns by email"
+      "default": ""
     },
     {
       "type": "header",
@@ -158,7 +168,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Shop foot relief"
+      "default": "Shop all"
     },
     {
       "type": "url",
@@ -234,7 +244,7 @@
   ],
   "presets": [
     {
-      "name": "Guarantee band"
+      "name": "Policy band"
     }
   ]
 }
