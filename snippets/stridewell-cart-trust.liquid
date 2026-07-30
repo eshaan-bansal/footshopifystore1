@@ -24,3 +24,9 @@
     <span>Tracking emailed on every order</span>
   </li>
 </ul>
+
+{%- comment -%}
+  Returns fine print — self-enabling, renders nothing until a refund policy is
+  published. Material terms belong where the money is committed.
+{%- endcomment -%}
+{%- render 'stridewell-returns-note', context: 'cart' -%}

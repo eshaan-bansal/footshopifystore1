@@ -193,6 +193,24 @@ transactions — the merchant account itself. What is enforceable and worth havi
 **used items non-returnable** (hygiene), **customer pays return shipping**, **no
 cancellation after dispatch**, **final-sale items excluded**.
 
+## Beyond claims
+
+Claims are what this file governs, but they are not the whole legal surface.
+`legal/pre-launch-checklist.md` covers the rest, in risk order: the four Shopify
+policies, state privacy law and cookie/GPC consent, **California Prop 65** (which
+catches imported foot-care goods and is enforced by private plaintiffs scanning
+storefronts), CAN-SPAM's physical-address requirement, and accessibility.
+
+Two of those are already wired into the theme and self-enabling:
+
+| Notice | Renders when |
+|---|---|
+| Returns fine print, on the product page and cart | A refund policy exists in Settings → Policies |
+| Prop 65 warning, on the product page before purchase | `custom.prop65_required` is true for that product |
+
+Both output nothing otherwise, so the storefront cannot promise a returns term
+that isn't published, or omit a warning once you set the metafield.
+
 ## Before you publish any new copy
 
 1. Could I hand a regulator evidence for this exact sentence today?

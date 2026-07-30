@@ -22,6 +22,10 @@ will stop recognising the theme.
 > **[MARKETING.md](MARKETING.md)** — how the store converts within those limits,
 > including the accessibility work that is the real legal exposure for an
 > ecommerce site.
+> **[legal/pre-launch-checklist.md](legal/pre-launch-checklist.md)** — everything
+> still outstanding before taking real orders, in risk order.
+> **[legal/refund-policy.md](legal/refund-policy.md)** — a paste-ready returns
+> policy.
 
 - [Local development](#local-development)
 - [Connecting the repo to Shopify](#connecting-the-repo-to-shopify)

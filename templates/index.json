@@ -388,7 +388,7 @@
         "newsletter-paragraph": {
           "type": "paragraph",
           "settings": {
-            "text": "<p>Join our list for fit advice, care tips and a first look at new products. One email a week at most, and you can leave any time.</p>"
+            "text": "<p>Join our list for fit advice, care tips and a first look at new products. One email a week at most, and you can unsubscribe from any email. We never sell your details.</p>"
           }
         },
         "newsletter-form": {

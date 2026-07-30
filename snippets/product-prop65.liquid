@@ -1,0 +1,72 @@
+{%- comment -%}
+  California Proposition 65 warning.
+
+  WHY THIS EXISTS: Prop 65 follows the product, not the business. Any online
+  seller whose goods reach a California consumer is covered, wherever the seller
+  is. Since the 2016 OEHHA e-commerce rules, the warning must appear **on the
+  product display page** — as a clearly marked hyperlink or a displayed warning —
+  and must be seen *before* the purchase is completed. Penalties run to $2,500 per
+  day per violation, and Prop 65 is enforced largely by private bounty-hunter
+  plaintiffs who scan storefronts, which is why imported goods sold online are a
+  favourite target.
+
+  Imported foot-care goods are squarely in scope: flexible PVC and gel components
+  commonly contain DEHP and other listed phthalates, and some plastics and metal
+  fittings carry lead.
+
+  HOW TO USE IT: this is driven per product by metafields, because whether a
+  warning is required depends on the item and its actual materials — it is not a
+  sitewide toggle, and a blanket "everything is warned" is its own risk.
+
+    custom.prop65_required   boolean         — show the warning for this product
+    custom.prop65_chemical   single line     — the listed chemical, e.g. "DEHP"
+    custom.prop65_type       single line     — "cancer", "reproductive harm", or
+                                               "cancer and reproductive harm"
+
+  Renders nothing unless prop65_required is true. Under the amendments effective
+  January 2025 a short-form warning must name at least one chemical, so if no
+  chemical is supplied this falls back to the long-form wording, which does not
+  require one.
+
+  Ask your supplier for the Prop 65 status and any test reports for each SKU
+  before deciding. Do not guess in either direction.
+{%- endcomment -%}
+
+{%- liquid
+  assign required = product.metafields.custom.prop65_required
+  assign chemical = product.metafields.custom.prop65_chemical | metafield_text | strip
+  assign harm = product.metafields.custom.prop65_type | metafield_text | strip | downcase
+  if harm == blank
+    assign harm = 'cancer and reproductive harm'
+  endif
+-%}
+
+{%- if required == true -%}
+  <details class="sw-prop65" {{ block.shopify_attributes }}>
+    <summary class="sw-prop65__summary">
+      <span class="sw-prop65__mark" aria-hidden="true">&#9888;</span>
+      <span class="sw-prop65__label">
+        <strong>WARNING:</strong> California Proposition 65
+      </span>
+    </summary>
+    <div class="sw-prop65__body">
+      {%- if chemical != blank -%}
+        <p>
+          <strong>WARNING:</strong> This product can expose you to chemicals
+          including {{ chemical }}, which is known to the State of California to
+          cause {{ harm }}. For more information go to
+          <a href="https://www.P65Warnings.ca.gov" rel="nofollow noopener" target="_blank">
+            www.P65Warnings.ca.gov</a>.
+        </p>
+      {%- else -%}
+        <p>
+          <strong>WARNING:</strong> This product can expose you to chemicals which
+          are known to the State of California to cause {{ harm }}. For more
+          information go to
+          <a href="https://www.P65Warnings.ca.gov" rel="nofollow noopener" target="_blank">
+            www.P65Warnings.ca.gov</a>.
+        </p>
+      {%- endif -%}
+    </div>
+  </details>
+{%- endif -%}

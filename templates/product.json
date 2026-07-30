@@ -162,6 +162,10 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "legal": {
+          "type": "sw_legal",
+          "settings": {}
         }
       },
       "block_order": [
@@ -174,6 +178,7 @@
         "buy_buttons",
         "cue",
         "trust_row",
+        "legal",
         "benefits",
         "proof",
         "product_faqs",

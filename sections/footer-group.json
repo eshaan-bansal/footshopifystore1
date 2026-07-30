@@ -22,7 +22,7 @@
           "type": "text",
           "settings": {
             "heading": "Help",
-            "subtext": "<p><a href=\"/pages/contact\">Contact us</a><br><a href=\"/pages/about\">About StrideWell</a></p><p>Questions about fit? Email us your shoe size and we'll tell you which to order.</p>"
+            "subtext": "<p><a href=\"/pages/contact\">Contact us</a><br><a href=\"/pages/about\">About StrideWell</a></p><p>Questions about fit? Email us your shoe size and we'll tell you which to order.</p><p><small>[YOUR BUSINESS NAME]<br>[STREET ADDRESS]<br>[CITY, STATE ZIP]</small></p>"
           }
         }
       },

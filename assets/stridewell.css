@@ -1352,3 +1352,86 @@ summary,
 .sw-hero__buttons .button--secondary {
   --alpha-button-background: 0.08;
 }
+
+/* ---------------------------------------------------------------------------
+   Legal notices on the product page and cart.
+
+   Both are deliberately readable rather than hidden: a material term a buyer
+   only discovers after purchase is a deceptive omission, and it is also what
+   converts a refund request into a chargeback. Disclosed restrictions are
+   enforceable; buried ones are not.
+   --------------------------------------------------------------------------- */
+
+.sw-returns-note {
+  margin: 1.2rem 0 0;
+}
+
+.sw-returns-note__line {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: start;
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: rgba(var(--color-foreground), 0.78);
+}
+
+.sw-returns-note__line .sw-icon {
+  margin-top: 0.15rem;
+  color: var(--sw-trust);
+}
+
+.sw-returns-note a {
+  color: inherit;
+  text-underline-offset: 0.3rem;
+}
+
+.sw-returns-note--cart {
+  margin: 0 0 1.4rem;
+}
+
+/* California Prop 65. Collapsed by default but present on the page before
+   purchase, which is what the e-commerce warning rules require. */
+.sw-prop65 {
+  margin: 1.2rem 0 0;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.16);
+  border-radius: var(--sw-radius);
+  background-color: rgba(var(--color-foreground), 0.03);
+}
+
+.sw-prop65__summary {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 4.4rem;
+  padding: 1rem 1.4rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.3rem;
+}
+
+.sw-prop65__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sw-prop65__summary:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.2rem;
+}
+
+.sw-prop65__mark {
+  flex: 0 0 auto;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.sw-prop65__body {
+  padding: 0 1.4rem 1.4rem;
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+.sw-prop65__body p {
+  margin: 0;
+}
