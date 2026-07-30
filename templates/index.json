@@ -6,18 +6,19 @@
         "eyebrow": "Foot & leg support",
         "heading": "Comfort that keeps you moving.",
         "heading_size": "h0",
-        "subheading": "<p>Cushioned insoles, compression socks and supports — made for people who are on their feet all day.</p>",
+        "subheading": "<p>Everyday support and comfort for your feet, arches and legs — made for people who are on their feet all day.</p>",
         "reassurance": "Free US shipping over $50, Tracking on every order, Secure checkout",
-        "button_label_1": "Shop all",
+        "button_label_1": "Shop foot support",
         "button_link_1": "/collections/all",
-        "button_label_2": "Browse categories",
-        "button_link_2": "/collections",
+        "button_label_2": "See best sellers",
+        "button_link_2": "",
         "content_alignment": "left",
         "height_mobile": 480,
         "height_desktop": 620,
         "scrim_color": "#0E3A46",
         "scrim_opacity": 70,
-        "color_scheme": "scheme-3"
+        "color_scheme": "scheme-3",
+        "button_collection_2": "best-sellers"
       }
     },
     "trust-bar": {
@@ -34,36 +35,41 @@
           "type": "item",
           "settings": {
             "icon": "truck",
-            "label": "Free US shipping",
+            "label": "Free US Shipping",
             "sublabel": "On orders over $50"
           }
         },
         "trust-tracking": {
           "type": "item",
           "settings": {
-            "icon": "clock",
-            "label": "Tracking on every order",
-            "sublabel": "Emailed as soon as it ships"
+            "icon": "map-pin",
+            "label": "Tracking on Every Order",
+            "sublabel": "Follow it to your door"
           }
         },
         "trust-secure": {
           "type": "item",
           "settings": {
             "icon": "lock",
-            "label": "Secure checkout",
-            "sublabel": "Encrypted at every step"
+            "label": "Secure Checkout",
+            "sublabel": "SSL-encrypted payments"
           }
         },
-        "trust-sizing": {
+        "trust-states": {
           "type": "item",
           "settings": {
-            "icon": "ruler",
-            "label": "Sizing guide for every product",
-            "sublabel": "Check your fit before you order"
+            "icon": "flag",
+            "label": "Ships to All 50 States",
+            "sublabel": "Sent from our US warehouse"
           }
         }
       },
-      "block_order": ["trust-shipping", "trust-tracking", "trust-secure", "trust-sizing"]
+      "block_order": [
+        "trust-shipping",
+        "trust-tracking",
+        "trust-secure",
+        "trust-states"
+      ]
     },
     "category-grid": {
       "type": "category-grid",
@@ -81,27 +87,39 @@
       "blocks": {
         "cat-insoles": {
           "type": "category",
-          "settings": { "collection": "insoles-arch-support" }
+          "settings": {
+            "collection": "insoles-arch-support"
+          }
         },
         "cat-bunion": {
           "type": "category",
-          "settings": { "collection": "bunion-toe-correction" }
+          "settings": {
+            "collection": "bunion-toe-correction"
+          }
         },
         "cat-compression": {
           "type": "category",
-          "settings": { "collection": "compression-circulation" }
+          "settings": {
+            "collection": "compression-circulation"
+          }
         },
         "cat-braces": {
           "type": "category",
-          "settings": { "collection": "braces-supports" }
+          "settings": {
+            "collection": "braces-supports"
+          }
         },
         "cat-recovery": {
           "type": "category",
-          "settings": { "collection": "recovery-massage" }
+          "settings": {
+            "collection": "recovery-massage"
+          }
         },
         "cat-footwear": {
           "type": "category",
-          "settings": { "collection": "orthopedic-footwear" }
+          "settings": {
+            "collection": "orthopedic-footwear"
+          }
         }
       },
       "block_order": [
@@ -133,7 +151,7 @@
           "settings": {
             "icon": "arch",
             "title": "Plantar fasciitis",
-            "text": "Cushioned heel cup with a firm arch shell.",
+            "text": "Cushioned heel and arch support.",
             "collection": "insoles-arch-support",
             "cta_label": "Shop this"
           }
@@ -143,7 +161,7 @@
           "settings": {
             "icon": "footprint",
             "title": "Bunions",
-            "text": "Gel toe spacers and a wide toe box.",
+            "text": "Gentle toe spacing and room where you need it.",
             "collection": "bunion-toe-correction",
             "cta_label": "Shop this"
           }
@@ -152,8 +170,8 @@
           "type": "card",
           "settings": {
             "icon": "wave",
-            "title": "Swelling",
-            "text": "Graduated-knit compression socks and sleeves.",
+            "title": "Swelling & circulation",
+            "text": "Graduated compression knitwear.",
             "collection": "compression-circulation",
             "cta_label": "Shop this"
           }
@@ -163,7 +181,7 @@
           "settings": {
             "icon": "cushion",
             "title": "Arch pain",
-            "text": "Contoured arch support in trim-to-fit foam.",
+            "text": "Cushioned support that holds its shape all day.",
             "collection": "insoles-arch-support",
             "cta_label": "Shop this"
           }
@@ -173,7 +191,7 @@
           "settings": {
             "icon": "knee",
             "title": "Knee support",
-            "text": "Adjustable straps in a low-profile knit.",
+            "text": "Steady, low-profile support you can wear under clothes.",
             "collection": "braces-supports",
             "cta_label": "Shop this"
           }
@@ -183,7 +201,7 @@
           "settings": {
             "icon": "shoe",
             "title": "Wide-fit shoes",
-            "text": "Everyday shoes cut for a wider forefoot.",
+            "text": "Everyday footwear with room for wide feet.",
             "collection": "orthopedic-footwear",
             "cta_label": "Shop this"
           }
@@ -265,7 +283,11 @@
           }
         }
       },
-      "block_order": ["benefit-support", "benefit-comfort", "benefit-fit"]
+      "block_order": [
+        "benefit-support",
+        "benefit-comfort",
+        "benefit-fit"
+      ]
     },
     "testimonials": {
       "type": "testimonials",
@@ -339,7 +361,13 @@
           }
         }
       },
-      "block_order": ["faq-sizing", "faq-shipping", "faq-returns", "faq-materials", "faq-shoes"]
+      "block_order": [
+        "faq-sizing",
+        "faq-shipping",
+        "faq-returns",
+        "faq-materials",
+        "faq-shoes"
+      ]
     },
     "newsletter": {
       "type": "newsletter",
@@ -368,7 +396,11 @@
           "settings": {}
         }
       },
-      "block_order": ["newsletter-heading", "newsletter-paragraph", "newsletter-form"]
+      "block_order": [
+        "newsletter-heading",
+        "newsletter-paragraph",
+        "newsletter-form"
+      ]
     }
   },
   "order": [

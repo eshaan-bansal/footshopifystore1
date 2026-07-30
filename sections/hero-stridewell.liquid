@@ -86,7 +86,30 @@
         <div class="sw-hero__subheading rte">{{ section.settings.subheading }}</div>
       {%- endif -%}
 
-      {%- if section.settings.button_label_1 != blank or section.settings.button_label_2 != blank -%}
+      {%- liquid
+        # The secondary button can be bound to a collection. When it is, the
+        # button only renders while that collection actually has products, so a
+        # "See best sellers" CTA can never land on an empty page.
+        assign show_button_2 = false
+        if section.settings.button_label_2 != blank
+          assign show_button_2 = true
+          assign button_2_url = section.settings.button_link_2
+
+          if section.settings.button_collection_2 != blank
+            if section.settings.button_collection_2.all_products_count > 0
+              assign button_2_url = section.settings.button_collection_2.url
+            else
+              assign show_button_2 = false
+            endif
+          endif
+
+          if button_2_url == blank
+            assign button_2_url = routes.all_products_collection_url
+          endif
+        endif
+      -%}
+
+      {%- if section.settings.button_label_1 != blank or show_button_2 -%}
         <div class="sw-hero__buttons">
           {%- if section.settings.button_label_1 != blank -%}
             <a
@@ -96,11 +119,8 @@
               {{- section.settings.button_label_1 | escape -}}
             </a>
           {%- endif -%}
-          {%- if section.settings.button_label_2 != blank -%}
-            <a
-              href="{{ section.settings.button_link_2 | default: routes.all_products_collection_url }}"
-              class="button button--secondary"
-            >
+          {%- if show_button_2 -%}
+            <a href="{{ button_2_url }}" class="button button--secondary">
               {{- section.settings.button_label_2 | escape -}}
             </a>
           {%- endif -%}
@@ -183,7 +203,7 @@
       "type": "richtext",
       "id": "subheading",
       "label": "Subheading",
-      "default": "<p>Cushioned insoles, compression socks and supports — made for people who are on their feet all day.</p>"
+      "default": "<p>Everyday support and comfort for your feet, arches and legs — made for people who are on their feet all day.</p>"
     },
     {
       "type": "text",
@@ -200,7 +220,7 @@
       "type": "text",
       "id": "button_label_1",
       "label": "Primary button label",
-      "default": "Shop all"
+      "default": "Shop foot support"
     },
     {
       "type": "url",
@@ -211,12 +231,18 @@
       "type": "text",
       "id": "button_label_2",
       "label": "Secondary button label",
-      "default": "Browse categories"
+      "default": "See best sellers"
     },
     {
       "type": "url",
       "id": "button_link_2",
       "label": "Secondary button link"
+    },
+    {
+      "type": "collection",
+      "id": "button_collection_2",
+      "label": "Secondary button collection",
+      "info": "Optional. If set, this is used as the link AND the button hides itself while that collection has no products — so \"See best sellers\" never leads to an empty page."
     },
     {
       "type": "header",

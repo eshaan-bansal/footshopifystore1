@@ -167,6 +167,30 @@
       <circle cx="7.75" cy="8.25" r="1.25"/>
     </svg>
 
+  {%- when 'map-pin' -%}
+    <svg class="{{ icon_class }}" viewBox="0 0 24 24" role="presentation" focusable="false" aria-hidden="true"{% if stroke_width %} stroke-width="{{ stroke_width }}"{% endif %}>
+      <path d="M12 21.5s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/>
+      <circle cx="12" cy="10.25" r="2.6"/>
+    </svg>
+
+  {%- when 'route' -%}
+    <svg class="{{ icon_class }}" viewBox="0 0 24 24" role="presentation" focusable="false" aria-hidden="true"{% if stroke_width %} stroke-width="{{ stroke_width }}"{% endif %}>
+      <circle cx="5.5" cy="18.5" r="2.5"/>
+      <circle cx="18.5" cy="5.5" r="2.5"/>
+      <path d="M8 18.5h6a4 4 0 0 0 0-8H10a4 4 0 0 1 0-8h6"/>
+    </svg>
+
+  {%- when 'return-arrow' -%}
+    <svg class="{{ icon_class }}" viewBox="0 0 24 24" role="presentation" focusable="false" aria-hidden="true"{% if stroke_width %} stroke-width="{{ stroke_width }}"{% endif %}>
+      <path d="M9 5.5 3.5 11 9 16.5"/>
+      <path d="M3.5 11h11a6 6 0 0 1 0 12h-3"/>
+    </svg>
+
+  {%- when 'flag' -%}
+    <svg class="{{ icon_class }}" viewBox="0 0 24 24" role="presentation" focusable="false" aria-hidden="true"{% if stroke_width %} stroke-width="{{ stroke_width }}"{% endif %}>
+      <path d="M5 21.5V3.5c4-1.6 8 1.6 12 0v11c-4 1.6-8-1.6-12 0"/>
+    </svg>
+
   {%- when 'arrow-right' -%}
     <svg class="{{ icon_class }}" viewBox="0 0 24 24" role="presentation" focusable="false" aria-hidden="true"{% if stroke_width %} stroke-width="{{ stroke_width }}"{% endif %}>
       <path d="M4 12h16M14 6l6 6-6 6"/>

@@ -27,7 +27,7 @@ improves a condition or symptom.
 
 Do not use:
 
-- "relieves pain", "eases pain", "pain relief", "cures", "heals"
+- "relieves pain", "eases pain", "pain relief", "cures pain", "cures", "heals"
 - "reduces swelling", "reduces inflammation"
 - "improves circulation", "increases blood flow"
 - "corrects bunions", "fixes bunions", "realigns toes"
@@ -36,6 +36,8 @@ Do not use:
 - "clinically proven", "clinically tested", "scientifically proven"
 - "doctor recommended", "podiatrist recommended", "physician approved"
 - "FDA approved", "FDA cleared" (unless the specific product genuinely is)
+- before/after health outcomes of any kind — images, framing, or narrative that
+  shows or implies a condition improving through use
 
 Also avoid the softer implied versions — "say goodbye to sore feet",
 "walk pain-free", "no more aching arches", "feel the relief". Framing a symptom

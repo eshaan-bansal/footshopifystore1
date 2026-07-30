@@ -64,40 +64,40 @@
           "type": "item",
           "settings": {
             "icon": "truck",
-            "label": "Free US shipping",
+            "label": "Free US Shipping",
             "sublabel": "On orders over $50"
           }
         },
-        "trust-guarantee": {
+        "trust-tracking": {
           "type": "item",
           "settings": {
-            "icon": "clock",
-            "label": "Tracking on every order",
-            "sublabel": "Emailed as soon as it ships"
-          }
-        },
-        "trust-sizing": {
-          "type": "item",
-          "settings": {
-            "icon": "ruler",
-            "label": "Sizing guide",
-            "sublabel": "Check your fit before you order"
+            "icon": "map-pin",
+            "label": "Tracking on Every Order",
+            "sublabel": "Follow it to your door"
           }
         },
         "trust-secure": {
           "type": "item",
           "settings": {
             "icon": "lock",
-            "label": "Secure checkout",
-            "sublabel": "Encrypted at every step"
+            "label": "Secure Checkout",
+            "sublabel": "SSL-encrypted payments"
+          }
+        },
+        "trust-states": {
+          "type": "item",
+          "settings": {
+            "icon": "flag",
+            "label": "Ships to All 50 States",
+            "sublabel": "Sent from our US warehouse"
           }
         }
       },
       "block_order": [
         "trust-shipping",
-        "trust-guarantee",
-        "trust-sizing",
-        "trust-secure"
+        "trust-tracking",
+        "trust-secure",
+        "trust-states"
       ]
     },
     "faq": {
