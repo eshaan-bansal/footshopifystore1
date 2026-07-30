@@ -145,15 +145,15 @@
           "settings": {
             "heading": "How long does shipping take?",
             "icon": "truck",
-            "content": "<p>Orders are dispatched within 1–2 business days. Standard US delivery then typically takes 5–8 business days, and shipping is free on orders over $50. You will get a tracking link by email as soon as your parcel ships.</p>"
+            "content": "<p>Delivery times vary by item, so we don't quote a single window. You'll get a tracking link by email as soon as your order ships, and you can follow it the whole way. Shipping is free on US orders over $50.</p>"
           }
         },
-        "faq_returns": {
+        "faq_pre_order": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Can I return it?",
-            "icon": "return",
-            "content": "<p>Yes. The full terms, including the return window and how to start a return, are on our <a href=\"/policies/refund-policy\">Refund policy</a> page. If you are unsure whether this will fit, email us before ordering and we will help you choose.</p>"
+            "heading": "Not sure which one to order?",
+            "icon": "chat_bubble",
+            "content": "<p>Email us before you order. Tell us your shoe size or what you're looking for and we'll tell you which option fits — it's much easier than guessing and sending something back.</p>"
           }
         },
         "faq_care": {
@@ -190,7 +190,7 @@
         "faq_sizing",
         "faq_fit",
         "faq_shipping",
-        "faq_returns",
+        "faq_pre_order",
         "faq_care",
         "share"
       ],
@@ -245,5 +245,10 @@
       }
     }
   },
-  "order": ["main", "sticky-atc", "related-products", "disclosures"]
+  "order": [
+    "main",
+    "sticky-atc",
+    "related-products",
+    "disclosures"
+  ]
 }

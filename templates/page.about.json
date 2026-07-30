@@ -44,7 +44,7 @@
           "settings": {
             "icon": "chat",
             "title": "Talk to a person",
-            "text": "Email us about fit before you order and we'll tell you which size to pick. Our full return terms are on the Refund policy page."
+            "text": "Email us about fit before you order and we'll tell you which size to pick. A real person answers."
           }
         }
       },
@@ -93,7 +93,7 @@
           "settings": {
             "icon": "flag",
             "label": "Ships to All 50 States",
-            "sublabel": "Sent from our US warehouse"
+            "sublabel": "Every US address"
           }
         }
       },

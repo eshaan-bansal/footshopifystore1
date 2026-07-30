@@ -32,7 +32,7 @@
           "settings": {
             "icon": "chat",
             "label": "A real person replies",
-            "sublabel": "Usually within one business day"
+            "sublabel": "We answer every message"
           }
         },
         "contact-sizing": {
@@ -46,9 +46,9 @@
         "contact-returns": {
           "type": "item",
           "settings": {
-            "icon": "refresh",
-            "label": "Returns",
-            "sublabel": "Full terms on our Refund policy page"
+            "icon": "truck",
+            "label": "Order questions",
+            "sublabel": "Tracking, delivery or a change of address"
           }
         }
       },

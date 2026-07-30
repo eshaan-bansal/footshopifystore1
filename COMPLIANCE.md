@@ -74,6 +74,29 @@ No "60-day guarantee", "risk-free", "money-back guarantee" or "free returns"
 unless that exact policy is live in **Settings → Policies** and we will honour
 it. A guarantee is a contractual promise, not a reassurance device.
 
+**No refund policy is published yet**, so nothing on the storefront states a
+return window or links to the policy page. Where a shopper would look for it, the
+FAQ instead offers pre-order help ("email us and we'll tell you which option
+fits"). Once a real policy exists, publish it in Settings → Policies and *then*
+the returns copy and the fourth trust tile can be turned on.
+
+### 4. Delivery timeframes we cannot control
+
+Stock is dropshipped, so transit time varies per item and per supplier. Do **not**
+state "arrives in 5–8 business days", "dispatched within 24 hours" or any other
+window, sitewide or per product, unless it is guaranteed for that specific item.
+
+What we can say: **"Tracking on every order"** and **"Delivery times vary by
+item"**. An unmet delivery promise is both an FTC problem (the Mail, Internet, or
+Telephone Order Merchandise Rule) and the single biggest driver of chargebacks
+for a dropshipped store. If you later negotiate a guaranteed window with a
+supplier for a specific SKU, put it in that product's `custom.faqs` metafield —
+not in sitewide copy.
+
+**Also not defensible while dropshipping:** "ships from our US warehouse",
+"same-day dispatch", "in stock and ready to ship" — unless the stock genuinely is
+domestic and on hand.
+
 ---
 
 ## Allowed — backable claim types

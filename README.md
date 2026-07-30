@@ -171,10 +171,15 @@ reason a ready buyer leaves.
 ### 6. Fill in the policy pages
 
 **Settings → Policies**: Privacy, Refund, Shipping, Terms. The footer renders
-them automatically. The product and collection FAQs link to
-`/policies/refund-policy` rather than stating a return window, so that the site
-never contradicts your actual policy — **fill the Refund policy in before
-launch** or those links lead nowhere.
+them automatically. **No refund policy is published yet, so nothing on the storefront references
+one.** Where shoppers would look for returns, the FAQ offers pre-order help
+instead ("email us and we'll tell you which option fits"). When you do publish a
+policy, three things can then be switched on: the returns FAQ row, the fourth
+trust tile (swap "Ships to All 50 States" for "30-Day Returns" — the icon picker
+has a return arrow), and the Policy band section.
+
+Note that Shopify Payments will surface a refund policy at checkout regardless,
+so publishing one is worth doing early even if the terms are conservative.
 
 ### 7. Set the Google product category per product
 
@@ -473,10 +478,14 @@ theme enforces this: the rating block reads only
 `product.metafields.reviews.*` and has no manual field, and the testimonials
 section ships with no blocks and renders nothing until real quotes are added.
 
-**No guarantees you do not operate.** The FAQs link to
-`/policies/refund-policy` instead of stating a return window, so the storefront
-can never contradict your actual policy. The policy band section exists but is on
-no template by default — add it only once a real policy is live.
+**No guarantees you do not operate.** No refund policy is published yet, so no
+storefront copy mentions returns at all — the FAQ offers pre-order help instead.
+The policy band section exists but is on no template by default.
+
+**No delivery timeframes.** Stock is dropshipped, so transit time varies per item
+and supplier. Nothing states a window; the shipping FAQ says delivery times vary
+and that tracking is emailed on dispatch. A missed delivery promise is both an
+FTC issue and the main driver of chargebacks for dropshipped stores.
 
 **Sell the outcome, not the product** — within those limits. Lead with what the
 product *is for* and how it is built, then the details.

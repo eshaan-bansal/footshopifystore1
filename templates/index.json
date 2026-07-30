@@ -60,7 +60,7 @@
           "settings": {
             "icon": "flag",
             "label": "Ships to All 50 States",
-            "sublabel": "Sent from our US warehouse"
+            "sublabel": "Every US address"
           }
         }
       },
@@ -333,15 +333,15 @@
           "settings": {
             "heading": "How long does shipping take?",
             "icon": "truck",
-            "row_content": "<p>Orders are dispatched within 1–2 business days. Standard US delivery then typically takes 5–8 business days, and shipping is free on orders over $50. You will get a tracking link by email as soon as your parcel ships.</p>"
+            "row_content": "<p>Delivery times vary by item, so we don't quote a single window. You'll get a tracking link by email as soon as your order ships, and you can follow it the whole way. Shipping is free on US orders over $50.</p>"
           }
         },
-        "faq-returns": {
+        "faq-pre-order": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Can I return something?",
-            "icon": "return",
-            "row_content": "<p>Yes. The full terms, including the return window and how to start a return, are on our <a href=\"/policies/refund-policy\">Refund policy</a> page. If you are unsure whether an item will fit, email us before ordering and we will help you choose.</p>"
+            "heading": "Not sure which one to order?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Email us before you order. Tell us your shoe size or what you're looking for and we'll tell you which option fits — it's much easier than guessing and sending something back.</p>"
           }
         },
         "faq-materials": {
@@ -364,7 +364,7 @@
       "block_order": [
         "faq-sizing",
         "faq-shipping",
-        "faq-returns",
+        "faq-pre-order",
         "faq-materials",
         "faq-shoes"
       ]
