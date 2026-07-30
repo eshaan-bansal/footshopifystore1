@@ -178,7 +178,7 @@ detail belongs in that product's `custom.faqs` metafield.
 
 **Settings → Policies**: Privacy, Refund, Shipping, Terms. The footer renders
 them automatically. **No refund policy is published yet, so nothing on the storefront references
-one.** Where shoppers would look for returns, the FAQ offers pre-order help
+one.** A drafted, paste-ready policy is at `legal/refund-policy.md`. Where shoppers would look for returns, the FAQ offers pre-order help
 instead ("email us and we'll tell you which option fits"). When you do publish a
 policy, three things can then be switched on: the returns FAQ row, the fourth
 trust tile (swap "Ships to All 50 States" for "30-Day Returns" — the icon picker

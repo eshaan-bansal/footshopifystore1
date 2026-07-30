@@ -74,7 +74,8 @@ No "60-day guarantee", "risk-free", "money-back guarantee" or "free returns"
 unless that exact policy is live in **Settings → Policies** and we will honour
 it. A guarantee is a contractual promise, not a reassurance device.
 
-**No refund policy is published yet**, so nothing on the storefront states a
+A drafted policy is ready to paste at `legal/refund-policy.md`. Until it is
+actually published in Settings → Policies, nothing on the storefront states a
 return window or links to the policy page. Where a shopper would look for it, the
 FAQ instead offers pre-order help ("email us and we'll tell you which option
 fits"). Once a real policy exists, publish it in Settings → Policies and *then*
@@ -167,6 +168,30 @@ If you add a review app, its metafields populate and the rating areas appear on
 their own.
 
 ---
+
+## Terms that cannot be fixed by disclosure
+
+A recurring misconception worth naming: **putting something in the fine print does
+not make it lawful.** Disclosure cures *deception*. It does not cure *illegality*
+or *unfairness*. A term that conflicts with a statute is void however clearly it
+is posted — and burying a material term in fine print is itself a deceptive
+practice, because the FTC requires material terms to be clear and conspicuous.
+
+Specific terms that do **not** become enforceable by writing them down:
+
+| Term | Why it fails |
+|---|---|
+| "Orders cannot be cancelled for N days" | Collides with the FTC Mail, Internet, or Telephone Order Merchandise Rule (16 CFR 435): if you cannot ship in the stated time — or 30 days if unstated — you must offer cancellation and a refund. Holding funds on an unshipped order is also a classic unfair practice. |
+| "No chargebacks" / "by ordering you waive dispute rights" | Chargeback rights come from the Fair Credit Billing Act and Electronic Fund Transfer Act. Contractual waivers are unenforceable, and the customer simply disputes instead. |
+| "All sales final, no exceptions" | Cannot disclaim liability for goods that arrive defective, damaged or not as described. |
+| "No refunds under any circumstances" | Same, plus several states require a conspicuously posted policy or impose a default return right (California is the notable one). |
+
+The practical point is sharper than the legal one: an over-restrictive policy does
+not prevent refunds, it converts them into **chargebacks**. Refunds cost you the
+order. Chargebacks cost you the order, a fee, and — past roughly 1% of
+transactions — the merchant account itself. What is enforceable and worth having:
+**used items non-returnable** (hygiene), **customer pays return shipping**, **no
+cancellation after dispatch**, **final-sale items excluded**.
 
 ## Before you publish any new copy
 
