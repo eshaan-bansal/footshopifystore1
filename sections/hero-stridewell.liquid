@@ -9,6 +9,23 @@
   colour scheme background if that file is ever missing.
 {%- endcomment -%}
 
+{%- liquid
+  # Build the scrim colour from .red/.green/.blue — the API layout/theme.liquid
+  # itself uses for colour settings. `.rgb` only exists on swatch colours, not
+  # on a `color` setting, so it yields an empty string here and would produce
+  # `rgba(, 0.7)`: invalid CSS the browser silently drops, leaving the heading
+  # unreadable over a bright photo.
+  assign scrim_rgb = '14, 58, 70'
+  if section.settings.scrim_color != blank
+    assign scrim_r = section.settings.scrim_color.red
+    assign scrim_g = section.settings.scrim_color.green
+    assign scrim_b = section.settings.scrim_color.blue
+    assign scrim_rgb = scrim_r | append: ', ' | append: scrim_g | append: ', ' | append: scrim_b
+  endif
+  assign scrim_alpha = section.settings.scrim_opacity | divided_by: 100.0
+  assign scrim_alpha_fade = section.settings.scrim_opacity | times: 0.35 | divided_by: 100.0
+-%}
+
 {%- style -%}
   #shopify-section-{{ section.id }} .sw-hero {
     min-height: {{ section.settings.height_mobile }}px;
@@ -16,13 +33,13 @@
 
   #shopify-section-{{ section.id }} .sw-hero__scrim {
     {%- if section.settings.content_alignment == 'center' -%}
-      background: rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }});
+      background: rgba({{ scrim_rgb }}, {{ scrim_alpha }});
     {%- else -%}
       background: linear-gradient(
         to right,
-        rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }}) 0%,
-        rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }}) 42%,
-        rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | times: 0.35 | divided_by: 100.0 }}) 100%
+        rgba({{ scrim_rgb }}, {{ scrim_alpha }}) 0%,
+        rgba({{ scrim_rgb }}, {{ scrim_alpha }}) 42%,
+        rgba({{ scrim_rgb }}, {{ scrim_alpha_fade }}) 100%
       );
     {%- endif -%}
   }

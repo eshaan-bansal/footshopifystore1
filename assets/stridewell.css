@@ -120,8 +120,13 @@
 
 /* Safety net. The scrim is measured to clear 4.5:1 against the shipped photo,
    but a merchant can swap in a brighter image at any time. This shadow is
-   invisible on a dark scrim and rescues legibility on a light one. */
+   invisible on a dark scrim and rescues legibility on a light one.
+
+   The colour fallback matters too: the hero always sits on a scrimmed image, so
+   if --color-foreground is ever undefined (a colour scheme that failed to
+   resolve) white is the safe answer, not the inherited dark body colour. */
 .sw-hero__content {
+  color: rgb(var(--color-foreground, 255, 255, 255));
   text-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.35);
 }
 
@@ -217,7 +222,10 @@
   color: var(--sw-trust);
 }
 
+/* Both are <span>s, so they need display:block or the label and its supporting
+   line run together as one sentence ("Free US shippingOn orders over $50"). */
 .sw-trust-bar__label {
+  display: block;
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
@@ -225,8 +233,10 @@
 }
 
 .sw-trust-bar__sublabel {
+  display: block;
   margin: 0.2rem 0 0;
   font-size: 1.3rem;
+  line-height: 1.35;
 }
 
 @media screen and (min-width: 750px) {

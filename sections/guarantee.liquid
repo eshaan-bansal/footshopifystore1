@@ -6,6 +6,22 @@
   missing the section keeps its colour-scheme background.
 {%- endcomment -%}
 
+{%- liquid
+  # Build the scrim colour from .red/.green/.blue — the API layout/theme.liquid
+  # itself uses for colour settings. `.rgb` only exists on swatch colours, not
+  # on a `color` setting, so it yields an empty string here and would produce
+  # `rgba(, 0.7)`: invalid CSS the browser silently drops, leaving the heading
+  # unreadable over a bright photo.
+  assign scrim_rgb = '14, 58, 70'
+  if section.settings.scrim_color != blank
+    assign scrim_r = section.settings.scrim_color.red
+    assign scrim_g = section.settings.scrim_color.green
+    assign scrim_b = section.settings.scrim_color.blue
+    assign scrim_rgb = scrim_r | append: ', ' | append: scrim_g | append: ', ' | append: scrim_b
+  endif
+  assign scrim_alpha = section.settings.scrim_opacity | divided_by: 100.0
+-%}
+
 {%- style -%}
   #shopify-section-{{ section.id }} .sw-guarantee__inner {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -13,7 +29,7 @@
   }
 
   #shopify-section-{{ section.id }} .sw-guarantee__scrim {
-    background: rgba({{ section.settings.scrim_color.rgb | default: '14, 58, 70' }}, {{ section.settings.scrim_opacity | divided_by: 100.0 }});
+    background: rgba({{ scrim_rgb }}, {{ scrim_alpha }});
   }
 
   @media screen and (min-width: 750px) {
