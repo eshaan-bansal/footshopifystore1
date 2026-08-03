@@ -708,7 +708,10 @@
                 {%- when 'sw_faqs' -%}
                   {%- render 'product-sw-faqs', block: block, product: product -%}
                 {%- when 'sw_legal' -%}
-                  {%- render 'stridewell-returns-note', context: 'product' -%}
+                  {%- render 'stridewell-returns-note',
+                    context: 'product',
+                    text: block.settings.returns_text
+                  -%}
                   {%- render 'product-prop65', block: block, product: product -%}
                 {%- when 'sw_offer' -%}
                   {%- render 'product-sw-offer', block: block, product_form_id: product_form_id -%}
@@ -2620,7 +2623,14 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Renders two self-enabling notices, both required to be visible BEFORE purchase. (1) Returns fine print — appears only once a refund policy exists in Settings → Policies. (2) California Prop 65 warning — appears only for products whose custom.prop65_required metafield is true. Neither shows anything otherwise. See COMPLIANCE.md."
+          "content": "Renders two self-enabling notices, both of which must be visible BEFORE purchase. (1) Returns fine print — appears only once a refund policy exists in Settings → Policies. (2) California Prop 65 warning — appears only for products whose custom.prop65_required metafield is true. Neither shows anything otherwise. See COMPLIANCE.md."
+        },
+        {
+          "type": "text",
+          "id": "returns_text",
+          "label": "Returns summary line",
+          "info": "Must match the refund policy you actually published. If your policy excludes worn or used items, say so here — that is the term buyers most need to see before paying. A link to the full policy is appended automatically.",
+          "default": "Returns are accepted on unused items in their original packaging."
         }
       ]
     },

@@ -2,20 +2,25 @@
   Returns fine print, self-enabling.
 
   Renders ONLY when a refund policy actually exists in Settings → Policies. Until
-  then it outputs nothing, so the storefront can never promise a returns term the
-  business has not published. The moment the policy goes live this appears on its
-  own, with no theme edit.
+  then it outputs nothing, so the storefront can never reference a returns term
+  the business has not published. The moment the policy goes live this appears on
+  its own, with no theme edit.
 
   COMPLIANCE — why this sits on the product page and not only in the footer:
   material terms must be *clear and conspicuous*, which means visible at the point
-  of decision. A restrictive term (used items are non-returnable) that a buyer
-  only discovers after purchase is the classic deceptive-omission pattern, and it
-  is also what turns a refund request into a chargeback. Stating it plainly next
-  to the buy button protects the term rather than weakening it: a disclosed
-  restriction is enforceable, a hidden one is not.
+  of decision. A restriction a buyer only discovers after purchase is a deceptive
+  omission, and it is also what turns a refund request into a chargeback. Stating
+  it plainly next to the buy button protects the term rather than weakening it: a
+  disclosed restriction is enforceable, a hidden one is not.
+
+  IMPORTANT: the summary text is editable, and it must match whatever refund
+  policy you actually published. The default deliberately makes no specific
+  promise beyond linking to the policy — if your policy excludes worn items, say
+  so here, because that is the term buyers most need to see before paying.
 
   Accepts:
-  - context: {String} 'product' | 'cart' — controls how much detail is shown
+  - context: {String} 'product' | 'cart'
+  - text: {String} optional summary line; falls back to a neutral default
 {%- endcomment -%}
 
 {%- if shop.refund_policy != blank and shop.refund_policy.body != blank -%}
@@ -23,15 +28,13 @@
     <p class="sw-returns-note__line">
       {%- render 'stridewell-icon', icon: 'return-arrow', class: 'sw-icon--sm' -%}
       <span>
-        {%- if context == 'cart' -%}
-          Unused items can be returned. See our
-          <a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>.
+        {%- if text != blank -%}
+          {{ text }}
         {%- else -%}
-          <strong>Unused items only.</strong> For hygiene reasons we can't accept
-          returns on items that have been worn or tried on. Damaged, faulty or
-          incorrect items are always covered. Full terms in our
-          <a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>.
+          Returns are accepted on unused items in their original packaging.
         {%- endif -%}
+        See our <a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>
+        for the full terms.
       </span>
     </p>
   </div>

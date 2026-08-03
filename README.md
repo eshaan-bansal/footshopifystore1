@@ -24,9 +24,6 @@ will stop recognising the theme.
 > ecommerce site.
 > **[legal/pre-launch-checklist.md](legal/pre-launch-checklist.md)** — everything
 > still outstanding before taking real orders, in risk order.
-> **`legal/`** — paste-ready drafts of all four Shopify policies
-> ([refund](legal/refund-policy.md), [privacy](legal/privacy-policy.md),
-> [terms](legal/terms-of-service.md), [shipping](legal/shipping-policy.md)).
 
 - [Local development](#local-development)
 - [Connecting the repo to Shopify](#connecting-the-repo-to-shopify)
@@ -183,7 +180,7 @@ detail belongs in that product's `custom.faqs` metafield.
 
 **Settings → Policies**: Privacy, Refund, Shipping, Terms. The footer renders
 them automatically. **No refund policy is published yet, so nothing on the storefront references
-one.** A drafted, paste-ready policy is at `legal/refund-policy.md`. Where shoppers would look for returns, the FAQ offers pre-order help
+one.** Generate one from Shopify's template in Settings → Policies. Where shoppers would look for returns, the FAQ offers pre-order help
 instead ("email us and we'll tell you which option fits"). When you do publish a
 policy, three things can then be switched on: the returns FAQ row, the fourth
 trust tile (swap "Ships to All 50 States" for "30-Day Returns" — the icon picker

@@ -74,9 +74,10 @@ No "60-day guarantee", "risk-free", "money-back guarantee" or "free returns"
 unless that exact policy is live in **Settings → Policies** and we will honour
 it. A guarantee is a contractual promise, not a reassurance device.
 
-A drafted policy is ready to paste at `legal/refund-policy.md`. Until it is
-actually published in Settings → Policies, nothing on the storefront states a
-return window or links to the policy page. Where a shopper would look for it, the
+Until a policy is actually published in Settings → Policies, nothing on the
+storefront states a return window or links to the policy page. Shopify can
+generate a starting template — edit it, then set the theme's **Returns summary
+line** so the product-page wording matches what you published. Where a shopper would look for it, the
 FAQ instead offers pre-order help ("email us and we'll tell you which option
 fits"). Once a real policy exists, publish it in Settings → Policies and *then*
 the returns copy and the fourth trust tile can be turned on.

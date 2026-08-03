@@ -165,7 +165,9 @@
         },
         "legal": {
           "type": "sw_legal",
-          "settings": {}
+          "settings": {
+            "returns_text": "Returns are accepted on unused items in their original packaging."
+          }
         }
       },
       "block_order": [

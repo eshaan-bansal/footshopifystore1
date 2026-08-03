@@ -14,17 +14,20 @@ Shopify · **[BUSINESS]** outside the store entirely.
 **Settings → Policies.** Shopify generates templates for all of these; edit them,
 don't ship the boilerplate unread.
 
-All four are now drafted in this folder. Paste each one, fill the brackets, done.
+Shopify generates a starting template for each one — in **Settings → Policies**,
+click into a policy and choose **Insert default**. Use those, then edit.
 
-| Policy | Draft | What it does for you |
-|---|---|---|
-| **Refund policy** | `legal/refund-policy.md` | Used items non-returnable on hygiene grounds, customer pays return shipping, no cancellation after dispatch. Publishing it also switches on the returns copy across the product page and cart. |
-| **Privacy policy** | `legal/privacy-policy.md` | Written to the CCPA/CPRA baseline, which covers the twenty state laws in force through 2026. Includes the GPC and opt-out language. |
-| **Terms of service** | `legal/terms-of-service.md` | Order = your offer, accepted on dispatch (lets you decline bad orders); the no-medical-claims clause; review-removal rights; liability capped at the amount paid. |
-| **Shipping policy** | `legal/shipping-policy.md` | States no delivery window on purpose, and discloses that items ship from several locations including outside the US. |
+They are generic by design, so check these points before saving:
 
-Each draft opens with a short note on why it is shaped the way it is — read those
-before editing, because several clauses look removable and are not.
+| Policy | What to check in the generated template |
+|---|---|
+| **Refund policy** | Does it match what you will actually do? Whatever return window it states becomes your promise. Publishing it also switches on the returns copy across the product page and cart — set the **Returns summary line** in the theme editor (product section → StrideWell: legal notices) so the storefront wording matches the policy. |
+| **Privacy policy** | Add the advertising platforms you use. Running a Meta, TikTok or Google pixel makes you a "seller/sharer" of personal information under most state laws, and the generic template will not list yours. |
+| **Terms of service** | Add a **no-medical-claims clause**: these are comfort products, not medical devices, nothing on the site is medical advice, and customers who are diabetic, pregnant or have a circulatory condition should consult a professional first. The default template will not include this and it is the legal backstop for everything in COMPLIANCE.md. |
+| **Shipping policy** | Remove any delivery window the template states — stock is dropshipped and transit varies. Add that items ship from several locations, including outside the US, and may arrive in separate parcels. |
+
+The generated templates are a starting point, not a finished document. Shopify
+says so itself. The four points above are the ones that matter for *this* store.
 
 Once published, all four appear in the footer automatically (`show_policy` is
 already on), and the refund policy switches on the returns copy across the
