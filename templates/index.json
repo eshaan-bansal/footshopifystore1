@@ -1,8 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero-stridewell",
       "settings": {
+        "image_alt": "",
         "eyebrow": "Foot & leg support",
         "heading": "Comfort that keeps you moving.",
         "heading_size": "h0",
@@ -12,24 +22,17 @@
         "button_link_1": "/collections/all",
         "button_label_2": "Shop by category",
         "button_link_2": "/collections",
+        "button_collection_2": "",
         "content_alignment": "left",
         "height_mobile": 480,
         "height_desktop": 620,
-        "scrim_color": "#0E3A46",
+        "scrim_color": "#0e3a46",
         "scrim_opacity": 70,
-        "color_scheme": "scheme-3",
-        "button_collection_2": ""
+        "color_scheme": "scheme-3"
       }
     },
     "trust-bar": {
       "type": "trust-bar",
-      "settings": {
-        "heading": "",
-        "layout": "inline",
-        "color_scheme": "scheme-2",
-        "padding_top": 24,
-        "padding_bottom": 24
-      },
       "blocks": {
         "trust-shipping": {
           "type": "item",
@@ -69,10 +72,62 @@
         "trust-tracking",
         "trust-secure",
         "trust-states"
-      ]
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "layout": "inline",
+        "color_scheme": "scheme-2",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
     },
     "category-grid": {
       "type": "category-grid",
+      "blocks": {
+        "cat-compression": {
+          "type": "category",
+          "settings": {
+            "collection": "compression-circulation",
+            "title": ""
+          }
+        },
+        "cat-bunion": {
+          "type": "category",
+          "settings": {
+            "collection": "bunion-toe-correction",
+            "title": "Bunion & Toe Care"
+          }
+        },
+        "cat-braces": {
+          "type": "category",
+          "settings": {
+            "collection": "braces-supports",
+            "title": ""
+          }
+        },
+        "cat-recovery": {
+          "type": "category",
+          "settings": {
+            "collection": "recovery-massage",
+            "title": ""
+          }
+        },
+        "cat-insoles": {
+          "type": "category",
+          "settings": {
+            "collection": "insoles-arch-support",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "cat-compression",
+        "cat-bunion",
+        "cat-braces",
+        "cat-recovery",
+        "cat-insoles"
+      ],
       "settings": {
         "heading": "Shop by category",
         "heading_size": "h1",
@@ -83,50 +138,74 @@
         "color_scheme": "scheme-1",
         "padding_top": 52,
         "padding_bottom": 52
-      },
+      }
+    },
+    "shop-by-problem": {
+      "type": "shop-by-problem",
       "blocks": {
-        "cat-insoles": {
-          "type": "category",
+        "problem-swelling": {
+          "type": "card",
           "settings": {
-            "collection": "insoles-arch-support"
+            "icon": "wave",
+            "title": "Swelling & circulation",
+            "text": "Graduated compression knitwear in bamboo and nylon blends.",
+            "collection": "compression-circulation",
+            "link": "",
+            "cta_label": "Shop compression"
           }
         },
-        "cat-bunion": {
-          "type": "category",
+        "problem-bunions": {
+          "type": "card",
           "settings": {
+            "icon": "footprint",
+            "title": "Bunions & toe crowding",
+            "text": "Silicone spacers and adjustable splints that make room between the toes.",
             "collection": "bunion-toe-correction",
-            "title": "Bunion & Toe Care"
+            "link": "",
+            "cta_label": "Shop bunion & toe care"
           }
         },
-        "cat-compression": {
-          "type": "category",
+        "problem-knee": {
+          "type": "card",
           "settings": {
-            "collection": "compression-circulation"
+            "icon": "knee",
+            "title": "Knee & ankle support",
+            "text": "Adjustable braces and splints that hold the joint steady.",
+            "collection": "braces-supports",
+            "link": "",
+            "cta_label": "Shop braces & supports"
           }
         },
-        "cat-braces": {
-          "type": "category",
+        "problem-recovery": {
+          "type": "card",
           "settings": {
-            "collection": "braces-supports"
+            "icon": "cushion",
+            "title": "After a long day on your feet",
+            "text": "Stretching aids and massagers for the end of a shift.",
+            "collection": "recovery-massage",
+            "link": "",
+            "cta_label": "Shop recovery"
           }
         },
-        "cat-recovery": {
-          "type": "category",
+        "problem-plantar": {
+          "type": "card",
           "settings": {
-            "collection": "recovery-massage"
+            "icon": "arch",
+            "title": "Plantar fasciitis",
+            "text": "Cushioned heel and arch support.",
+            "collection": "insoles-arch-support",
+            "link": "",
+            "cta_label": "Shop arch support"
           }
         }
       },
       "block_order": [
-        "cat-compression",
-        "cat-bunion",
-        "cat-braces",
-        "cat-recovery",
-        "cat-insoles"
-      ]
-    },
-    "shop-by-problem": {
-      "type": "shop-by-problem",
+        "problem-swelling",
+        "problem-bunions",
+        "problem-knee",
+        "problem-recovery",
+        "problem-plantar"
+      ],
       "settings": {
         "heading": "Shop by concern",
         "heading_size": "h1",
@@ -138,108 +217,10 @@
         "color_scheme": "scheme-2",
         "padding_top": 52,
         "padding_bottom": 52
-      },
-      "blocks": {
-        "problem-swelling": {
-          "type": "card",
-          "settings": {
-            "icon": "wave",
-            "title": "Swelling & circulation",
-            "text": "Graduated compression knitwear in bamboo and nylon blends.",
-            "collection": "compression-circulation",
-            "cta_label": "Shop compression"
-          }
-        },
-        "problem-bunions": {
-          "type": "card",
-          "settings": {
-            "icon": "footprint",
-            "title": "Bunions & toe crowding",
-            "text": "Silicone spacers and adjustable splints that make room between the toes.",
-            "collection": "bunion-toe-correction",
-            "cta_label": "Shop bunion & toe care"
-          }
-        },
-        "problem-knee": {
-          "type": "card",
-          "settings": {
-            "icon": "knee",
-            "title": "Knee & ankle support",
-            "text": "Adjustable braces and splints that hold the joint steady.",
-            "collection": "braces-supports",
-            "cta_label": "Shop braces & supports"
-          }
-        },
-        "problem-recovery": {
-          "type": "card",
-          "settings": {
-            "icon": "cushion",
-            "title": "After a long day on your feet",
-            "text": "Stretching aids and massagers for the end of a shift.",
-            "collection": "recovery-massage",
-            "cta_label": "Shop recovery"
-          }
-        },
-        "problem-plantar": {
-          "type": "card",
-          "settings": {
-            "icon": "arch",
-            "title": "Plantar fasciitis",
-            "text": "Cushioned heel and arch support.",
-            "collection": "insoles-arch-support",
-            "cta_label": "Shop arch support"
-          }
-        }
-      },
-      "block_order": [
-        "problem-swelling",
-        "problem-bunions",
-        "problem-knee",
-        "problem-recovery",
-        "problem-plantar"
-      ]
-    },
-    "featured-range": {
-      "type": "featured-collection",
-      "settings": {
-        "hide_when_empty": true,
-        "title": "Compression & circulation",
-        "heading_size": "h1",
-        "collection": "compression-circulation",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "outline",
-        "enable_desktop_slider": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 52,
-        "padding_bottom": 52
       }
     },
     "benefits": {
       "type": "benefits",
-      "settings": {
-        "heading": "How StrideWell is built",
-        "heading_size": "h1",
-        "subheading": "<p>Foot, ankle, calf and knee support across five ranges — chosen to be worn through a long day.</p>",
-        "layout": "with_image",
-        "default_image": "lifestyle-benefits.jpg",
-        "image_position": "right",
-        "button_label": "Shop all",
-        "button_link": "/collections/all",
-        "color_scheme": "scheme-2",
-        "padding_top": 56,
-        "padding_bottom": 56
-      },
       "blocks": {
         "benefit-support": {
           "type": "benefit",
@@ -270,24 +251,78 @@
         "benefit-support",
         "benefit-comfort",
         "benefit-fit"
-      ]
-    },
-    "testimonials": {
-      "type": "testimonials",
+      ],
       "settings": {
-        "heading": "What customers say",
+        "heading": "How StrideWell is built",
         "heading_size": "h1",
-        "summary_rating": 0,
-        "summary": "",
-        "color_scheme": "scheme-1",
-        "padding_top": 52,
-        "padding_bottom": 52
-      },
-      "blocks": {},
-      "block_order": []
+        "subheading": "<p>Foot, ankle, calf and knee support across five ranges — chosen to be worn through a long day.</p>",
+        "layout": "with_image",
+        "default_image": "lifestyle-benefits.jpg",
+        "image_alt": "",
+        "image_position": "right",
+        "button_label": "Shop all",
+        "button_link": "/collections/all",
+        "color_scheme": "scheme-2",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
     },
     "faq": {
       "type": "collapsible-content",
+      "blocks": {
+        "faq-sizing": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Which size should I order?",
+            "icon": "ruler",
+            "row_content": "<p>Order the size that matches your usual shoe size. If you are between sizes, or you wear a wide fit, size up. The size range for each item is listed on its product page. Still unsure? Email us your shoe size and we'll tell you which to pick.</p>",
+            "page": ""
+          }
+        },
+        "faq-shipping": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long does shipping take?",
+            "icon": "truck",
+            "row_content": "<p>Delivery times vary by item, so we don't quote a single window. You'll get a tracking link by email as soon as your order ships, and you can follow it the whole way. Shipping is free on US orders over $50.</p>",
+            "page": ""
+          }
+        },
+        "faq-pre-order": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Not sure which one to order?",
+            "icon": "chat_bubble",
+            "row_content": "<p>Email us before you order. Tell us your shoe size or what you're looking for and we'll tell you which option fits — it's much easier than guessing and sending something back.</p>",
+            "page": ""
+          }
+        },
+        "faq-materials": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What are they made of?",
+            "icon": "leaf",
+            "row_content": "<p>It varies by range. Compression socks and sleeves are a bamboo or nylon blend knitted with spandex. Toe spacers and separators are soft silicone. Braces and splints use a stretch fabric with hook-and-loop straps and a moulded support panel. Insoles use an EVA foam base with a breathable fabric cover. The exact materials for each item are listed on its product page.</p>",
+            "page": ""
+          }
+        },
+        "faq-shoes": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Which items can I wear inside shoes?",
+            "icon": "shoe",
+            "row_content": "<p>Insoles, socks, foot sleeves and toe spacers are made to be worn inside everyday sneakers, work boots and most closed shoes. Insoles are trim-to-fit along the printed guide lines, and are a tight fit in dress shoes and flats with a shallow footbed. Night splints, knee and ankle braces, stretching straps and massagers are used out of shoes — each product page says which applies.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq-sizing",
+        "faq-shipping",
+        "faq-pre-order",
+        "faq-materials",
+        "faq-shoes"
+      ],
       "settings": {
         "caption": "Common questions",
         "heading": "Before you order",
@@ -301,65 +336,10 @@
         "desktop_layout": "image_second",
         "padding_top": 52,
         "padding_bottom": 52
-      },
-      "blocks": {
-        "faq-sizing": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Which size should I order?",
-            "icon": "ruler",
-            "row_content": "<p>Order the size that matches your usual shoe size. If you are between sizes, or you wear a wide fit, size up. The size range for each item is listed on its product page. Still unsure? Email us your shoe size and we'll tell you which to pick.</p>"
-          }
-        },
-        "faq-shipping": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "How long does shipping take?",
-            "icon": "truck",
-            "row_content": "<p>Delivery times vary by item, so we don't quote a single window. You'll get a tracking link by email as soon as your order ships, and you can follow it the whole way. Shipping is free on US orders over $50.</p>"
-          }
-        },
-        "faq-pre-order": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Not sure which one to order?",
-            "icon": "chat_bubble",
-            "row_content": "<p>Email us before you order. Tell us your shoe size or what you're looking for and we'll tell you which option fits — it's much easier than guessing and sending something back.</p>"
-          }
-        },
-        "faq-materials": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "What are they made of?",
-            "icon": "leaf",
-            "row_content": "<p>It varies by range. Compression socks and sleeves are a bamboo or nylon blend knitted with spandex. Toe spacers and separators are soft silicone. Braces and splints use a stretch fabric with hook-and-loop straps and a moulded support panel. Insoles use an EVA foam base with a breathable fabric cover. The exact materials for each item are listed on its product page.</p>"
-          }
-        },
-        "faq-shoes": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Which items can I wear inside shoes?",
-            "icon": "shoe",
-            "row_content": "<p>Insoles, socks, foot sleeves and toe spacers are made to be worn inside everyday sneakers, work boots and most closed shoes. Insoles are trim-to-fit along the printed guide lines, and are a tight fit in dress shoes and flats with a shallow footbed. Night splints, knee and ankle braces, stretching straps and massagers are used out of shoes — each product page says which applies.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq-sizing",
-        "faq-shipping",
-        "faq-pre-order",
-        "faq-materials",
-        "faq-shoes"
-      ]
+      }
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": {
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 52
-      },
       "blocks": {
         "newsletter-heading": {
           "type": "heading",
@@ -383,7 +363,13 @@
         "newsletter-heading",
         "newsletter-paragraph",
         "newsletter-form"
-      ]
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -391,9 +377,7 @@
     "trust-bar",
     "category-grid",
     "shop-by-problem",
-    "featured-range",
     "benefits",
-    "testimonials",
     "faq",
     "newsletter"
   ]
