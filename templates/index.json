@@ -305,23 +305,13 @@
             "row_content": "<p>It varies by range. Compression socks and sleeves are a bamboo or nylon blend knitted with spandex. Toe spacers and separators are soft silicone. Braces and splints use a stretch fabric with hook-and-loop straps and a moulded support panel. Insoles use an EVA foam base with a breathable fabric cover. The exact materials for each item are listed on its product page.</p>",
             "page": ""
           }
-        },
-        "faq-shoes": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Which items can I wear inside shoes?",
-            "icon": "shoe",
-            "row_content": "<p>Insoles, socks, foot sleeves and toe spacers are made to be worn inside everyday sneakers, work boots and most closed shoes. Insoles are trim-to-fit along the printed guide lines, and are a tight fit in dress shoes and flats with a shallow footbed. Night splints, knee and ankle braces, stretching straps and massagers are used out of shoes — each product page says which applies.</p>",
-            "page": ""
-          }
         }
       },
       "block_order": [
         "faq-sizing",
         "faq-shipping",
         "faq-pre-order",
-        "faq-materials",
-        "faq-shoes"
+        "faq-materials"
       ],
       "settings": {
         "caption": "Common questions",
@@ -340,30 +330,6 @@
     },
     "newsletter": {
       "type": "newsletter",
-      "blocks": {
-        "newsletter-heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Sizing tips and new arrivals",
-            "heading_size": "h1"
-          }
-        },
-        "newsletter-paragraph": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Join our list for fit advice, care tips and a first look at new products. One email a week at most, and you can unsubscribe from any email. We never sell your details.</p>"
-          }
-        },
-        "newsletter-form": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "newsletter-heading",
-        "newsletter-paragraph",
-        "newsletter-form"
-      ],
       "settings": {
         "color_scheme": "scheme-2",
         "full_width": true,
