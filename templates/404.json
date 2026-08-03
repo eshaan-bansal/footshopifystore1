@@ -2,9 +2,106 @@
   "sections": {
     "main": {
       "type": "main-404"
+    },
+    "category-grid": {
+      "type": "category-grid",
+      "settings": {
+        "heading": "Try one of these",
+        "heading_size": "h1",
+        "subheading": "<p>The five ranges we stock. Every one is foot, ankle, calf or knee support.</p>",
+        "center_heading": true,
+        "show_count": true,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "padding_top": 12,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "cat-compression": {
+          "type": "category",
+          "settings": {
+            "collection": "compression-circulation"
+          }
+        },
+        "cat-bunion": {
+          "type": "category",
+          "settings": {
+            "collection": "bunion-toe-correction",
+            "title": "Bunion & Toe Care"
+          }
+        },
+        "cat-braces": {
+          "type": "category",
+          "settings": {
+            "collection": "braces-supports"
+          }
+        },
+        "cat-recovery": {
+          "type": "category",
+          "settings": {
+            "collection": "recovery-massage"
+          }
+        },
+        "cat-insoles": {
+          "type": "category",
+          "settings": {
+            "collection": "insoles-arch-support"
+          }
+        }
+      },
+      "block_order": [
+        "cat-compression",
+        "cat-bunion",
+        "cat-braces",
+        "cat-recovery",
+        "cat-insoles"
+      ]
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {
+        "heading": "",
+        "layout": "inline",
+        "color_scheme": "scheme-2",
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "trust-shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "Free US Shipping",
+            "sublabel": "On orders over $50"
+          }
+        },
+        "trust-tracking": {
+          "type": "item",
+          "settings": {
+            "icon": "map-pin",
+            "label": "Tracking on Every Order",
+            "sublabel": "Follow it to your door"
+          }
+        },
+        "trust-help": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "label": "Sizing Help Before You Buy",
+            "sublabel": "Email us and we'll advise"
+          }
+        }
+      },
+      "block_order": [
+        "trust-shipping",
+        "trust-tracking",
+        "trust-help"
+      ]
     }
   },
   "order": [
-    "main"
+    "main",
+    "category-grid",
+    "trust-bar"
   ]
 }

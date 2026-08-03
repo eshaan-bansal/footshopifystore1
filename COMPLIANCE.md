@@ -79,6 +79,23 @@ Rename on import. Describe the **form and mechanism**, not the target condition:
 a night splint that holds the ankle in dorsiflexion is a "dorsiflexion night
 splint", which is accurate, searchable and makes no promise.
 
+### 1c. The tagline counts, and so does everything outside the templates
+
+The brand tagline in **Theme settings → Brand** read *"Relief that keeps you
+moving."* It rendered in the footer on every page — the single most-repeated
+sentence on the site — while §1 above bans "relief" outright. It is now
+*"Support that keeps you moving."*
+
+Two lessons worth keeping:
+
+1. **Claim copy hides outside the templates.** It lives in `settings_data.json`
+   (tagline, brand description), in locale files, in collection titles and
+   descriptions set in admin, in metafields, in image alt text, in the SEO title
+   and meta description, and in the preset block of `settings_data.json` that a
+   theme reset restores. Grepping `templates/` and `sections/` is not a sweep.
+2. **Search case-insensitively.** "Relief" survived an earlier pass because the
+   pattern was lower-case. Use `grep -i`.
+
 ### 2. Fabricated or unsubstantiated social proof
 
 Nothing invented, and nothing we cannot evidence on request:

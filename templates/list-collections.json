@@ -3,15 +3,132 @@
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
+        "title": "Shop by category",
+        "sort": "products_high",
         "image_ratio": "square",
         "columns_desktop": 3,
         "columns_mobile": "2"
       }
+    },
+    "shop-by-problem": {
+      "type": "shop-by-problem",
+      "settings": {
+        "heading": "Or shop by concern",
+        "heading_size": "h1",
+        "subheading": "<p>If you would rather start from what is bothering you than from a product type, these will get you there faster.</p>",
+        "center_heading": true,
+        "columns_desktop": 3,
+        "show_background": true,
+        "background_opacity": 14,
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "problem-swelling": {
+          "type": "card",
+          "settings": {
+            "icon": "wave",
+            "title": "Swelling & circulation",
+            "text": "Graduated compression knitwear in bamboo and nylon blends.",
+            "collection": "compression-circulation",
+            "cta_label": "Shop compression"
+          }
+        },
+        "problem-bunions": {
+          "type": "card",
+          "settings": {
+            "icon": "footprint",
+            "title": "Bunions & toe crowding",
+            "text": "Silicone spacers and adjustable splints that make room between the toes.",
+            "collection": "bunion-toe-correction",
+            "cta_label": "Shop bunion & toe care"
+          }
+        },
+        "problem-knee": {
+          "type": "card",
+          "settings": {
+            "icon": "knee",
+            "title": "Knee & ankle support",
+            "text": "Adjustable braces and splints that hold the joint steady.",
+            "collection": "braces-supports",
+            "cta_label": "Shop braces & supports"
+          }
+        },
+        "problem-recovery": {
+          "type": "card",
+          "settings": {
+            "icon": "cushion",
+            "title": "After a long day on your feet",
+            "text": "Stretching aids and massagers for the end of a shift.",
+            "collection": "recovery-massage",
+            "cta_label": "Shop recovery"
+          }
+        },
+        "problem-plantar": {
+          "type": "card",
+          "settings": {
+            "icon": "arch",
+            "title": "Plantar fasciitis",
+            "text": "Cushioned heel and arch support.",
+            "collection": "insoles-arch-support",
+            "cta_label": "Shop arch support"
+          }
+        }
+      },
+      "block_order": [
+        "problem-swelling",
+        "problem-bunions",
+        "problem-knee",
+        "problem-recovery",
+        "problem-plantar"
+      ]
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {
+        "heading": "",
+        "layout": "inline",
+        "color_scheme": "scheme-2",
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
+      "blocks": {
+        "trust-shipping": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "Free US Shipping",
+            "sublabel": "On orders over $50"
+          }
+        },
+        "trust-tracking": {
+          "type": "item",
+          "settings": {
+            "icon": "map-pin",
+            "label": "Tracking on Every Order",
+            "sublabel": "Follow it to your door"
+          }
+        },
+        "trust-secure": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "label": "Secure Checkout",
+            "sublabel": "SSL-encrypted payments"
+          }
+        }
+      },
+      "block_order": [
+        "trust-shipping",
+        "trust-tracking",
+        "trust-secure"
+      ]
     }
   },
   "order": [
-    "main"
+    "main",
+    "shop-by-problem",
+    "trust-bar"
   ]
 }

@@ -21,25 +21,25 @@
             "link": ""
           }
         },
-        "announcement-tracking": {
+        "announcement-sizing": {
           "type": "announcement",
           "settings": {
-            "text": "Tracking on every order",
-            "link": ""
+            "text": "Not sure which size? Email us before you order",
+            "link": "/pages/contact"
           }
         },
-        "announcement-secure": {
+        "announcement-nationwide": {
           "type": "announcement",
           "settings": {
-            "text": "Secure checkout",
+            "text": "Ships to all 50 states, with tracking on every order",
             "link": ""
           }
         }
       },
       "block_order": [
         "announcement-shipping",
-        "announcement-tracking",
-        "announcement-secure"
+        "announcement-sizing",
+        "announcement-nationwide"
       ]
     },
     "header": {

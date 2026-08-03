@@ -1,7 +1,7 @@
 # StrideWell — Shopify theme
 
 A production Shopify theme for **StrideWell**, a foot-health and recovery brand.
-*Relief that keeps you moving.*
+*Support that keeps you moving.*
 
 It is a customized fork of [Shopify's Dawn](https://github.com/Shopify/dawn)
 (baseline: **Dawn 15.5.0**), kept as a valid Online Store 2.0 theme so it can be
@@ -90,7 +90,7 @@ recurring task.
 > health-outcome claims and invented social proof are off the table. That file
 > lists exactly what is banned and what is backable.
 
-### 1. Create the six automated collections
+### 1. Create the five automated collections
 
 **Products → Collections → Create collection → Automated**, with the condition
 **Product tag is equal to** the tag below. Using the collection's own name as the
@@ -175,7 +175,7 @@ See [the next section](#the-navigation-menus-you-must-create).
 
 ### 5. Create the content pages
 
-**Online Store → Pages** — the theme links to all three:
+**Online Store → Pages** — the theme links to both:
 
 | Page | Handle | Template to assign |
 |---|---|---|
@@ -356,6 +356,17 @@ the asset file.
 
 Buttons are coral (`#E8734A`) on white in every scheme; text is `#1C2B2F`.
 
+All 15 foreground/background pairs across the five schemes measure **4.86:1 or
+better** against WCAG AA's 4.5:1 floor — the tightest are coral-backed surfaces
+at 4.86:1 and the trust green at 4.99:1. Both have very little headroom, so if
+you lighten either background you will drop below AA. Re-measure before changing
+any scheme colour.
+
+**Sections alternate `scheme-1` and `scheme-2`** down every page, with `scheme-3`
+teal as bookends (hero at the top, footer at the bottom). Two adjacent sections
+sharing a background merge into one visual block and the page loses its rhythm,
+so when you add a section, check what sits above and below it.
+
 **Brand constants** that are not colour-scheme driven live at the top of
 `assets/stridewell.css` as CSS custom properties — including the muted text
 colour `--sw-muted: #5C6B70` and `--sw-tap-min: 4.4rem`, the minimum tap-target
@@ -371,16 +382,35 @@ Poppins there is a one-click change if you want more character.
 
 ## Homepage category display — the decision, and why
 
-For a small focused catalogue (6 categories, ~14 products, mostly mobile),
+For a small focused catalogue (5 categories, 14 products, mostly mobile),
 **visible categories beat a buried dropdown.** So the theme does both:
 
-1. a **visible "Shop by category" grid** on the homepage — 6 image cards, one per
+1. a **visible "Shop by category" grid** on the homepage — 5 image cards, one per
    collection, each with a live product count;
 2. a **sticky header** (`sticky_header_type: always`) so the category nav stays
    reachable through the whole scroll, collapsing to a hamburger on mobile.
 
-There is deliberately **no mega-menu**. With six categories a simple "Shop ▾"
+There is deliberately **no mega-menu**. With five categories a simple "Shop ▾"
 dropdown is enough, and a mega-menu would add weight and complexity for nothing.
+
+Categories are ordered by **depth, not alphabetically** — Compression (5 SKUs)
+first, Insoles (1) last — on the homepage grid, in `/collections`
+(`sort: products_high`) and in the nav. A category card with one product in it is
+the weakest thing you can lead with.
+
+### No dead ends
+
+Every page that can fail to give a shopper what they wanted now routes them
+onward rather than stopping:
+
+| Page | What it used to do | What it does now |
+|---|---|---|
+| **404** | Dawn's stock "Page not found" and nothing else | Category grid and a trust row underneath |
+| **`/collections`** | A bare list titled "Collections" | Titled "Shop by category", sorted by depth, with the concern cards and a trust row below |
+| **Search** | Results, or a bare "no results" line | Category grid underneath, so an empty search still offers the whole range |
+
+`/collections` matters more than it looks: the hero's secondary button points
+there, so it is a primary landing page, not an afterthought.
 
 ## What was added on top of Dawn
 
@@ -514,12 +544,16 @@ and supplier. Nothing states a window; the shipping FAQ says delivery times vary
 and that tracking is emailed on dispatch. A missed delivery promise is both an
 FTC issue and the main driver of chargebacks for dropshipped stores.
 
-**Sell the outcome, not the product** — within those limits. Lead with what the
-product *is for* and how it is built, then the details.
+**Sell what it is and who it is for** — not what it does to a body. Lead with the
+form and construction, then the fit details.
 
-**Product H1 formula:** outcome + qualifier + differentiator, framed as comfort
-and construction rather than a cure. e.g. *"All-Day Cushioned Insoles with Firm
-Arch Support"* — not *"Plantar Fasciitis Pain Relief Insoles"*.
+**Product H1 formula:** form + material or mechanism + fit qualifier. e.g.
+*"All-Day Cushioned Insoles with Firm Arch Support"* or *"Bamboo Compression
+Socks — 15–20 mmHg, Knee-High"* — never *"Plantar Fasciitis Pain Relief
+Insoles"*. The title is the most prominent copy on the site and is reproduced in
+the cart, the order confirmation and every ad, so a claim there cannot be walked
+back by careful body copy. Supplier names arrive carrying exactly the words this
+rule bans — see COMPLIANCE.md §1b for the rename table covering all 14 SKUs.
 
 **Reading level ≤ 8th grade.** Short sentences. A confused mind never buys.
 

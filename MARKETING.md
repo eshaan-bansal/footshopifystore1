@@ -170,6 +170,23 @@ navigation, never claim to treat it.
 **Empty categories are hidden automatically**, so the store never presents a
 dead end to a shopper or a thin page to a crawler.
 
+**Neither do the failure pages.** A 404, an empty search and the bare
+`/collections` list were all places where a shopper who had already shown intent
+got nothing back. Each now carries the category grid, so the worst case is a
+detour rather than an exit. `/collections` also carries the concern cards,
+because it is where the hero's secondary button lands — the two routing systems
+(by product type, by concern) meet on one page for shoppers who arrive without a
+specific product in mind.
+
+**The announcement bar should not repeat the trust bar.** It used to run "Free US
+shipping over $50 / Tracking on every order / Secure checkout" directly above a
+trust bar saying the same three things in the same order — the most valuable
+strip on the page spent on a duplicate. It now leads with the shipping threshold,
+then offers pre-order sizing help linked to Contact, then covers nationwide
+shipping and tracking together. The sizing message is the one that matters: it is
+the store's actual differentiator while there are no reviews, and it is the only
+announcement that gives the shopper somewhere to click.
+
 ---
 
 ## 6. Page speed

@@ -89,7 +89,7 @@
       {%- liquid
         # The secondary button can be bound to a collection. When it is, the
         # button only renders while that collection actually has products, so a
-        # "See best sellers" CTA can never land on an empty page.
+        # collection-bound CTA can never land on an empty page.
         assign show_button_2 = false
         if section.settings.button_label_2 != blank
           assign show_button_2 = true
@@ -231,7 +231,7 @@
       "type": "text",
       "id": "button_label_2",
       "label": "Secondary button label",
-      "default": "See best sellers"
+      "default": "Shop by category"
     },
     {
       "type": "url",
@@ -242,7 +242,7 @@
       "type": "collection",
       "id": "button_collection_2",
       "label": "Secondary button collection",
-      "info": "Optional. If set, this is used as the link AND the button hides itself while that collection has no products — so \"See best sellers\" never leads to an empty page."
+      "info": "Optional. If set, this is used as the link AND the button hides itself while that collection has no products, so the button never leads to an empty page. Leave blank to use the link field above."
     },
     {
       "type": "header",

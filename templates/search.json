@@ -6,9 +6,9 @@
         "columns_desktop": 4,
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false,
+        "show_rating": true,
         "enable_filtering": true,
         "filter_type": "horizontal",
         "enable_sorting": true,
@@ -16,11 +16,66 @@
         "article_show_author": false,
         "columns_mobile": "2",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 24
       }
+    },
+    "category-grid": {
+      "type": "category-grid",
+      "settings": {
+        "heading": "Browse the full range",
+        "heading_size": "h1",
+        "subheading": "",
+        "center_heading": true,
+        "show_count": true,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "padding_top": 40,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "cat-compression": {
+          "type": "category",
+          "settings": {
+            "collection": "compression-circulation"
+          }
+        },
+        "cat-bunion": {
+          "type": "category",
+          "settings": {
+            "collection": "bunion-toe-correction",
+            "title": "Bunion & Toe Care"
+          }
+        },
+        "cat-braces": {
+          "type": "category",
+          "settings": {
+            "collection": "braces-supports"
+          }
+        },
+        "cat-recovery": {
+          "type": "category",
+          "settings": {
+            "collection": "recovery-massage"
+          }
+        },
+        "cat-insoles": {
+          "type": "category",
+          "settings": {
+            "collection": "insoles-arch-support"
+          }
+        }
+      },
+      "block_order": [
+        "cat-compression",
+        "cat-bunion",
+        "cat-braces",
+        "cat-recovery",
+        "cat-insoles"
+      ]
     }
   },
   "order": [
-    "main"
+    "main",
+    "category-grid"
   ]
 }
