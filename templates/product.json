@@ -32,25 +32,25 @@
           "settings": {
             "heading": "Choose your pack",
             "popular_label": "",
-            "tier_1_label": "1 pair",
+            "tier_1_label": "",
             "tier_1_note": "",
             "tier_1_quantity": 1,
             "tier_1_price": "",
             "tier_1_compare_price": "",
-            "tier_1_popular": true,
-            "tier_2_label": "2 pairs",
-            "tier_2_note": "One for each pair of shoes",
+            "tier_1_popular": false,
+            "tier_2_label": "",
+            "tier_2_note": "",
             "tier_2_quantity": 2,
             "tier_2_price": "",
             "tier_2_compare_price": "",
             "tier_2_popular": false,
-            "tier_3_label": "3 pairs",
-            "tier_3_note": "Lowest price per pair",
+            "tier_3_label": "",
+            "tier_3_note": "",
             "tier_3_quantity": 3,
             "tier_3_price": "",
             "tier_3_compare_price": "",
             "tier_3_popular": false,
-            "footnote": "Discount applies automatically at checkout."
+            "footnote": ""
           }
         },
         "buy_buttons": {
@@ -83,21 +83,21 @@
           "settings": {
             "heading": "Features",
             "icon": "check-circle",
-            "bullet_1": "<strong>Firm arch shell</strong> with a cushioned heel cup.",
-            "bullet_2": "<strong>Closed-cell foam</strong> that does not flatten out over a long shift.",
-            "bullet_3": "<strong>Low-profile, trim-to-fit</strong> — sits inside most closed shoes.",
-            "bullet_4": "<strong>Wide toe box</strong> cut for wider feet.",
+            "bullet_1": "",
+            "bullet_2": "",
+            "bullet_3": "",
+            "bullet_4": "",
             "bullet_5": ""
           }
         },
         "proof": {
           "type": "sw_proof",
           "settings": {
-            "heading": "Who these are made for",
-            "point_1": "Cut wide across the toe box, for wider feet.",
-            "point_2": "Fits inside sneakers, work boots and most closed shoes.",
-            "point_3": "Made for people who are on their feet all day.",
-            "point_4": "Trim-to-fit along the printed guide lines.",
+            "heading": "Who this is made for",
+            "point_1": "",
+            "point_2": "",
+            "point_3": "",
+            "point_4": "",
             "guarantee_text": ""
           }
         },
@@ -122,15 +122,15 @@
           "settings": {
             "heading": "Which size should I order?",
             "icon": "ruler",
-            "content": "<p>Order the size that matches your usual shoe size. If you are between sizes, or you wear a wide fit, size up. The size range for each item is listed on its product page. Still unsure? Email us your shoe size and we'll tell you which to pick.</p>"
+            "content": "<p>Foot-worn items are sized to your usual shoe size — if you are between sizes or wear a wide fit, size up. Calf, knee and ankle items are sized by measuring around the limb at its widest point, not by shoe size; the measurement range for each size is on this page. Still unsure? Email us your measurements and we'll tell you which to pick.</p>"
           }
         },
         "faq_fit": {
           "type": "collapsible_tab",
           "settings": {
-            "heading": "Will it fit my shoes?",
+            "heading": "Can I wear it with shoes?",
             "icon": "shoe",
-            "content": "<p>It is made to sit inside everyday sneakers, work boots and most closed shoes, and is trim-to-fit so you can cut it along the printed guide lines. It is a tight fit in dress shoes and flats with a shallow footbed — if that is what you wear most, choose one of our low-profile options.</p>"
+            "content": "<p>It depends on the item. Insoles, socks, sleeves and toe spacers are cut to sit inside everyday closed shoes. Braces, splints and night-time items are shaped to be worn on their own, and massagers and stretching aids are used out of shoes altogether. The product description above says which applies here — and if it is not clear, email us before you order.</p>"
           }
         },
         "faq_shipping": {
@@ -154,7 +154,7 @@
           "settings": {
             "heading": "How do I clean it?",
             "icon": "washing",
-            "content": "<p>Hand wash in cool water with a mild detergent and air dry away from direct heat. Do not machine dry. Care details specific to this item, where they differ, are in the description above.</p>"
+            "content": "<p>Fabric items — socks, sleeves, braces and straps — hand wash in cool water with a mild detergent and air dry away from direct heat. Do not machine dry. Silicone and gel items rinse clean with soap and water.</p><p><strong>Never immerse an electrical item in water.</strong> Unplug it first and wipe it with a damp cloth only. Always follow the care instructions supplied with the product, which take precedence over this note.</p>"
           }
         },
         "share": {

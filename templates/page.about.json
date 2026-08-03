@@ -12,7 +12,7 @@
       "settings": {
         "heading": "Built for people who are on their feet",
         "heading_size": "h1",
-        "subheading": "<p>StrideWell started with one question: why is everyday foot support either medical-looking or useless? We pick and test products for one customer — the person who is standing, walking and working all day and wants to stop thinking about their feet.</p>",
+        "subheading": "<p>StrideWell started with one question: why is everyday foot support either clinical-looking or useless? We stock for one customer — the person who is standing, walking and working all day and wants to stop thinking about their feet.</p>",
         "layout": "with_image",
         "default_image": "about-brand.jpg",
         "image_position": "left",
@@ -27,16 +27,16 @@
           "type": "benefit",
           "settings": {
             "icon": "target",
-            "title": "One customer, one promise",
-            "text": "We only stock things made to help feet and legs feel better through a long day. No general-store filler."
+            "title": "One customer, one focus",
+            "text": "We only stock foot, ankle, calf and knee support — five ranges, nothing else. No general-store filler."
           }
         },
         "story-testing": {
           "type": "benefit",
           "settings": {
             "icon": "check-circle",
-            "title": "We wear what we sell",
-            "text": "Every product is checked for fit and finish before it goes on the site, and dropped if it doesn't hold up."
+            "title": "Chosen, not scraped",
+            "text": "We pick each item for its materials, size range and finish rather than listing whatever a supplier catalogue happens to offer."
           }
         },
         "story-guarantee": {

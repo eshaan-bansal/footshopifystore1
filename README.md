@@ -96,14 +96,21 @@ recurring task.
 **Product tag is equal to** the tag below. Using the collection's own name as the
 tag keeps tagging unambiguous at import time.
 
-| Collection | Handle | Condition — product tag is equal to |
-|---|---|---|
-| Insoles & Arch Support | `insoles-arch-support` | `Insoles & Arch Support` |
-| Bunion & Toe Correction | `bunion-toe-correction` | `Bunion & Toe Correction` |
-| Compression & Circulation | `compression-circulation` | `Compression & Circulation` |
-| Braces & Supports | `braces-supports` | `Braces & Supports` |
-| Recovery & Massage | `recovery-massage` | `Recovery & Massage` |
-| Orthopedic Footwear | `orthopedic-footwear` | `Orthopedic Footwear` |
+| Collection | Handle | Condition — product tag is equal to | SKUs at launch |
+|---|---|---|---|
+| Compression & Circulation | `compression-circulation` | `Compression & Circulation` | 5 |
+| Bunion & Toe Care | `bunion-toe-correction` | `Bunion & Toe Care` | 3 |
+| Braces & Supports | `braces-supports` | `Braces & Supports` | 3 |
+| Recovery & Massage | `recovery-massage` | `Recovery & Massage` | 2 |
+| Insoles & Arch Support | `insoles-arch-support` | `Insoles & Arch Support` | 1 |
+
+> **Note on the bunion handle.** The collection is titled **Bunion & Toe Care**,
+> but its handle stays `bunion-toe-correction` because that is what the theme
+> templates reference — changing the handle in admin would break the homepage
+> card until the theme is updated to match. The homepage card sets the title
+> explicitly, so the safe wording renders regardless of what the collection is
+> called in admin. "Correction" is not a claim we can substantiate; see
+> COMPLIANCE.md §1b.
 
 The handles must match exactly — the homepage category grid and the
 shop-by-concern cards reference them. Shopify derives the handle from the title,
@@ -114,11 +121,15 @@ Give each collection an **image** while you are there: the homepage category car
 uses it. (If you skip it, the card falls back to the collection's first product
 image.)
 
-### 2. Create the `best-sellers` collection
+### 2. Do not create a `best-sellers` collection yet
 
-Handle **`best-sellers`**. Automated on a `best-seller` tag is easiest. The
-homepage "Popular right now" row reads it and **hides itself entirely while the
-collection is empty**, so you can leave it unpopulated at launch.
+The homepage used to carry a "Popular right now" row and a "See best sellers"
+hero button. Both were removed: with no sales history, "best seller" and "popular"
+are unsubstantiated social-proof claims under COMPLIANCE.md §2. The featured row
+now points at **Compression & Circulation**, the deepest range.
+
+Once you have real order data, a best-sellers collection is fine — repoint the
+featured row at it in the theme editor and title it accurately.
 
 ### 3. Create the three product metafield definitions
 
@@ -219,7 +230,7 @@ This is the whole point of the structure. Per product:
 
 1. **Import as a draft** (Kopy, CJ, CSV, manual).
 2. **Tag it** with its collection name exactly — e.g. `Insoles & Arch Support`.
-   Add `best-seller` and/or `new` if they apply.
+   Do not use a `best-seller` tag until you have the order data to back it.
 3. **Fill the three metafields** (`benefit_bullets`, `faqs`, `badge`).
 4. Set images, title, price, Google product category.
 5. **Set it Active.**
@@ -230,16 +241,24 @@ What happens with no theme work at all:
 - that collection now has products, so its **homepage category card appears**,
   with an up-to-date product count;
 - the matching **shop-by-concern card appears** too;
-- a `best-seller` tag makes the **"Popular right now" row appear**;
 - the product renders through the **single shared product template** — gallery,
   title, price, variants, sizing link, offer tiers, add-to-cart, trust row,
   features, reassurance, FAQs, cross-sells, sticky mobile add-to-cart.
 
 The reverse is also true: **empty collections hide themselves.** Category cards,
-concern cards and the best-sellers row all check `all_products_count` and skip
+concern cards and the featured row all check `all_products_count` and skip
 anything with zero products, and each section removes itself completely when
 nothing is left. The storefront never shows an empty category, so you can launch
 with two collections filled and reveal the rest simply by importing into them.
+
+> **Step 3 is no longer optional.** The product template used to ship insole
+> copy as a fallback — "firm arch shell", "trim-to-fit", "2 pairs" — which was
+> wrong on thirteen of the fourteen launch SKUs and would have printed a false
+> description on every one of them. Those fallbacks are now blank, so the
+> Features and "Who this is made for" blocks **render nothing until you fill
+> `custom.benefit_bullets` for that product.** An empty block is a missing
+> selling point; a wrong one is a deceptive description. Same reasoning as the
+> review gate.
 
 The only per-product theme decision you might ever make is the product title
 formula — see [The product page](#the-product-page-block-by-block).
@@ -258,19 +277,20 @@ Menu data lives in admin, not in Liquid. Create these under
 | Home | Home page |
 | Shop All | `/collections/all` |
 | **Shop** (dropdown) | `/collections/all` |
-| └ Insoles & Arch Support | `/collections/insoles-arch-support` |
-| └ Bunion & Toe Correction | `/collections/bunion-toe-correction` |
 | └ Compression & Circulation | `/collections/compression-circulation` |
+| └ Bunion & Toe Care | `/collections/bunion-toe-correction` |
 | └ Braces & Supports | `/collections/braces-supports` |
 | └ Recovery & Massage | `/collections/recovery-massage` |
-| └ Orthopedic Footwear | `/collections/orthopedic-footwear` |
+| └ Insoles & Arch Support | `/collections/insoles-arch-support` |
 | Contact | `/pages/contact` |
 
-Nest the six collections **under** the "Shop" item to get the dropdown.
+Nest the five collections **under** the "Shop" item to get the dropdown. Label
+the bunion item **Bunion & Toe Care** even though its URL still reads
+`bunion-toe-correction` — see the note in the collections table above.
 
 ### `footer` — Footer menu
 
-The footer's "Shop" column reads this menu. Add the six collections, plus
+The footer's "Shop" column reads this menu. Add the five collections, plus
 Shop All.
 
 ---

@@ -48,9 +48,13 @@ with a specific outcome consistently beats generic wording. Applied here:
 
 | Before | Now | Why |
 |---|---|---|
-| "Shop this" (×6 concern cards) | "Shop compression", "Shop wide-fit shoes", … | Each card says what it opens |
-| "Browse categories" | "See best sellers" | Concrete destination |
+| "Shop this" (×5 concern cards) | "Shop compression", "Shop braces & supports", … | Each card says what it opens |
+| "Browse categories" | "Shop by category" | Concrete destination |
 | "Shop all" (hero) | "Shop foot support" | Names the category, still 3 words |
+
+The hero's second button briefly read "See best sellers". It was removed: at
+launch there is no sales data, so "best seller" is unsubstantiated social proof
+under COMPLIANCE.md §2. A concrete but honest destination does the same job.
 
 Keep CTA copy to roughly **2–5 words**. Longer reads as a sentence and stops
 looking like a button.

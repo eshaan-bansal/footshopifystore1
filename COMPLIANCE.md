@@ -51,6 +51,34 @@ is crossed when the product is described as acting on the condition. So:
 - OK — a card titled "Plantar fasciitis" → "Cushioned heel and arch support"
 - NOT OK — "Plantar fasciitis relief" or "Heals plantar fasciitis"
 
+### 1b. The product name is itself a claim
+
+This is the trap in this catalogue. Supplier listings are written for marketplaces
+that do not police claims, so the names arrive pre-loaded with the exact language
+this file bans. A name is the most prominent copy on the page — it is in the
+title tag, the collection card, the cart, the order confirmation and the ad. If
+the name asserts an outcome, no amount of careful body copy cures it.
+
+Two failure patterns to catch when you import:
+
+**Corrective verbs in the name.** "Corrector", "straightener", "realigner". The
+evidence does not support them: conservative splinting can help early-stage
+symptoms and may slow progression, but permanent correction of the hallux valgus
+axis is not achievable without surgery. Selling a "bunion corrector" is a claim
+we cannot substantiate on request.
+
+**Condition names in the name.** "Neuropathy socks", "plantar fasciitis splint".
+Naming the condition *in the product itself* — as opposed to on a navigation card
+— represents the product as intended to treat that condition. For a disease like
+diabetic neuropathy that is the specific fact pattern FDA and FTC act on: the
+product is treated as an unapproved new drug or an unapproved device, and the
+claim needs well-controlled human clinical evidence we do not have. Neuropathy
+and diabetes claims are an active enforcement priority, not a theoretical one.
+
+Rename on import. Describe the **form and mechanism**, not the target condition:
+a night splint that holds the ankle in dorsiflexion is a "dorsiflexion night
+splint", which is accurate, searchable and makes no promise.
+
 ### 2. Fabricated or unsubstantiated social proof
 
 Nothing invented, and nothing we cannot evidence on request:
@@ -151,6 +179,77 @@ theme starts rendering them automatically. Nothing needs to be un-hidden by
 hand — see the note below.
 
 ---
+
+## The launch catalogue, product by product
+
+Fourteen SKUs across five collections. The middle column is the name to publish;
+where it differs from the supplier name, publishing the supplier name is itself
+the violation. Prices are the launch list.
+
+### Compression & Circulation (5)
+
+Graduated compression is the one place this catalogue has real evidence behind
+it — but the evidence is for *the garment construction*, not for an outcome we
+may promise. State the **mmHg range and the fact that it is graduated** (tightest
+at the ankle, easing upward); that is a measurable property of the knit and it is
+verifiable from the supplier spec. Never convert it into "improves circulation",
+"increases blood flow" or "reduces swelling" — those are the health-outcome
+claims banned in §1, and they are what turns a sock into a medical device claim.
+Do not state an mmHg figure you have not confirmed with the supplier.
+
+| Supplier name | Publish as | Notes |
+|---|---|---|
+| Bamboo compression socks — $29.99 | unchanged | Say the fibre blend and the mmHg. Not "circulation booster". |
+| Plantar compression foot sleeves — $34.99 | unchanged | "Plantar" is anatomical and fine. Sleeve, open toe and heel. |
+| Calf compression sleeves — $22.99 | unchanged | Sized by calf circumference, not shoe size. |
+| Five-toe / recovery socks — $17.99 | **Five-toe socks** | Drop "recovery" — it names an outcome. Describe the split-toe knit. |
+| Neuropathy sleep socks — $29.99 | **Cushioned sleep socks** | **Highest risk in the catalogue.** See §1b. Say seamless toe, non-binding cuff, cushioned sole. Never mention neuropathy, diabetes or nerve anything, in the title, description, tags, metafields, alt text or ads. |
+
+### Bunion & Toe Care (3)
+
+The collection is titled **Care**, not Correction, for the reason in §1b. Toe
+separator evidence is genuinely mixed — reviews report reduced pain and some
+angle change with consistent use, but the studies vary widely in material, method
+and quality. That is not the "competent and reliable scientific evidence" standard.
+Sell them as spacing and cushioning.
+
+| Supplier name | Publish as | Notes |
+|---|---|---|
+| Bunion corrector splint — $39.99 | **Adjustable bunion splint** | Hinged or strapped, worn at night. Describe the strap and the hinge. Never "corrects", "realigns" or "fixes". |
+| Hammer-toe straighteners — $19.99 | **Adjustable toe splints** | "Hammer toe" describes a toe shape and is acceptable as a *fit* descriptor; "straighteners" is a claim. |
+| Toe separators / spacers — $16.99 | unchanged | Soft silicone, worn in or out of shoes. Say the material and the toe count. |
+
+### Braces & Supports (3)
+
+| Supplier name | Publish as | Notes |
+|---|---|---|
+| Bamboo knee brace/sleeve — $29.99 | **Bamboo knee sleeve** | Sized by circumference. Open patella panel if it has one. |
+| Ankle brace support — $22.99 | **Ankle brace** | Describe closure type and profile under a sock. |
+| Plantar fasciitis night splint — $27.99 | **Dorsiflexion night splint** | Names the mechanism, not the condition. Evidence is short-term at best and a Cochrane review found little support beyond six months — so describe the angle it holds, and stop there. |
+
+### Recovery & Massage (2)
+
+| Supplier name | Publish as | Notes |
+|---|---|---|
+| Foot & leg stretching strap — $29.99 | unchanged | Webbing with loops. Say the length and loop count. |
+| Electric foot massager — $49.99 | unchanged | **Check the mechanism before listing.** A vibration or shiatsu massager is an ordinary consumer good. If it uses EMS or TENS it is an FDA Class II device under 21 CFR 890.5850 and needs its own 510(k) clearance — selling one without it is a regulatory problem, not a copy problem. Get the supplier's answer in writing. |
+
+### Insoles & Arch Support (1)
+
+| Supplier name | Publish as | Notes |
+|---|---|---|
+| Arch-support insoles — $29.99 | unchanged | "Arch support" is a structural description and is fine. Trim-to-fit, foam type, heel cup depth. |
+
+### Two catalogue-wide notes
+
+**Prop 65.** Silicone, gel, foam and PVC foot goods imported from Asia are the
+exact category private Prop 65 plaintiffs scan storefronts for. Set
+`custom.prop65_required` to true on any item you cannot get a compliant
+certificate for — the warning then renders before purchase on its own.
+
+**The electric massager needs a safety carve-out.** The sitewide care FAQ now
+says never to immerse an electrical item; do not override that with a generic
+"hand wash" line in its description.
 
 ## How the theme enforces this
 

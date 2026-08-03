@@ -10,15 +10,15 @@
         "reassurance": "Free US shipping over $50, Tracking on every order, Secure checkout",
         "button_label_1": "Shop foot support",
         "button_link_1": "/collections/all",
-        "button_label_2": "See best sellers",
-        "button_link_2": "",
+        "button_label_2": "Shop by category",
+        "button_link_2": "/collections",
         "content_alignment": "left",
         "height_mobile": 480,
         "height_desktop": 620,
         "scrim_color": "#0E3A46",
         "scrim_opacity": 70,
         "color_scheme": "scheme-3",
-        "button_collection_2": "best-sellers"
+        "button_collection_2": ""
       }
     },
     "trust-bar": {
@@ -94,7 +94,8 @@
         "cat-bunion": {
           "type": "category",
           "settings": {
-            "collection": "bunion-toe-correction"
+            "collection": "bunion-toe-correction",
+            "title": "Bunion & Toe Care"
           }
         },
         "cat-compression": {
@@ -114,21 +115,14 @@
           "settings": {
             "collection": "recovery-massage"
           }
-        },
-        "cat-footwear": {
-          "type": "category",
-          "settings": {
-            "collection": "orthopedic-footwear"
-          }
         }
       },
       "block_order": [
-        "cat-insoles",
-        "cat-bunion",
         "cat-compression",
+        "cat-bunion",
         "cat-braces",
         "cat-recovery",
-        "cat-footwear"
+        "cat-insoles"
       ]
     },
     "shop-by-problem": {
@@ -146,6 +140,46 @@
         "padding_bottom": 52
       },
       "blocks": {
+        "problem-swelling": {
+          "type": "card",
+          "settings": {
+            "icon": "wave",
+            "title": "Swelling & circulation",
+            "text": "Graduated compression knitwear in bamboo and nylon blends.",
+            "collection": "compression-circulation",
+            "cta_label": "Shop compression"
+          }
+        },
+        "problem-bunions": {
+          "type": "card",
+          "settings": {
+            "icon": "footprint",
+            "title": "Bunions & toe crowding",
+            "text": "Silicone spacers and adjustable splints that make room between the toes.",
+            "collection": "bunion-toe-correction",
+            "cta_label": "Shop bunion & toe care"
+          }
+        },
+        "problem-knee": {
+          "type": "card",
+          "settings": {
+            "icon": "knee",
+            "title": "Knee & ankle support",
+            "text": "Adjustable braces and splints that hold the joint steady.",
+            "collection": "braces-supports",
+            "cta_label": "Shop braces & supports"
+          }
+        },
+        "problem-recovery": {
+          "type": "card",
+          "settings": {
+            "icon": "cushion",
+            "title": "After a long day on your feet",
+            "text": "Stretching aids and massagers for the end of a shift.",
+            "collection": "recovery-massage",
+            "cta_label": "Shop recovery"
+          }
+        },
         "problem-plantar": {
           "type": "card",
           "settings": {
@@ -155,74 +189,23 @@
             "collection": "insoles-arch-support",
             "cta_label": "Shop arch support"
           }
-        },
-        "problem-bunions": {
-          "type": "card",
-          "settings": {
-            "icon": "footprint",
-            "title": "Bunions",
-            "text": "Gentle toe spacing and room where you need it.",
-            "collection": "bunion-toe-correction",
-            "cta_label": "Shop bunion care"
-          }
-        },
-        "problem-swelling": {
-          "type": "card",
-          "settings": {
-            "icon": "wave",
-            "title": "Swelling & circulation",
-            "text": "Graduated compression knitwear.",
-            "collection": "compression-circulation",
-            "cta_label": "Shop compression"
-          }
-        },
-        "problem-arch": {
-          "type": "card",
-          "settings": {
-            "icon": "cushion",
-            "title": "Arch pain",
-            "text": "Cushioned support that holds its shape all day.",
-            "collection": "insoles-arch-support",
-            "cta_label": "Shop arch support"
-          }
-        },
-        "problem-knee": {
-          "type": "card",
-          "settings": {
-            "icon": "knee",
-            "title": "Knee support",
-            "text": "Steady, low-profile support you can wear under clothes.",
-            "collection": "braces-supports",
-            "cta_label": "Shop knee support"
-          }
-        },
-        "problem-wide-fit": {
-          "type": "card",
-          "settings": {
-            "icon": "shoe",
-            "title": "Wide-fit shoes",
-            "text": "Everyday footwear with room for wide feet.",
-            "collection": "orthopedic-footwear",
-            "cta_label": "Shop wide-fit shoes"
-          }
         }
       },
       "block_order": [
-        "problem-plantar",
-        "problem-bunions",
         "problem-swelling",
-        "problem-arch",
+        "problem-bunions",
         "problem-knee",
-        "problem-wide-fit"
+        "problem-recovery",
+        "problem-plantar"
       ]
     },
-    "best-sellers": {
+    "featured-range": {
       "type": "featured-collection",
       "settings": {
         "hide_when_empty": true,
-        "title": "Popular right now",
+        "title": "Compression & circulation",
         "heading_size": "h1",
-        "collection": "best-sellers",
+        "collection": "compression-circulation",
         "products_to_show": 8,
         "columns_desktop": 4,
         "full_width": false,
@@ -247,7 +230,7 @@
       "settings": {
         "heading": "How StrideWell is built",
         "heading_size": "h1",
-        "subheading": "<p>Made to be worn all day, in the shoes you already own.</p>",
+        "subheading": "<p>Foot, ankle, calf and knee support across five ranges — chosen to be worn through a long day.</p>",
         "layout": "with_image",
         "default_image": "lifestyle-benefits.jpg",
         "image_position": "right",
@@ -262,24 +245,24 @@
           "type": "benefit",
           "settings": {
             "icon": "target",
-            "title": "Contoured support",
-            "text": "Shaped with a firm arch shell and a cushioned heel cup."
+            "title": "Adjustable, not one-size",
+            "text": "Splints, braces and sleeves with hook-and-loop straps or knitted sizing, so the fit is set to you."
           }
         },
         "benefit-comfort": {
           "type": "benefit",
           "settings": {
             "icon": "sun",
-            "title": "Holds its shape",
-            "text": "Closed-cell foam that does not flatten out over a long shift."
+            "title": "Breathable materials",
+            "text": "Bamboo and nylon blends, soft silicone and closed-cell foam depending on the item."
           }
         },
         "benefit-fit": {
           "type": "benefit",
           "settings": {
             "icon": "footprint",
-            "title": "Sized for real feet",
-            "text": "Trim-to-fit, with sizes for wide and narrow feet."
+            "title": "Day wear and night wear",
+            "text": "Low-profile pieces that fit inside everyday shoes, plus splints and socks shaped for wearing in bed."
           }
         }
       },
@@ -349,15 +332,15 @@
           "settings": {
             "heading": "What are they made of?",
             "icon": "leaf",
-            "row_content": "<p>Most insoles use an EVA foam base with a softer top layer and a breathable fabric cover. Compression socks are a nylon and spandex knit. Supports use a stretch fabric with an open-knit panel behind the joint. The exact materials for each item are listed on its product page.</p>"
+            "row_content": "<p>It varies by range. Compression socks and sleeves are a bamboo or nylon blend knitted with spandex. Toe spacers and separators are soft silicone. Braces and splints use a stretch fabric with hook-and-loop straps and a moulded support panel. Insoles use an EVA foam base with a breathable fabric cover. The exact materials for each item are listed on its product page.</p>"
           }
         },
         "faq-shoes": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Will insoles fit in my shoes?",
+            "heading": "Which items can I wear inside shoes?",
             "icon": "shoe",
-            "row_content": "<p>They are made to sit inside everyday sneakers, work boots and most closed shoes, and are trim-to-fit so you can cut them along the printed guide lines. They are a tight fit in dress shoes and flats with a shallow footbed — if that is what you wear most, choose one of our low-profile options.</p>"
+            "row_content": "<p>Insoles, socks, foot sleeves and toe spacers are made to be worn inside everyday sneakers, work boots and most closed shoes. Insoles are trim-to-fit along the printed guide lines, and are a tight fit in dress shoes and flats with a shallow footbed. Night splints, knee and ankle braces, stretching straps and massagers are used out of shoes — each product page says which applies.</p>"
           }
         }
       },
@@ -408,7 +391,7 @@
     "trust-bar",
     "category-grid",
     "shop-by-problem",
-    "best-sellers",
+    "featured-range",
     "benefits",
     "testimonials",
     "faq",
