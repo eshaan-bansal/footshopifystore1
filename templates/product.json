@@ -53,6 +53,10 @@
             "footnote": ""
           }
         },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -177,6 +181,7 @@
         "price",
         "variant_picker",
         "offer",
+        "quantity_selector",
         "buy_buttons",
         "cue",
         "trust_row",
